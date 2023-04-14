@@ -21,19 +21,21 @@
 
 
 module ad5302_module (
-    input         clk,
-    input         rst_n,
-    output        DSYNC0_N,   //
-    output        DSYNC1_N,   //
-    output        DCLK,       //
-    output        DIN,
-    output        DLDAC_N,    //
-    input  [31:0] uart_reg,
-    input         uart_ready
+    input             clk,
+    input             rst_n,
+    output            DSYNC0_N,  //
+    output            DSYNC1_N,  //
+    output            DCLK,      //
+    output            DIN,
+    output            DLDAC_N,   //
+    input      [31:0] app_din,
+    input             app_req,
+    output reg        app_ack
 );
 
   parameter ADDRESS_DAC0 = 16'hdac0;
   parameter ADDRESS_DAC1 = 16'hdac1;
+  parameter ADDRESS_DAC_EN = 16'hdacf;
 
   // spi_master_core data
   reg         wr_req = 0;
@@ -50,15 +52,15 @@ module ad5302_module (
   assign DSYNC0_N = CS[0];
   assign DSYNC1_N = CS[1];
   assign DLDAC_N  = r_dldac;
-  /**************************Í¬²½×´Ì¬****************************/
+  /**************************Í¬ï¿½ï¿½×´Ì¬****************************/
   reg [4:0] STATE_CURRENT;
   reg [4:0] STATE_NEXT;
-  localparam S_IDLE = 5'd0;  //¿ÕÏÐ
+  localparam S_IDLE = 5'd0;  //ï¿½ï¿½ï¿½ï¿½
   localparam S_INIT = 5'd1;  //
   localparam S_WRITE = 5'd2;  //
   localparam S_WAIT = 5'd3;  //
   localparam S_ENREG = 5'd4;  //
-  localparam S_STOP = 5'd5;  //
+  localparam S_DONE = 5'd5;  //
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) STATE_CURRENT <= S_IDLE;
     else STATE_CURRENT <= STATE_NEXT;
@@ -69,12 +71,13 @@ module ad5302_module (
     else if (STATE_NEXT != STATE_CURRENT) state_clk_cnt <= 32'd0;
     else state_clk_cnt <= state_clk_cnt + 1'd1;
   end
-  /**************************×ªÒÆ×´Ì¬****************************/
+  /**************************×ªï¿½ï¿½×´Ì¬****************************/
   always @(*) begin
     case (STATE_CURRENT)
       S_IDLE: begin
-        if (uart_ready && uart_reg[31:16] == ADDRESS_DAC0) STATE_NEXT = S_WRITE;
-        else if (uart_ready && uart_reg[31:16] == ADDRESS_DAC1) STATE_NEXT = S_WRITE;
+        if (app_req && app_din[31:16] == ADDRESS_DAC0) STATE_NEXT = S_WRITE;
+        else if (app_req && app_din[31:16] == ADDRESS_DAC1) STATE_NEXT = S_WRITE;
+        else if (app_req && app_din[31:16] == ADDRESS_DAC_EN) STATE_NEXT = S_ENREG;
         else STATE_NEXT = S_IDLE;
       end
       S_INIT: begin
@@ -84,25 +87,25 @@ module ad5302_module (
         STATE_NEXT = S_WAIT;
       end
       S_WAIT: begin
-        if (wr_ack) STATE_NEXT = S_ENREG;
+        if (wr_ack) STATE_NEXT = S_DONE;
         else STATE_NEXT = S_WAIT;
       end
       S_ENREG: begin
-        if (state_clk_cnt == 'd10) STATE_NEXT = S_STOP;
+        if (state_clk_cnt == 'd2) STATE_NEXT = S_DONE;
         else STATE_NEXT = S_ENREG;
       end
-      S_STOP: begin
+      S_DONE: begin
         STATE_NEXT = S_IDLE;
       end
       default: STATE_NEXT = S_IDLE;
     endcase
   end
 
-  /**************************×´Ì¬Êä³ö****************************/
+  /**************************×´Ì¬ï¿½ï¿½ï¿½****************************/
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) data_in <= 0;
-    else if (uart_ready && uart_reg[31:16] == ADDRESS_DAC0) data_in <= uart_reg[15:0];
-    else if (uart_ready && uart_reg[31:16] == ADDRESS_DAC1) data_in <= uart_reg[15:0];
+    else if (app_req && app_din[31:16] == ADDRESS_DAC0) data_in <= app_din[15:0];
+    else if (app_req && app_din[31:16] == ADDRESS_DAC1) data_in <= app_din[15:0];
     else data_in <= data_in;
   end
   //req
@@ -114,8 +117,8 @@ module ad5302_module (
   //r_channel
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) r_channel <= 8'b0;
-    else if (uart_ready && uart_reg[31:16] == ADDRESS_DAC0) r_channel <= 8'b0000_0001;
-    else if (uart_ready && uart_reg[31:16] == ADDRESS_DAC1) r_channel <= 8'b0000_0010;
+    else if (app_req && app_din[31:16] == ADDRESS_DAC0) r_channel <= 8'b0000_0001;
+    else if (app_req && app_din[31:16] == ADDRESS_DAC1) r_channel <= 8'b0000_0010;
     else r_channel <= r_channel;
   end
   //
@@ -123,6 +126,12 @@ module ad5302_module (
     if (!rst_n) r_dldac <= 1'b1;
     else if (STATE_CURRENT == S_ENREG) r_dldac <= 1'b0;
     else r_dldac <= 1'b1;
+  end
+  //ack
+  always @(posedge clk, negedge rst_n) begin
+    if (!rst_n) app_ack <= 1'b0;
+    else if (STATE_CURRENT == S_DONE) app_ack <= 1'b1;
+    else app_ack <= 1'b0;
   end
   /*****************************************************************/
   spi_master_core #(

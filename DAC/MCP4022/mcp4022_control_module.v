@@ -21,12 +21,13 @@
 
 
 module mcp4022_control_module (
-    input         clk,
-    input         rst_n,
-    input  [31:0] uart_reg,
-    input         uart_ready,
-    output        mcp_cs,
-    output        mcp_udn
+    input             clk,
+    input             rst_n,
+    input      [31:0] app_din,
+    input             app_req,
+    output reg        app_ack,
+    output            mcp_cs,
+    output            mcp_udn
 );
   parameter ADDRESS_MCP = 16'hdaca;
   parameter DELAY_CNT = 16'd500;
@@ -48,7 +49,7 @@ module mcp4022_control_module (
   localparam S_INIT = 5'd1;  //
   localparam S_WRITE = 5'd2;  //
   localparam S_WAIT = 5'd3;  //
-  localparam S_STOP = 5'd5;  //
+  localparam S_DONE = 5'd5;  //
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) STATE_CURRENT <= S_IDLE;
     else STATE_CURRENT <= STATE_NEXT;
@@ -63,7 +64,7 @@ module mcp4022_control_module (
   always @(*) begin
     case (STATE_CURRENT)
       S_IDLE: begin
-        if (uart_ready && uart_reg[31:16] == ADDRESS_MCP) STATE_NEXT = S_WRITE;
+        if (app_req && app_din[31:16] == ADDRESS_MCP) STATE_NEXT = S_WRITE;
         else STATE_NEXT = S_IDLE;
       end
       S_INIT: begin
@@ -73,10 +74,10 @@ module mcp4022_control_module (
         STATE_NEXT = S_WAIT;
       end
       S_WAIT: begin
-        if (ack) STATE_NEXT = S_STOP;
+        if (ack) STATE_NEXT = S_DONE;
         else STATE_NEXT = S_WAIT;
       end
-      S_STOP: begin
+      S_DONE: begin
         STATE_NEXT = S_IDLE;
       end
       default: STATE_NEXT = S_IDLE;
@@ -86,8 +87,8 @@ module mcp4022_control_module (
   /**************************状态输出****************************/
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) dir <= 0;
-    else if (uart_ready && uart_reg[31:16] == ADDRESS_MCP && uart_reg[15:8] == 8'hff) dir <= 1'b1;
-    else if (uart_ready && uart_reg[31:16] == ADDRESS_MCP && uart_reg[15:8] == 8'h00) dir <= 1'b0;
+    else if (app_req && app_din[31:16] == ADDRESS_MCP && app_din[15:8] == 8'hff) dir <= 1'b1;
+    else if (app_req && app_din[31:16] == ADDRESS_MCP && app_din[15:8] == 8'h00) dir <= 1'b0;
     else dir <= dir;
   end
   //req
@@ -99,11 +100,15 @@ module mcp4022_control_module (
   //r_channel
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) step <= 'b0;
-    else if (uart_ready && uart_reg[31:16] == ADDRESS_MCP) step <= {8'b0, uart_reg[7:0]};
+    else if (app_req && app_din[31:16] == ADDRESS_MCP) step <= {8'b0, app_din[7:0]};
     else step <= step;
   end
-  //
-
+  //ack
+  always @(posedge clk, negedge rst_n) begin
+    if (!rst_n) app_ack <= 1'b0;
+    else if (STATE_CURRENT == S_DONE) app_ack <= 1'b1;
+    else app_ack <= 1'b0;
+  end
   mcp4022_module #(
       .DELAY_CNT(DELAY_CNT)
   ) u_mcp4022_module (
