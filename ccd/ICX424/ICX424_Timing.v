@@ -37,21 +37,36 @@ module ICX424_Timing (
     output reg        line_valid,
     output reg        data_valid,
     output reg [11:0] line_cnt,
-    output reg [11:0] pixel_cnt
+    output reg [11:0] pixel_cnt,
+    input      [31:0] app_din,
+    input             app_req,
+    output            app_ack
 );
   /*******************************************/
   parameter LINE_N = 560;
   parameter PIXEL_N = 560;
   /*******************************************/
+  reg [24:0] Integration_T;
+  //����ʱ�����
+  always @(posedge sys_clk or negedge rst_n) begin
+    if (!rst_n) Integration_T <= 32'd50000;
+    else if (app_req && (app_din[31:24] == 16'hB3)) begin
+      Integration_T <= app_din[23:0];
+    end else begin
+      Integration_T <= Integration_T;
+    end
+  end
+  /*******************************************/
   reg [15:0] HF1_Rs, HF2_Rs, FRG_Rs, pixel_clk_Rs;
   always @(posedge sys_clk, negedge rst_n) begin
     if (!rst_n) begin
       HF1_Rs       <= 16'b1111_1111_0000_0000;
-      HF2_Rs       <= 16'b1111_1111_0000_0000;
-      FRG_Rs       <= 16'b1111_1111_0000_0000;
+      HF2_Rs       <= 16'b0000_0000_1111_1111;
+      FRG_Rs       <= 16'b1111_0000_0000_0000;
       pixel_clk_Rs <= 16'b1111_1111_0000_0000;
-    end else begin
-    end
+    end else if (app_req && (app_din[31:16] == 16'hB1A1)) HF1_Rs <= app_din[15:0];
+    else if (app_req && (app_din[31:16] == 16'hB1A2)) HF2_Rs <= app_din[15:0];
+    else if (app_req && (app_din[31:16] == 16'hB1A3)) FRG_Rs <= app_din[15:0];
   end
 
   reg [3:0] pixel_clk_cnt;
@@ -67,7 +82,7 @@ module ICX424_Timing (
       pixel_clk_cnt <= pixel_clk_cnt + 1'd1;
       HF1_R         <= HF1_Rs[15-pixel_clk_cnt];
       HF2_R         <= HF2_Rs[15-pixel_clk_cnt];
-      FRG_R         <= pixel_clk_Rs[15-pixel_clk_cnt];
+      FRG_R         <= FRG_Rs[15-pixel_clk_cnt];
       pixel_clk     <= pixel_clk_Rs[15-pixel_clk_cnt];
       if (pixel_clk_cnt == 4'd15) pixel_clk_cnt <= 4'd0;
     end
@@ -87,17 +102,21 @@ module ICX424_Timing (
     if (!rst_n) S_STATE_CURRENT <= S_IDLE;
     else S_STATE_CURRENT <= S_STATE_NEXT;
   end
-  reg [15:0] state_clk_cnt;
+  reg [31:0] state_clk_cnt;
   always @(posedge pixel_clk, negedge rst_n) begin
-    if (!rst_n) state_clk_cnt <= 16'd0;
-    else if (S_STATE_NEXT != S_STATE_CURRENT) state_clk_cnt <= 16'd0;
+    if (!rst_n) state_clk_cnt <= 32'd0;
+    else if (S_STATE_NEXT != S_STATE_CURRENT) state_clk_cnt <= 32'd0;
     else state_clk_cnt <= state_clk_cnt + 1'd1;
   end
   always @(*) begin
     case (S_STATE_CURRENT)
       S_IDLE: begin
-        if (sys_en) S_STATE_NEXT = S_VS;
+        if (sys_en) S_STATE_NEXT = S_INTERGTAL;
         else S_STATE_NEXT = S_IDLE;
+      end
+      S_INTERGTAL: begin
+        if (state_clk_cnt == Integration_T) S_STATE_NEXT = S_VS;
+        else S_STATE_NEXT = S_INTERGTAL;
       end
       S_VS: begin
         if (state_clk_cnt == 632) S_STATE_NEXT = S_READ;
@@ -129,7 +148,7 @@ module ICX424_Timing (
       SUB_Rs <= 72'b000000000000_000000000000_000000000000_011111111111_111111111111_000000000000;
     end
   end
-  /**************************ת��״̬****************************/
+  /**************************ת��״̬****************************/
   always @(posedge pixel_clk, negedge rst_n) begin
     if (!rst_n) begin
       V1_R      <= 1'd0;
@@ -142,6 +161,15 @@ module ICX424_Timing (
     end else
       case (S_STATE_CURRENT)
         S_IDLE: begin
+          V1_R      <= 1'd0;
+          V2_R      <= 1'd1;
+          V3_R      <= 1'd1;
+          SUB_R     <= 1'd0;
+          V_TR_R    <= 1'd0;
+          line_cnt  <= 1'd0;
+          pixel_cnt <= 1'd0;
+        end
+        S_INTERGTAL: begin
           V1_R      <= 1'd0;
           V2_R      <= 1'd1;
           V3_R      <= 1'd1;
@@ -210,14 +238,14 @@ module ICX424_Timing (
   assign V3   = V3_R;
   assign V_TR = V_TR_R;
   assign FSUB = SUB_R;
-  assign HF1  = HF1_R;
-  assign HF2  = HF2_R;
+  assign HF1  = (S_STATE_CURRENT == S_VS) ? 1'b0 : HF1_R;
+  assign HF2  = (S_STATE_CURRENT == S_VS) ? 1'b1 : HF2_R;
   assign FRG  = FRG_R;
   /******************************************************/
-  /**************************��Чλ****************************/
+  /**************************��Чλ****************************/
   always @(posedge pixel_clk, negedge rst_n) begin
     if (!rst_n) frame_valid <= 1'b0;
-    else if (S_STATE_CURRENT == S_IDLE && S_STATE_CURRENT == S_INTERGTAL) frame_valid <= 1'b0;
+    else if (S_STATE_CURRENT == S_IDLE || S_STATE_CURRENT == S_INTERGTAL) frame_valid <= 1'b0;
     else frame_valid <= 1'b1;
   end
   always @(posedge pixel_clk, negedge rst_n) begin
