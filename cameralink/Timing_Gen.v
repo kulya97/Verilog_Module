@@ -78,7 +78,7 @@ module Timing_Gen (
     endcase
   end
   /****************************************************/
-    always @(posedge clk, negedge rst_n) begin
+  always @(posedge clk, negedge rst_n) begin
     if (!rst_n) begin
       line_cnt  <= 1'd0;
       pixel_cnt <= 1'd0;
@@ -93,13 +93,17 @@ module Timing_Gen (
           pixel_cnt <= 1'd0;
         end
         S_WAIT0: begin
-          line_cnt <= line_cnt + 1'd1;
+          line_cnt  <= line_cnt + 1'd1;
+          pixel_cnt <= 1'd0;
         end
         S_READ: begin
+          line_cnt  <= line_cnt;
           pixel_cnt <= pixel_cnt + 1'd1;
         end
         S_WAIT1: begin
-          line_cnt <= line_cnt + 1'd1;
+          line_cnt  <= line_cnt;
+          pixel_cnt <= 1'd0;
+
         end
         default: begin
         end
@@ -121,9 +125,9 @@ module Timing_Gen (
     else if (S_STATE_CURRENT == S_READ) data_valid <= 1'b1;
     else data_valid <= 1'b0;
   end
-    always @(posedge clk, negedge rst_n) begin
+  always @(posedge clk, negedge rst_n) begin
     if (!rst_n) dout <= 'b0;
-    else if (S_STATE_CURRENT == S_READ) dout <= dout+1'b1;
+    else if (S_STATE_CURRENT == S_READ) dout <= dout + 1'b1;
     else if (S_STATE_CURRENT == S_IDLE) dout <= 'b0;
     else dout <= dout;
   end

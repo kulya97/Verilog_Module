@@ -36,6 +36,8 @@ module cameralink_module (
     output        cm_data_valid,
     output [15:0] cm_dout
 );
+  parameter LINE_N = 505;
+  parameter PIXEL_N = 708;
 
   reg         r_data_valid;
   reg         r_line_valid;
@@ -111,7 +113,7 @@ module cameralink_module (
         else STATE_NEXT = S_IDLE;
       end
       S_READ: begin
-        if (state_clk_cnt == app_image_w - 1) STATE_NEXT = S_IDLE;
+        if (state_clk_cnt == PIXEL_N - 1) STATE_NEXT = S_IDLE;
         else STATE_NEXT = S_READ;
       end
       default: STATE_NEXT = S_IDLE;
