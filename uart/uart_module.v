@@ -2,16 +2,16 @@ module uart_module #(
     parameter CLK_FRE    = 50,      //Mhz
     parameter BPS        = 115200,  //uart bps
     parameter IDLE_CYCLE = 20,      //idle time
-    parameter REG_SIZE   = 32
+    parameter REG_WIDTH  = 32
 ) (
-    input                 sys_clk,        //system clock 50Mhz on board
-    input                 rst_n,          //reset ,low active
-    input                 uart_rx,
-    output                uart_tx,
-    output [REG_SIZE-1:0] uart_rx_reg,    //uart reg 
-    output                uart_rx_ready,  //if update ready=1
-    input  [        31:0] uart_tx_reg,
-    input                 uart_tx_en
+    input                  sys_clk,        //system clock 50Mhz on board
+    input                  rst_n,          //reset ,low active
+    input                  uart_rx,
+    output                 uart_tx,
+    output [REG_WIDTH-1:0] uart_rx_reg,    //uart reg 
+    output                 uart_rx_ready,  //if update ready=1
+    input  [         31:0] uart_tx_reg,
+    input                  uart_tx_en
 );
   /*******************************************************************/
   wire        tx_data_valid;
@@ -85,8 +85,9 @@ module uart_module #(
       .empty(empty),    // output wire empty
       .valid(valid)     // output wire valid
   );
-  uart_reg #(
-      .REG_SIZE(REG_SIZE)
+  //uart_tx_reg_module tx_reg ();
+  uart_rx_reg_module #(
+      .REG_WIDTH(REG_WIDTH)
   ) uart_reg0 (
       .clk          (sys_clk),
       .rst_n        (rst_n),
