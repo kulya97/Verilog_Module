@@ -1,25 +1,25 @@
 //*******************************************************************************/
-module uart_rx #(
+module uart_rx_module #(
     parameter CLK_FRE    = 50,      //clock frequency(Mhz)
     parameter BAUD_RATE  = 115200,  //serial baud rate
-    parameter IDLE_CYCLE = 2        //¿ÕÏĞÖÜÆÚ
+    parameter IDLE_CYCLE = 2        //ç©ºé—²å‘¨æœŸ
 ) (
-    input            clk,            //Ê±ÖÓ
-    input            rst_n,          //¸´Î»
-    output reg [7:0] rx_data,        //Êı¾İ
-    output reg       rx_data_valid,  //ÓĞĞ§
-    input            rx_data_ready,  //Íê³É
-    output           rx_frame_ack,   //¿ÕÏĞÖĞ¶ÏÏìÓ¦
-    output           rx_ack,         //½ÓÊÕÏìÓ¦
+    input            clk,            //æ—¶é’Ÿ
+    input            rst_n,          //å¤ä½
+    output reg [7:0] rx_data,        //æ•°æ®
+    output reg       rx_data_valid,  //æœ‰æ•ˆ
+    input            rx_data_ready,  //å®Œæˆ
+    output           rx_frame_ack,   //ç©ºé—²ä¸­æ–­å“åº”
+    output           rx_ack,         //æ¥æ”¶å“åº”
     input            rx_pin          //
 );
   /***********************************************************************/
-  localparam CYCLE = CLK_FRE * 1000000 / BAUD_RATE;  //bitÖÜÆÚ
-  localparam IDLE_TIME = CYCLE * (IDLE_CYCLE + 10);  //¿ÕÏĞÅĞ¶¨Ê±¼ä
+  localparam CYCLE = CLK_FRE * 1000000 / BAUD_RATE;  //bitå‘¨æœŸ
+  localparam IDLE_TIME = CYCLE * (IDLE_CYCLE + 10);  //ç©ºé—²åˆ¤å®šæ—¶é—´
   /***********************************************************************/
   reg [2:0] state;
   reg [2:0] next_state;
-  localparam S_IDLE = 1;  //¿ÕÏĞ
+  localparam S_IDLE = 1;  //ç©ºé—²
   localparam S_START = 2;  //start bit
   localparam S_REC_BYTE = 3;  //data bits
   localparam S_STOP = 4;  //stop bit
@@ -27,8 +27,8 @@ module uart_rx #(
   /***********************************************************************/
   reg         rx_d0;  //delay 1 clock for rx_pin
   reg         rx_d1;  //delay 1 clock for rx_d0
-  wire        rx_negedge;  //Êı¾İÏÂ½µÑØ 
-  reg  [ 7:0] rx_bits;  //½ÓÊÜÊı¾İµÄÁÙÊ±´æ´¢
+  wire        rx_negedge;  //æ•°æ®ä¸‹é™æ²¿ 
+  reg  [ 7:0] rx_bits;  //æ¥å—æ•°æ®çš„ä¸´æ—¶å­˜å‚¨
   reg  [15:0] cycle_cnt;  //baud counter
   reg  [ 2:0] bit_cnt;  //bit counter
   /***********************************************************************/
@@ -42,7 +42,7 @@ module uart_rx #(
     end
   end
 
-  assign rx_negedge = rx_d1 && ~rx_d0;  //ÏÂ½µÑØ
+  assign rx_negedge = rx_d1 && ~rx_d0;  //ä¸‹é™æ²¿
   /***********************************************************************/
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) state <= S_IDLE;
@@ -55,77 +55,77 @@ module uart_rx #(
       if (rx_negedge) next_state <= S_START;
       else next_state <= S_IDLE;
       S_START:
-      if (cycle_cnt == CYCLE - 1)  //Ò»¸öÖÜÆÚÂö³åºó£¬×ªµ½½ÓÊÕ×´Ì¬
+      if (cycle_cnt == CYCLE - 1)  //ä¸€ä¸ªå‘¨æœŸè„‰å†²åï¼Œè½¬åˆ°æ¥æ”¶çŠ¶æ€
         next_state <= S_REC_BYTE;
       else next_state <= S_START;
       S_REC_BYTE:
-      if (cycle_cnt == CYCLE - 1 && bit_cnt == 3'd7)  //½ÓÊÜÍê³É8bit£¬×ªÒÆµ½Í£Ö¹Î»
+      if (cycle_cnt == CYCLE - 1 && bit_cnt == 3'd7)  //æ¥å—å®Œæˆ8bitï¼Œè½¬ç§»åˆ°åœæ­¢ä½
         next_state <= S_STOP;
       else next_state <= S_REC_BYTE;
       S_STOP:
-      if (cycle_cnt == CYCLE / 2 - 1)  //°ëÎ»ÖÜÆÚ£¬±ÜÃâ´í¹ıÏÂÒ»¸ö×Ö½Ú½ÓÊÕÆ÷
+      if (cycle_cnt == CYCLE / 2 - 1)  //åŠä½å‘¨æœŸï¼Œé¿å…é”™è¿‡ä¸‹ä¸€ä¸ªå­—èŠ‚æ¥æ”¶å™¨
         next_state <= S_DATA;
       else next_state <= S_STOP;
       S_DATA:
-      if (rx_data_ready)  //Êı¾İ½ÓÊÜÍê³É
+      if (rx_data_ready)  //æ•°æ®æ¥å—å®Œæˆ
         next_state <= S_IDLE;
       else next_state <= S_DATA;
       default: next_state <= S_IDLE;
     endcase
   end
   /***********************************************************************/
-  //bitÊ±ÖÓ¼ÆÊı
+  //bitæ—¶é’Ÿè®¡æ•°
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) cycle_cnt <= 16'd0;
-    else if ((state == S_REC_BYTE && cycle_cnt == CYCLE - 1) || next_state != state)  //×´Ì¬Ìø±äÊ±Çå¿Õ£¬½ÓÊÜ×´Ì¬Ã¿Ò»¸ö×Ö½ÚÇå¿ÕÒ»´Î
+    else if ((state == S_REC_BYTE && cycle_cnt == CYCLE - 1) || next_state != state)  //çŠ¶æ€è·³å˜æ—¶æ¸…ç©ºï¼Œæ¥å—çŠ¶æ€æ¯ä¸€ä¸ªå­—èŠ‚æ¸…ç©ºä¸€æ¬¡
       cycle_cnt <= 16'd0;
     else cycle_cnt <= cycle_cnt + 16'd1;
   end
   /***********************************************************************/
-  //bit¼ÆÊı
+  //bitè®¡æ•°
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       bit_cnt <= 3'd0;
     end else if (state == S_REC_BYTE)
-      if (cycle_cnt == CYCLE - 1)  //µ±½ÓÊÜ×´Ì¬µÄ×îºóbitÊı+1
+      if (cycle_cnt == CYCLE - 1)  //å½“æ¥å—çŠ¶æ€çš„æœ€åbitæ•°+1
         bit_cnt <= bit_cnt + 3'd1;
       else bit_cnt <= bit_cnt;
     else bit_cnt <= 3'd0;
   end
   /***********************************************************************/
-  //Ëø´æbitÊı¾İ
+  //é”å­˜bitæ•°æ®
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) rx_bits <= 8'd0;
     else if (state == S_REC_BYTE && cycle_cnt == CYCLE / 2 - 1) rx_bits[bit_cnt] <= rx_d1;
     else rx_bits <= rx_bits;
   end
   /***********************************************************************/
-  //Ëø´æ½ÓÊÕµ½µÄ8bitÊı¾İ
+  //é”å­˜æ¥æ”¶åˆ°çš„8bitæ•°æ®
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) rx_data <= 8'd0;
     else if (state == S_STOP && next_state != state) rx_data <= rx_bits;  //latch received data
   end
   /***********************************************************************/
-  //¸üĞÂÊı¾İ×¼±¸×´Ì¬
+  //æ›´æ–°æ•°æ®å‡†å¤‡çŠ¶æ€
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) rx_data_valid <= 1'b0;
-    else if (state == S_IDLE)  //Í£Ö¹Î»µÄ¿ªÊ¼
+    else if (state == S_IDLE)  //åœæ­¢ä½çš„å¼€å§‹
       rx_data_valid <= 1'b1;
     else rx_data_valid <= 1'b0;
   end
 
   /*
-ÒÔÏÂÎª×ÔĞĞÌí¼ÓµÄÄÚÈİ
-add£º
-    ´®¿Ú½ÓÊÕÖĞ¶Ï                    rx_bit_idle
-    ´®¿Ú¿ÕÏĞÖĞ¶Ï                    rx_frame_ack
-    ´®¿Ú¿ÕÏĞ½ÓÊÕµÄÊı¾İÎ»Êı           rx_frame_bit_num
+ä»¥ä¸‹ä¸ºè‡ªè¡Œæ·»åŠ çš„å†…å®¹
+addï¼š
+    ä¸²å£æ¥æ”¶ä¸­æ–­                    rx_bit_idle
+    ä¸²å£ç©ºé—²ä¸­æ–­                    rx_frame_ack
+    ä¸²å£ç©ºé—²æ¥æ”¶çš„æ•°æ®ä½æ•°           rx_frame_bit_num
 */
   /***********************************************************************/
-  //bitÖĞ¶Ï
+  //bitä¸­æ–­
   assign rx_ack = ((state == S_DATA) && (next_state != state));
   /***********************************************************************/
-  //¿ÕÏĞÊ±¼ä¼ÆÊı
+  //ç©ºé—²æ—¶é—´è®¡æ•°
   reg [31:0] idle_cnt;
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
@@ -135,7 +135,7 @@ add£º
       idle_cnt <= 0;
     end
   end
-  //Ö¡¿ÕÏĞ±êÖ¾
+  //å¸§ç©ºé—²æ ‡å¿—
   reg frame_idle_flag;
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
@@ -146,7 +146,7 @@ add£º
       frame_idle_flag <= 1'b0;
     end
   end
-  //Ö¡¿ÕÏĞ±êÖ¾´òÅÄ
+  //å¸§ç©ºé—²æ ‡å¿—æ‰“æ‹
   reg frame_idle_flag_n;
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin

@@ -1,5 +1,5 @@
 //*******************************************************************************/
-module uart_tx #(
+module uart_tx_module #(
     parameter CLK_FRE   = 50,     //clock frequency(Mhz)
     parameter BAUD_RATE = 115200  //serial baud rate
 ) (
@@ -13,17 +13,17 @@ module uart_tx #(
 );
   localparam CYCLE = CLK_FRE * 1000000 / BAUD_RATE;
   /***********************************************************************/
-  //×´Ì¬»ú
+  //çŠ¶æ€æœº
   reg [2:0] state;
   reg [2:0] next_state;
-  localparam S_IDLE = 1;  //¿ÕÏĞ
-  localparam S_START = 2;  //ÆğÊ¼Î»
-  localparam S_SEND_BYTE = 3;  //Êı¾İÎ»
-  localparam S_STOP = 4;  //Í£Ö¹Î»
+  localparam S_IDLE = 1;  //ç©ºé—²
+  localparam S_START = 2;  //èµ·å§‹ä½
+  localparam S_SEND_BYTE = 3;  //æ•°æ®ä½
+  localparam S_STOP = 4;  //åœæ­¢ä½
   /***********************************************************************/
-  reg [15:0] cycle_cnt;  //²¨ÌØÂÊ¼ÆÊı
-  reg [ 2:0] bit_cnt;  //Êı¾İ¼ÆÊı
-  reg [ 7:0] tx_data_latch;  //Êı¾İ
+  reg [15:0] cycle_cnt;  //æ³¢ç‰¹ç‡è®¡æ•°
+  reg [ 2:0] bit_cnt;  //æ•°æ®è®¡æ•°
+  reg [ 7:0] tx_data_latch;  //æ•°æ®
   reg        tx_reg;
   /***********************************************************************/
   assign tx_pin = tx_reg;
@@ -50,14 +50,14 @@ module uart_tx #(
     endcase
   end
   /***********************************************************************/
-  //²¨ÌØÂÊ²úÉú
+  //æ³¢ç‰¹ç‡äº§ç”Ÿ
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) cycle_cnt <= 16'd0;
     else if ((state == S_SEND_BYTE && cycle_cnt == CYCLE - 1) || next_state != state) cycle_cnt <= 16'd0;
     else cycle_cnt <= cycle_cnt + 16'd1;
   end
   /***********************************************************************/
-  //¼ì²âµ½ÆğÊ¼ĞÅºÅ£¬Ëø´æÊı¾İ
+  //æ£€æµ‹åˆ°èµ·å§‹ä¿¡å·ï¼Œé”å­˜æ•°æ®
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       tx_data_latch <= 8'd0;
@@ -65,7 +65,7 @@ module uart_tx #(
 
   end
   /***********************************************************************/
-  //Êı¾İ¼ÆÊı
+  //æ•°æ®è®¡æ•°
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       bit_cnt <= 3'd0;
@@ -75,7 +75,7 @@ module uart_tx #(
     else bit_cnt <= 3'd0;
   end
   /***********************************************************************/
-  //·¢ËÍ
+  //å‘é€
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) tx_reg <= 1'b1;
     else
@@ -87,7 +87,7 @@ module uart_tx #(
       endcase
   end
   /***********************************************************************/
-  //Ë¢ĞÂ×´Ì¬
+  //åˆ·æ–°çŠ¶æ€
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       tx_data_ready <= 1'b0;

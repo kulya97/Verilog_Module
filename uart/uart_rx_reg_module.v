@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module uart_reg #(
+module uart_rx_reg_module #(
     parameter REG_SIZE = 32
 ) (
     input                 clk,
@@ -34,7 +34,7 @@ module uart_reg #(
 );
   reg [REG_SIZE-1:0] uart_reg_r;
   /**************************************************************/
-  //接收数据
+  //鎺ユ敹鏁版嵁
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       uart_reg_r <= 'd0;
@@ -45,7 +45,7 @@ module uart_reg #(
     end
   end
   /**************************************************************/
-  //计数
+  //璁℃暟
   reg [15:0] data_cnt;
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
@@ -57,7 +57,7 @@ module uart_reg #(
     end
   end
   /**************************************************************/
-  //生成信号
+  //鐢熸垚淇″彿
   reg [REG_SIZE-1:0] reg_data_r;
   reg                reg_ready_r;
   always @(posedge clk or negedge rst_n) begin

@@ -33,21 +33,21 @@ module uart_module #(
   wire        empty;  // output wire empty
   wire        valid;
   /***********************************************************************/
-  //¿ªÆô½ÓÊÕÊı¾İ
+  //å¼€å¯æ¥æ”¶æ•°æ®
   assign rx_data_ready = 1'b1;
   /***********************************************************************/
-  //Ğ´tx fifoÊı¾İ
+  //å†™tx fifoæ•°æ®
   assign wr_en         = uart_tx_en;
   assign din           = uart_tx_reg;
   /***********************************************************************/
-  //¶Átx fifoÊı¾İ
+  //è¯»tx fifoæ•°æ®
   assign rd_en         = valid && tx_data_ready;
   assign tx_data       = dout;
   /***********************************************************************/
-  //·¢ËÍÊı¾İ
+  //å‘é€æ•°æ®
   assign tx_data_valid = valid && tx_data_ready;
   /***********************************************************************/
-  uart_rx #(
+  uart_rx_module #(
       .CLK_FRE(CLK_FRE),
       .BAUD_RATE(BPS),
       .IDLE_CYCLE(IDLE_CYCLE)
@@ -62,7 +62,7 @@ module uart_module #(
       .rx_pin       (uart_rx)
   );
 
-  uart_tx #(
+  uart_tx_module #(
       .CLK_FRE  (CLK_FRE),
       .BAUD_RATE(BPS)
   ) uart_tx_inst (
@@ -97,25 +97,5 @@ module uart_module #(
       .reg_data     (uart_rx_reg),
       .reg_ready    (uart_rx_ready)
   );
-  //   /*****************************************/
-  //   wire        rx_fifo_valid;
-  //   wire        rx_fifo_rd_en;
-  //   wire [31:0] rx_fifo_dout;
-  //   fifo_rx your_instance_name (
-  //       .clk  (sys_clk),        // input wire clk
-  //       .rst  (rst_n),          // input wire rst
-  //       .din  (uart_rx_reg),    // input wire [31 : 0] din
-  //       .wr_en(uart_rx_ready),  // input wire wr_en
-  //       .rd_en(rx_fifo_rd_en),  // input wire rd_en
-  //       .dout (rx_fifo_dout),   // output wire [31 : 0] dout
-  //       .full (),               // output wire full
-  //       .empty(),               // output wire empty
-  //       .valid(rx_fifo_valid)   // output wire valid
-  //   );
-  //   reg sys_busy;
-  //   assign rx_fifo_rd_en = rx_fifo_valid;
-
-
-
 
 endmodule
