@@ -1,0 +1,6 @@
+*.wcfg
+Simulation.cache/
+Simulation.gen/
+Simulation.ip_user_files/
+Simulation.runs/
+Simulation.sim/
