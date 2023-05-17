@@ -29,7 +29,7 @@ module uart_rx_reg_module #(
     input rst_n,
 
     input                       wr_en,
-    input                       rx_frame_ack,
+    input                       wr_rst,
     input      [           7:0] din,
     input                       rd_en,
     output reg [     WIDTH-1:0] dout,
@@ -52,7 +52,7 @@ module uart_rx_reg_module #(
       r_din <= 'd0;
     end else if (wr_en) begin
       r_din <= {r_din, din};
-    end else if (rx_frame_ack) begin
+    end else begin
       r_din <= r_din;
     end
   end
@@ -64,7 +64,7 @@ module uart_rx_reg_module #(
       data_cnt <= 'd0;
     end else if (wr_en) begin
       data_cnt <= data_cnt + 'd8;
-    end else if (rx_frame_ack || data_cnt == WIDTH) begin
+    end else if (wr_rst || data_cnt == WIDTH) begin
       data_cnt <= 'd0;
     end
   end

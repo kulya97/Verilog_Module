@@ -67,12 +67,12 @@ module uart_top_module #(
       .WIDTH(REG_WIDTH),
       .DEPTH(128)
   ) u_uart_rx_reg_module (
-      .clk         (sys_clk),
-      .rst_n       (rst_n),
-      .wr_en       (rx_ack),
-      .rx_frame_ack(rx_frame_ack),
-      .din         (rx_data[7:0]),
-      .rd_en       (!rx_fifo_empty),
+      .clk   (sys_clk),
+      .rst_n (rst_n),
+      .wr_en (rx_ack),
+      .wr_rst(rx_frame_ack),
+      .din   (rx_data[7:0]),
+      .rd_en (!rx_fifo_empty),
 
       .dout    (uart_rx_reg[REG_WIDTH-1:0]),
       .full    (),
