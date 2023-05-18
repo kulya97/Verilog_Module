@@ -31,8 +31,8 @@ module tb_uart_module;
   reg  [ 9:0] a2 = {1'b1, 8'h2, 1'b0};
   reg  [ 9:0] a3 = {1'b1, 8'h3, 1'b0};
   reg  [ 9:0] a4 = {1'b1, 8'h4, 1'b0};
-  parameter CLK_FRE    = 1;
-  localparam CYCLE = CLK_FRE* 1000000 / 115200 * 2;
+  parameter CLK_FRE = 1;
+  localparam CYCLE = CLK_FRE * 1000000 / 115200 * 2;
   integer i;
   initial begin
     CLK_UART_50M = 0;
@@ -127,13 +127,13 @@ module tb_uart_module;
   uart_top_module #(
       .CLK_FRE(CLK_FRE)
   ) uart0 (
-      .sys_clk      (CLK_UART_50M),
-      .rst_n        (RST_N),
-      .uart_rx      (UART_RX),
-      .uart_tx      (UART_TX),
-      .uart_rx_reg  (UART_REG),
-      .uart_rx_ready(uart_ready_flag),
-      .uart_tx_reg  (UART_REG),
-      .uart_tx_en   (uart_ready_flag)
+      .clk        (CLK_UART_50M),
+      .rst_n      (RST_N),
+      .uart_rx    (UART_RX),
+      .uart_tx    (UART_TX),
+      .uart_rx_reg(UART_REG),
+      .uart_rx_ack(uart_ready_flag),
+      .uart_tx_reg(UART_REG),
+      .uart_tx_req(uart_ready_flag)
   );
 endmodule

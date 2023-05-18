@@ -1,5 +1,5 @@
 //*******************************************************************************/
-module uart_rx_module #(
+module uart_bit_rx_module #(
     parameter CLK_FRE    = 50,      //clock frequency(Mhz)
     parameter BAUD_RATE  = 115200,  //serial baud rate
     parameter IDLE_CYCLE = 2        //空闲周期

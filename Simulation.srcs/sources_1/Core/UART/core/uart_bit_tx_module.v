@@ -1,5 +1,5 @@
 //*******************************************************************************/
-module uart_tx_module #(
+module uart_bit_tx_module #(
     parameter CLK_FRE   = 50,     //clock frequency(Mhz)
     parameter BAUD_RATE = 115200  //serial baud rate
 ) (

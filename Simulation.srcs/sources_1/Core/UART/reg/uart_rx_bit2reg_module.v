@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module uart_rx_reg_module #(
+module uart_rx_bit2reg_module #(
     parameter WIDTH = 32,
     parameter DEPTH = 1024,
     localparam ADDR_WIDTH = clogb2(DEPTH)
