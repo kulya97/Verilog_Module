@@ -59,8 +59,7 @@ module uart_reg_rx_module #(
   wire [REG_WIDTH-1:0] reg_dout;
   /****************************************/
   bit2reg_module #(
-      .WIDTH(REG_WIDTH),
-      .DEPTH(128)
+      .WIDTH(REG_WIDTH)
   ) u_bit2reg_module (
       .clk   (clk),
       .rst_n (rst_n),

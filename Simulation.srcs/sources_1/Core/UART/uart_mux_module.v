@@ -40,7 +40,7 @@ module uart_mux_module (
   wire [31:0] d2_dout;
   wire [31:0] d3_dout;
   wire d0_rden, d1_rden, d2_rden, d3_rden;
-  uart_arb_fifo d0 (
+  uart_mux_fifo d0 (
       .clk  (clk),      // input wire clk
       .din  (D0_data),  // input wire [31 : 0] din
       .wr_en(D0_en),    // input wire wr_en
@@ -50,7 +50,7 @@ module uart_mux_module (
       //   .empty(empty),    // output wire empty
       .valid(d0_valid)  // output wire valid
   );
-  uart_arb_fifo d1 (
+  uart_mux_fifo d1 (
       .clk  (clk),      // input wire clk
       .din  (D1_data),  // input wire [31 : 0] din
       .wr_en(D1_en),    // input wire wr_en
@@ -60,7 +60,7 @@ module uart_mux_module (
       //   .empty(empty),    // output wire empty
       .valid(d1_valid)  // output wire valid
   );
-  uart_arb_fifo d2 (
+  uart_mux_fifo d2 (
       .clk  (clk),      // input wire clk
       .din  (D2_data),  // input wire [31 : 0] din
       .wr_en(D2_en),    // input wire wr_en
@@ -70,7 +70,7 @@ module uart_mux_module (
       //   .empty(empty),    // output wire empty
       .valid(d2_valid)  // output wire valid
   );
-  uart_arb_fifo d3 (
+  uart_mux_fifo d3 (
       .clk  (clk),      // input wire clk
       .din  (D3_data),  // input wire [31 : 0] din
       .wr_en(D3_en),    // input wire wr_en
@@ -86,18 +86,18 @@ module uart_mux_module (
   assign d3_rden      = (!d0_valid) & (!d1_valid) & (!d2_valid) & d3_valid;
   assign uart_tx_en   = d0_valid | d1_valid | d2_valid | d3_valid;
   assign uart_tx_data = d0_valid ? d0_dout : (d1_valid ? d1_dout : (d2_valid ? d2_dout : d3_dout));
-
-  //   wire [3:0] valid;
-  //   assign valid={d3_valid,d2_valid,d1_valid,d0_valid};
-  //   wire [4:0] rd_en;
-  //   always @(*) begin
-  //     case (valid)
-  //       4'b1xxx: rd_en = 4'b1000;uart_tx_en=1'b1;uart_tx_data=d0_dout;
-  //       4'b01xx: rd_en = 4'b0100;uart_tx_en=1'b1;uart_tx_data=d1_dout;
-  //       4'b001x: rd_en = 4'b0010;uart_tx_en=1'b1;uart_tx_data=d2_dout;
-  //       4'b0001: rd_en = 4'b0001;uart_tx_en=1'b1;uart_tx_data=d3_dout;
-  //       4'b0000: rd_en = 4'b0000;uart_tx_en=1'b0;uart_tx_data=d3_dout;
-  //       default: rd_en = 4'b0000;uart_tx_en=1'b0;uart_tx_data=d3_dout;
-  //     endcase
-  //   end
+  
+//   wire [3:0] valid;
+//   assign valid={d3_valid,d2_valid,d1_valid,d0_valid};
+//   wire [4:0] rd_en;
+//   always @(*) begin
+//     case (valid)
+//       4'b1xxx: rd_en = 4'b1000;uart_tx_en=1'b1;uart_tx_data=d0_dout;
+//       4'b01xx: rd_en = 4'b0100;uart_tx_en=1'b1;uart_tx_data=d1_dout;
+//       4'b001x: rd_en = 4'b0010;uart_tx_en=1'b1;uart_tx_data=d2_dout;
+//       4'b0001: rd_en = 4'b0001;uart_tx_en=1'b1;uart_tx_data=d3_dout;
+//       4'b0000: rd_en = 4'b0000;uart_tx_en=1'b0;uart_tx_data=d3_dout;
+//       default: rd_en = 4'b0000;uart_tx_en=1'b0;uart_tx_data=d3_dout;
+//     endcase
+//   end
 endmodule

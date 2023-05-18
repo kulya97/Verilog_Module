@@ -31,7 +31,7 @@ function integer clogb2;
 	end
 endfunction
 //read
-always@(posedge clk or posedge rst_n)begin 
+always@(posedge clk or negedge rst_n)begin 
 	if(!rst_n)
 		rd_addr		<=		{ADDR_WIDTH{1'b0}};
 	else if(rd_en && !empty)begin
@@ -44,7 +44,7 @@ always@(posedge clk or posedge rst_n)begin
 		end
 end
 //write
-always@(posedge clk or posedge rst_n)begin 
+always@(posedge clk or negedge rst_n)begin 
 	if(!rst_n)
 		wr_addr		<=		{ADDR_WIDTH{1'b0}};
 	else if(wr_en && !full) begin
@@ -55,7 +55,7 @@ always@(posedge clk or posedge rst_n)begin
 		wr_addr		<=		wr_addr;
 end					
 //fifo_cnt
-always@(posedge clk or posedge rst_n)begin 
+always@(posedge clk or negedge rst_n)begin 
 	if(!rst_n)
 		fifo_cnt	<=		{ADDR_WIDTH{1'b0}};
 	else if(wr_en && !full && !rd_en)
@@ -66,14 +66,14 @@ always@(posedge clk or posedge rst_n)begin
 		fifo_cnt	<=		fifo_cnt;
 end
 //empty 
-always@(posedge clk or posedge rst_n)begin
+always@(posedge clk or negedge rst_n)begin
 	if(!rst_n)
 		empty	<=	1'b1;//reset:1
 	else
 		empty	<=	(!wr_en && (fifo_cnt[ADDR_WIDTH-1:1] == 'b0))&&((fifo_cnt[0] == 1'b0) || rd_en);
 end
 //full
-always@(posedge clk or posedge rst_n)begin
+always@(posedge clk or negedge rst_n)begin
 	if(!rst_n)
 		full	<=	1'b1;//reset:1
 	else
