@@ -1,4 +1,4 @@
-module uart_tx_bit2reg_module#(
+module reg2bit_module#(
 	parameter 		WIDTH		=	16,
 	parameter 		DEPTH		=	1024,
 	parameter 		ADDR_WIDTH	=	clogb2(DEPTH),
