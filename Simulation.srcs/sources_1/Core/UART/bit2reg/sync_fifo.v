@@ -30,6 +30,14 @@ function integer clogb2;
 			value=value>>1;
 	end
 endfunction
+
+  //位宽计算函数
+  //   function integer clogb2(input integer depth);
+  //     begin
+  //       for (clogb2 = 0; depth > 0; clogb2 = clogb2 + 1) depth = depth >> 1;
+  //     end
+  //   endfunction
+  
 //read
 always@(posedge clk or negedge rst_n)begin 
 	if(!rst_n)
