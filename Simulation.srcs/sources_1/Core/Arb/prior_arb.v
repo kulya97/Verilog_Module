@@ -18,7 +18,13 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+// prior_arb #(
+//     .REQ_WIDTH ( REQ_WIDTH ))
+//  u_prior_arb (
+//     .req                     ( req  [REQ_WIDTH-1:0] ),
 
+//     .gnt                     ( gnt  [REQ_WIDTH-1:0] )
+// );
 
 module prior_arb #(
 

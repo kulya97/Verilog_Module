@@ -9,13 +9,13 @@
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
-// Description: ³£ÓÃÄ£Ê½CPOL£ºCPHA
-//(³£ÓÃ)mode 0:00:sclk³¡µÍ£¬µÚÒ»¸ö±ßÑØ²ÉÑù£¬µÚ¶ş¸ö±ßÑØ·¢ËÍ£¬ÏÂ½µÑØ·¢ËÍ£¬ÉÏÉıÑØ²ÉÑù
-//(²»³£)mode 1:01:sclk³¡µÍ£¬µÚÒ»¸ö±ßÑØ·¢ËÍ£¬µÚ¶ş¸ö±ßÑØ²ÉÑù£¬ÏÂ½µÑØ²ÉÑù£¬ÉÏÉıÑØ·¢ËÍ
-//(²»³£)mode 2:10:sclk³£¸ß£¬µÚÒ»¸ö±ßÑØ²ÉÑù£¬µÚ¶ş¸ö±ßÑØ·¢ËÍ£¬ÏÂ½µÑØ²ÉÑù£¬ÉÏÉıÑØ·¢ËÍ
-//(³£ÓÃ)mode 3:11:sclk³£¸ß£¬µÚÒ»¸ö±ßÑØ·¢ËÍ£¬µÚ¶ş¸ö±ßÑØ²ÉÑù£¬ÏÂ½µÑØ·¢ËÍ£¬ÉÏÉıÑØ²ÉÑù
-//Èç¹ûĞèÒªµ÷ÕûÎ»¿íÔÚ²ÎÊıµ÷½Ú
-//Èç¹ûÆğÊ¼Î»ÖÃ²»Í¬£¬·¢ËÍÊı¾İ¿ÉÒÔÔÚÇ°Ôö¼ÓÎŞÓÃÎ»£¬¶ÁÈ¡Êı¾İ¿ÉÒÔÔö¼ÓÎ»¿í¡£
+// Description: å¸¸ç”¨æ¨¡å¼CPOLï¼šCPHA
+//(å¸¸ç”¨)mode 0:00:sclkåœºä½ï¼Œç¬¬ä¸€ä¸ªè¾¹æ²¿é‡‡æ ·ï¼Œç¬¬äºŒä¸ªè¾¹æ²¿å‘é€ï¼Œä¸‹é™æ²¿å‘é€ï¼Œä¸Šå‡æ²¿é‡‡æ ·
+//(ä¸å¸¸)mode 1:01:sclkåœºä½ï¼Œç¬¬ä¸€ä¸ªè¾¹æ²¿å‘é€ï¼Œç¬¬äºŒä¸ªè¾¹æ²¿é‡‡æ ·ï¼Œä¸‹é™æ²¿é‡‡æ ·ï¼Œä¸Šå‡æ²¿å‘é€
+//(ä¸å¸¸)mode 2:10:sclkå¸¸é«˜ï¼Œç¬¬ä¸€ä¸ªè¾¹æ²¿é‡‡æ ·ï¼Œç¬¬äºŒä¸ªè¾¹æ²¿å‘é€ï¼Œä¸‹é™æ²¿é‡‡æ ·ï¼Œä¸Šå‡æ²¿å‘é€
+//(å¸¸ç”¨)mode 3:11:sclkå¸¸é«˜ï¼Œç¬¬ä¸€ä¸ªè¾¹æ²¿å‘é€ï¼Œç¬¬äºŒä¸ªè¾¹æ²¿é‡‡æ ·ï¼Œä¸‹é™æ²¿å‘é€ï¼Œä¸Šå‡æ²¿é‡‡æ ·
+//å¦‚æœéœ€è¦è°ƒæ•´ä½å®½åœ¨å‚æ•°è°ƒèŠ‚
+//å¦‚æœèµ·å§‹ä½ç½®ä¸åŒï¼Œå‘é€æ•°æ®å¯ä»¥åœ¨å‰å¢åŠ æ— ç”¨ä½ï¼Œè¯»å–æ•°æ®å¯ä»¥å¢åŠ ä½å®½ã€‚
 // Dependencies:
 // 
 // Revision:
@@ -23,36 +23,40 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-//ad5302  01Ä£Ê½
-module spi_master_core (
-    input         clk,
-    input         rst_n,
-    input  [15:0] clk_div,  //È·¶¨ÆµÂÊ
-    input  [ 7:0] channel,
-    input         CPOL,     // Ê±ÖÓ¼«ĞÔ £¬H idleÊ±Îª¸ß
-    input         CPHA,     //Ê±ÖÓÏàÎ» H sckµÚ¶ş¸öÌø±äÑØ²ÉÑù£¬L sckµÚÒ»¸öÌø±äÑØ²ÉÑù
-    output [ 7:0] CS,       //spi cs
-    output        DCLK,     //spi clock
-    output        MOSI,     //spi data output
-    input         MISO,     //spi input
+//ad5302  01æ¨¡å¼
+module spi_master_core #(
+    parameter CLK_FRE = 50,
+    parameter CHANNEL = 8,
+    parameter REG_WIDTH = 16
+) (
+    input clk,
+    input rst_n,
 
-    input         wr_req,   //ÇëÇó
-    output        wr_ack,   //ÏìÓ¦
-    input  [15:0] data_in,  //data in
-    output [15:0] data_out  //data out
+    input                CPOL,      // æ—¶é’Ÿææ€§ ï¼ŒH idleæ—¶ä¸ºé«˜
+    input                CPHA,      //æ—¶é’Ÿç›¸ä½ H sckç¬¬äºŒä¸ªè·³å˜æ²¿é‡‡æ ·ï¼ŒL sckç¬¬ä¸€ä¸ªè·³å˜æ²¿é‡‡æ ·
+    output [CHANNEL-1:0] SPI_CS,    //spi cs
+    output               SPI_SCLK,  //spi clock
+    output               SPI_MOSI,  //spi data output
+    input                SPI_MISO,  //spi input
+
+    input  [  CHANNEL-1:0] channel,
+    input                  wr_req,   //è¯·æ±‚
+    output                 wr_ack,   //å“åº”
+    input  [REG_WIDTH-1:0] data_in,  //data in
+    output [REG_WIDTH-1:0] data_out  //data out
 );
-  parameter BITNUM = 8'd16;
-  localparam BITCNT = BITNUM * 2;
+  localparam CLK_DIV = 5;
+  localparam BITCNT = REG_WIDTH * 2;
   /***************************/
   reg        DCLK_reg;
-  reg [ 7:0] r_CS;
-  reg [15:0] MOSI_shift;
-  reg [15:0] MISO_shift;
+  reg [CHANNEL-1:0] r_CS;
+  reg [REG_WIDTH-1:0] MOSI_shift;
+  reg [REG_WIDTH-1:0] MISO_shift;
 
-  reg [15:0] r_data_out;
+  reg [REG_WIDTH-1:0] r_data_out;
   reg        r_wr_ack;
-
-  reg [ 7:0] r_channel;
+s
+  reg [ CHANNEL-1:0] r_channel;
   reg [15:0] clk_cnt;
   reg [ 7:0] clk_edge_cnt;
   /***************************/
@@ -60,17 +64,17 @@ module spi_master_core (
   reg [ 3:0] next_state;
   localparam S_IDLE = 0;
   localparam S_INIT = 6;
-  localparam S_DCLK_EDGE = 1;  //·­×ª×´Ì¬
+  localparam S_DCLK_EDGE = 1;  //ç¿»è½¬çŠ¶æ€
   localparam S_DCLK_IDLE = 2;
-  localparam S_ACK = 3;  //ÏìÓ¦×´Ì¬
-  localparam S_LAST_HALF_CYCLE = 4;  //µçÆ½±£³Ö
+  localparam S_ACK = 3;  //å“åº”çŠ¶æ€
+  localparam S_LAST_HALF_CYCLE = 4;  //ç”µå¹³ä¿æŒ
   localparam S_ACK_WAIT = 5;
   /***************************/
-  assign MOSI     = MOSI_shift[15];
-  assign DCLK     = DCLK_reg;
+  assign SPI_MOSI = MOSI_shift[REG_WIDTH-1];
+  assign SPI_SCLK = DCLK_reg;
   assign data_out = r_data_out;
   assign wr_ack   = r_wr_ack;
-  assign CS       = r_CS;
+  assign SPI_CS   = r_CS;
   /******************************************************************/
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) state <= S_IDLE;
@@ -82,13 +86,13 @@ module spi_master_core (
       if (wr_req == 1'b1) next_state <= S_DCLK_IDLE;
       else next_state <= S_IDLE;
       S_DCLK_IDLE:
-      if (clk_cnt == clk_div) next_state <= S_DCLK_EDGE;
+      if (clk_cnt == CLK_DIV - 1) next_state <= S_DCLK_EDGE;
       else next_state <= S_DCLK_IDLE;
-      S_DCLK_EDGE:
+      S_DCLK_EDGE:  //ç¿»è½¬
       if (clk_edge_cnt == BITCNT - 1) next_state <= S_LAST_HALF_CYCLE;
       else next_state <= S_DCLK_IDLE;
-      S_LAST_HALF_CYCLE:
-      if (clk_cnt == clk_div) next_state <= S_ACK;
+      S_LAST_HALF_CYCLE:  //æœ€ååŠä¸ªæ—¶é’Ÿ
+      if (clk_cnt == CLK_DIV - 1) next_state <= S_ACK;
       else next_state <= S_LAST_HALF_CYCLE;
       S_ACK: next_state <= S_ACK_WAIT;
       S_ACK_WAIT: next_state <= S_IDLE;
@@ -109,9 +113,9 @@ module spi_master_core (
   end
 
   always @(posedge clk, negedge rst_n) begin
-    if (!rst_n) r_CS <= 8'hff;
+    if (!rst_n) r_CS <= 16'hffff;
     else if (state == S_IDLE && wr_req == 1'b1) r_CS <= ~channel;
-    else if (state == S_ACK_WAIT) r_CS <= 8'hff;
+    else if (state == S_ACK_WAIT) r_CS <= 16'hffff;//0-1?
     else r_CS <= r_CS;
   end
 
@@ -127,10 +131,10 @@ module spi_master_core (
   //SPI data output
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) MOSI_shift <= 8'd0;
-    else if (state == S_IDLE && wr_req) MOSI_shift <= data_in;  //Ëø´æÊı¾İ
+    else if (state == S_IDLE && wr_req) MOSI_shift <= data_in;  //é”å­˜æ•°æ®
     else if (state == S_DCLK_EDGE)
-      if (CPHA == 1'b0 && clk_edge_cnt[0] == 1'b1) MOSI_shift <= {MOSI_shift[14:0], 1'b0};
-      else if (CPHA == 1'b1 && (clk_edge_cnt != 5'd0 && clk_edge_cnt[0] == 1'b0)) MOSI_shift <= {MOSI_shift[14:0], 1'b0};
+      if (CPHA == 1'b0 && clk_edge_cnt[0] == 1'b1) MOSI_shift <= {MOSI_shift[REG_WIDTH-2:0], 1'b0};
+      else if (CPHA == 1'b1 && (clk_edge_cnt != 5'd0 && clk_edge_cnt[0] == 1'b0)) MOSI_shift <= {MOSI_shift[REG_WIDTH-2:0], 1'b0};
   end
   /******************************************************************/
   //SPI data input
@@ -138,8 +142,8 @@ module spi_master_core (
     if (!rst_n) MISO_shift <= 8'd0;
     else if (state == S_IDLE && wr_req) MISO_shift <= 8'h00;
     else if (state == S_DCLK_EDGE)
-      if (CPHA == 1'b0 && clk_edge_cnt[0] == 1'b0) MISO_shift <= {MISO_shift[14:0], MISO};
-      else if (CPHA == 1'b1 && (clk_edge_cnt[0] == 1'b1)) MISO_shift <= {MISO_shift[14:0], MISO};
+      if (CPHA == 1'b0 && clk_edge_cnt[0] == 1'b0) MISO_shift <= {MISO_shift[REG_WIDTH-2:0], SPI_MISO};
+      else if (CPHA == 1'b1 && (clk_edge_cnt[0] == 1'b1)) MISO_shift <= {MISO_shift[REG_WIDTH-2:0], SPI_MISO};
   end
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) r_data_out <= 'd0;

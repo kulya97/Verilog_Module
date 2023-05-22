@@ -37,7 +37,6 @@ module uart_top_module #(
   uart_reg_tx_module #(
       .CLK_FRE   (CLK_FRE),
       .BPS       (BPS),
-      .IDLE_CYCLE(IDLE_CYCLE),
       .REG_WIDTH (REG_WIDTH)
   ) u_uart_reg_tx_module (
       .clk        (clk),
