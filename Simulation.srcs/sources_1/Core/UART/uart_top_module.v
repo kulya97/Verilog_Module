@@ -33,7 +33,6 @@ module uart_top_module #(
     input  [         31:0] uart_tx_reg,
     input                  uart_tx_req
 );
-
   uart_reg_tx_module #(
       .CLK_FRE   (CLK_FRE),
       .BPS       (BPS),

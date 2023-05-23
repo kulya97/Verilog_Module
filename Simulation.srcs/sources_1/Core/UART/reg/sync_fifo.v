@@ -11,7 +11,6 @@ module syn_fifo#(
 	output reg		[WIDTH-1:0]dout,
 	output reg 		full,
 	output reg 		empty,
-
 	output reg		[ADDR_WIDTH-1:0]fifo_cnt
 );
 //==========================================================\

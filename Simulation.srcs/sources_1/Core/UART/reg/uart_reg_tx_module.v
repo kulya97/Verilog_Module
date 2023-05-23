@@ -16,7 +16,6 @@
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
-// 
 //////////////////////////////////////////////////////////////////////////////////
 module uart_reg_tx_module #(
     parameter CLK_FRE   = 50,      //Mhz

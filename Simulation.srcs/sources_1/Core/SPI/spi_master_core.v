@@ -25,8 +25,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 //ad5302  01模式
 module spi_master_core #(
-    parameter CLK_FRE = 50,
-    parameter CHANNEL = 8,
+    parameter CHANNEL   = 8,
     parameter REG_WIDTH = 16
 ) (
     input clk,
@@ -39,29 +38,28 @@ module spi_master_core #(
     output               SPI_MOSI,  //spi data output
     input                SPI_MISO,  //spi input
 
-    input  [  CHANNEL-1:0] channel,
-    input                  wr_req,   //请求
-    output                 wr_ack,   //响应
-    input  [REG_WIDTH-1:0] data_in,  //data in
-    output [REG_WIDTH-1:0] data_out  //data out
+    input  [  CHANNEL-1:0] wr_channel,
+    input                  wr_valid,  //请求
+    output                 wr_ready,  //响应
+    input  [REG_WIDTH-1:0] data_in,   //data in
+    output [REG_WIDTH-1:0] data_out   //data out
 );
   localparam CLK_DIV = 5;
   localparam BITCNT = REG_WIDTH * 2;
   /***************************/
-  reg        DCLK_reg;
-  reg [CHANNEL-1:0] r_CS;
+  reg                 DCLK_reg;
+  reg [  CHANNEL-1:0] r_CS;
   reg [REG_WIDTH-1:0] MOSI_shift;
   reg [REG_WIDTH-1:0] MISO_shift;
 
   reg [REG_WIDTH-1:0] r_data_out;
-  reg        r_wr_ack;
-s
-  reg [ CHANNEL-1:0] r_channel;
-  reg [15:0] clk_cnt;
-  reg [ 7:0] clk_edge_cnt;
+  reg                 r_wr_ack;
+
+  reg [         15:0] clk_cnt;
+  reg [          7:0] clk_edge_cnt;
   /***************************/
-  reg [ 3:0] state;
-  reg [ 3:0] next_state;
+  reg [          3:0] state;
+  reg [          3:0] next_state;
   localparam S_IDLE = 0;
   localparam S_INIT = 6;
   localparam S_DCLK_EDGE = 1;  //翻转状态
@@ -73,7 +71,7 @@ s
   assign SPI_MOSI = MOSI_shift[REG_WIDTH-1];
   assign SPI_SCLK = DCLK_reg;
   assign data_out = r_data_out;
-  assign wr_ack   = r_wr_ack;
+  assign wr_ready = r_wr_ack;
   assign SPI_CS   = r_CS;
   /******************************************************************/
   always @(posedge clk or negedge rst_n) begin
@@ -83,8 +81,9 @@ s
   always @(*) begin
     case (state)
       S_IDLE:
-      if (wr_req == 1'b1) next_state <= S_DCLK_IDLE;
+      if (wr_valid&&r_wr_ack) next_state <= S_INIT;
       else next_state <= S_IDLE;
+      S_INIT: next_state <= S_DCLK_IDLE;
       S_DCLK_IDLE:
       if (clk_cnt == CLK_DIV - 1) next_state <= S_DCLK_EDGE;
       else next_state <= S_DCLK_IDLE;
@@ -114,8 +113,8 @@ s
 
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) r_CS <= 16'hffff;
-    else if (state == S_IDLE && wr_req == 1'b1) r_CS <= ~channel;
-    else if (state == S_ACK_WAIT) r_CS <= 16'hffff;//0-1?
+    else if (state == S_IDLE && wr_valid == 1'b1) r_CS <= ~wr_channel;
+    else if (state == S_ACK_WAIT) r_CS <= 16'hffff;  //0-1?
     else r_CS <= r_CS;
   end
 
@@ -131,7 +130,7 @@ s
   //SPI data output
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) MOSI_shift <= 8'd0;
-    else if (state == S_IDLE && wr_req) MOSI_shift <= data_in;  //锁存数据
+    else if (state == S_INIT) MOSI_shift <= data_in;  //锁存数据
     else if (state == S_DCLK_EDGE)
       if (CPHA == 1'b0 && clk_edge_cnt[0] == 1'b1) MOSI_shift <= {MOSI_shift[REG_WIDTH-2:0], 1'b0};
       else if (CPHA == 1'b1 && (clk_edge_cnt != 5'd0 && clk_edge_cnt[0] == 1'b0)) MOSI_shift <= {MOSI_shift[REG_WIDTH-2:0], 1'b0};
@@ -140,7 +139,7 @@ s
   //SPI data input
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) MISO_shift <= 8'd0;
-    else if (state == S_IDLE && wr_req) MISO_shift <= 8'h00;
+    else if (state == S_IDLE && wr_valid) MISO_shift <= 8'h00;
     else if (state == S_DCLK_EDGE)
       if (CPHA == 1'b0 && clk_edge_cnt[0] == 1'b0) MISO_shift <= {MISO_shift[REG_WIDTH-2:0], SPI_MISO};
       else if (CPHA == 1'b1 && (clk_edge_cnt[0] == 1'b1)) MISO_shift <= {MISO_shift[REG_WIDTH-2:0], SPI_MISO};
@@ -152,7 +151,7 @@ s
   end
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) r_wr_ack <= 1'd0;
-    else if (state == S_ACK) r_wr_ack <= 1'b1;
+    else if (!r_wr_ack&&  wr_valid&&state == S_IDLE) r_wr_ack <= 1'b1;
     else r_wr_ack <= 1'd0;
   end
 
