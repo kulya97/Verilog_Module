@@ -1,7 +1,6 @@
-module syn_fifo #(
+module sync_standard_fifo #(
     parameter WIDTH = 16,
-    parameter DEPTH = 1024,
-    localparam ADDR_WIDTH = clogb2(DEPTH)
+    parameter DEPTH = 1024
 ) (
     input                  clk,
     input                  rst_n,
@@ -10,12 +9,11 @@ module syn_fifo #(
     input                  rd_en,
     output reg [WIDTH-1:0] dout,
     output reg             full,
-    output reg             empty,
-
-    output reg [ADDR_WIDTH-1:0] fifo_cnt
+    output reg             empty
 );
-
-  reg [     WIDTH-1:0] ram     [DEPTH-1:0];
+  localparam ADDR_WIDTH = clogb2(DEPTH);
+  reg [ADDR_WIDTH-1:0] fifo_cnt;
+  reg [     WIDTH-1:0] ram      [DEPTH-1:0];
   reg [ADDR_WIDTH-1:0] wr_addr;
   reg [ADDR_WIDTH-1:0] rd_addr;
 
@@ -30,15 +28,22 @@ module syn_fifo #(
 
 
   //read
+  reg [WIDTH-1:0] R_dout;
   always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) rd_addr <= {ADDR_WIDTH{1'b0}};
-    else if (rd_en && !empty) begin
+    if (!rst_n) begin
+      rd_addr <= {ADDR_WIDTH{1'b0}};
+      R_dout  <= 'd0;
+    end else if (rd_en && !empty) begin
       rd_addr <= rd_addr + 1'd1;
-      dout    <= ram[rd_addr];
+      R_dout  <= ram[rd_addr];
     end else begin
       rd_addr <= rd_addr;
-      dout    <= dout;
+      R_dout  <= R_dout;
     end
+  end
+  always @(posedge clk, negedge rst_n) begin
+    if (!rst_n) dout <= 'D0;
+    else dout <= R_dout;
   end
   //write
   always @(posedge clk or negedge rst_n) begin

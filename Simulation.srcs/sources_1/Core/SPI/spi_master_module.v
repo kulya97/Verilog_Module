@@ -39,10 +39,10 @@ module spi_master_module #(
   
   wire [REG_WIDTH-1:0] fifo_dout;
   localparam ADDR_WIDTH = 128;
-  syn_fifo #(
+  sync_fifo #(
       .WIDTH(REG_WIDTH),
       .DEPTH(ADDR_WIDTH)
-  ) u_syn_fifo (
+  ) u_sync_fifo (
       .clk  (clk),
       .rst_n(rst_n),
       .din  (app_din[REG_WIDTH-1:0]),
