@@ -30,13 +30,13 @@ module uart_top_module #(
     output                 uart_tx,
     output [REG_WIDTH-1:0] uart_rx_reg,  //uart reg 
     output                 uart_rx_ack,  //if update ready=1
-    input  [         31:0] uart_tx_reg,
+    input  [REG_WIDTH-1:0] uart_tx_reg,
     input                  uart_tx_req
 );
   uart_reg_tx_module #(
-      .CLK_FRE   (CLK_FRE),
-      .BPS       (BPS),
-      .REG_WIDTH (REG_WIDTH)
+      .CLK_FRE  (CLK_FRE),
+      .BPS      (BPS),
+      .REG_WIDTH(REG_WIDTH)
   ) u_uart_reg_tx_module (
       .clk        (clk),
       .rst_n      (rst_n),
