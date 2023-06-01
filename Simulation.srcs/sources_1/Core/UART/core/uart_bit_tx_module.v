@@ -36,7 +36,7 @@ module uart_bit_tx_module #(
   always @(*) begin
     case (state)
       S_IDLE:
-      if (tx_data_valid == 1'b1) next_state <= S_INIT;
+      if (tx_data_valid && tx_data_ready) next_state <= S_INIT;
       else next_state <= S_IDLE;
       S_INIT: next_state <= S_START;
       S_START:
@@ -93,7 +93,7 @@ module uart_bit_tx_module #(
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       tx_data_ready <= 1'b0;
-    end else if (state == S_IDLE && tx_data_valid == 1'b0) tx_data_ready <= 1'b1;
+    end else if (tx_data_valid && !tx_data_ready && state == S_IDLE) tx_data_ready <= 1'b1;
     else tx_data_ready <= 1'b0;
   end
   /***********************************************************************/

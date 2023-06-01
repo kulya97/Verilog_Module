@@ -35,7 +35,7 @@ module tb_uart_module;
   localparam CYCLE = CLK_FRE * 1000000 / 115200 * 2;
   integer i;
   initial begin
-    CLK_UART_50M = 0;
+    CLK_UART_50M = 1;
     RST_N        = 0;
     UART_RX      = 1;
     #200;

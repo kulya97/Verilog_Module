@@ -43,13 +43,15 @@ module uart_reg_tx_module #(
   assign din   = uart_tx_reg;
   /*********************/
   uart_tx_fifo fifo_tx_inst (
-      .clk  (clk),    // input wire clk
-      .din  (din),    // input wire [31 : 0] din
-      .wr_en(wr_en),  // input wire wr_en
-      .rd_en(rd_en),  // input wire rd_en
-      .dout (dout),   // output wire [7 : 0] dout
-      .full (full),   // output wire full
-      .empty(empty)   // output wire empty
+      .clk  (clk),     // input wire clk
+      .rst  (!rst_n),
+      .din  (din),     // input wire [31 : 0] din
+      .wr_en(wr_en),   // input wire wr_en
+      .rd_en(rd_en),   // input wire rd_en
+      .dout (dout),    // output wire [7 : 0] dout
+      .full (full),    // output wire full
+      .empty(empty),   // output wire empty
+      .valid(valid)
   );
 
   /*******************************************************************/
@@ -59,8 +61,10 @@ module uart_reg_tx_module #(
   wire [7:0] tx_data;
 
   assign tx_data       = dout;
-  assign tx_data_valid = rd_en;
-  assign rd_en         = !empty && tx_data_ready;
+  //   assign tx_data_valid = rd_en; //valid不应该等待ready的产生
+  //   assign rd_en         = !empty && tx_data_ready;
+  assign tx_data_valid = !empty;
+  assign rd_en         = tx_data_valid && tx_data_ready;
   /*********************/
   uart_bit_tx_module #(
       .CLK_FRE  (CLK_FRE),

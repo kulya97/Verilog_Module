@@ -40,13 +40,14 @@ module tb_sync_fifo;
   wire [WIDTH-1:0] fwft_dout;
 
   wire             fwft_full;
-  wire             fwft_empty;
+
   wire             standard_full;
   wire             standard_empty;
   wire             sync_full;
   wire             sync_empty;
 
-
+  wire             standard_valid;
+  wire             fwft_valid;
   initial begin
     forever #(PERIOD / 2) clk = ~clk;
 
@@ -69,7 +70,7 @@ module tb_sync_fifo;
     wr_en = 0;
     #(PERIOD * 10);
     #(PERIOD) rd_en = 1;
-    #(PERIOD * 200) rd_en = 1;
+    #(PERIOD * 210) rd_en = 1;
     #(PERIOD) rd_en = 0;
     #(PERIOD) din = 16'h4444;
     wr_en = 1;
@@ -97,11 +98,13 @@ module tb_sync_fifo;
       .empty(sync_empty)
   );
   standard_fifo u_standard_fifo (
-      .clk  (clk),                       // input wire clk
+      .clk  (clk),             // input wire clk
       .rst  (!rst_n),
-      .din  (din[WIDTH-1:0]),            // input wire [31 : 0] din
-      .wr_en(wr_en),                     // input wire wr_en
-      .rd_en(rd_en),                     // input wire rd_en
+      .din  (din[WIDTH-1:0]),  // input wire [31 : 0] din
+      .wr_en(wr_en),           // input wire wr_en
+      .rd_en(rd_en),           // input wire rd_en
+
+      .valid(standard_valid),
       .dout (standard_dout[WIDTH-1:0]),  // output wire [31 : 0] dout
       .full (standard_full),
       .empty(standard_empty)
@@ -113,6 +116,7 @@ module tb_sync_fifo;
       .din  (din[WIDTH-1:0]),        // input wire [31 : 0] din
       .wr_en(wr_en),                 // input wire wr_en
       .rd_en(rd_en),                 // input wire rd_en
+      .valid(fwft_valid),
       .dout (fwft_dout[WIDTH-1:0]),  // output wire [31 : 0] dout
       .full (fwft_full),
       .empty(fwft_empty)
