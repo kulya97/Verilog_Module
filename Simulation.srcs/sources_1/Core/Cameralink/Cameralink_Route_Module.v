@@ -25,13 +25,22 @@ module Cameralink_Route_Module (
     input  [ 7:0] Port_A,
     input  [ 7:0] Port_B,
     input  [ 7:0] Port_C,
+    input         X_Fval,
+    input         X_Lval,
+    input         X_Dval,
     //medium
     input  [ 7:0] Port_D,
     input  [ 7:0] Port_E,
     input  [ 7:0] Port_F,
+    input         Y_Fval,
+    input         Y_Lval,
+    input         Y_Dval,
     //full
     input  [ 7:0] Port_G,
     input  [ 7:0] Port_H,
+    input         Z_Fval,
+    input         Z_Lval,
+    input         Z_Dval,
     //out
     output [27:0] X_FPGA_DATA,
     output [27:0] Y_FPGA_DATA,
@@ -63,6 +72,11 @@ module Cameralink_Route_Module (
   assign X_FPGA_DATA[16] = Port_C[6];
   assign X_FPGA_DATA[17] = Port_C[7];
 
+  assign X_FPGA_DATA[23] = 1'b0;
+  assign X_FPGA_DATA[24] = X_Lval;
+  assign X_FPGA_DATA[25] = X_Fval;
+  assign X_FPGA_DATA[26] = X_Dval;
+
   assign Y_FPGA_DATA[0]  = Port_D[0];
   assign Y_FPGA_DATA[1]  = Port_D[1];
   assign Y_FPGA_DATA[2]  = Port_D[2];
@@ -88,6 +102,11 @@ module Cameralink_Route_Module (
   assign Y_FPGA_DATA[16] = Port_F[6];
   assign Y_FPGA_DATA[17] = Port_F[7];
 
+  assign Y_FPGA_DATA[23] = 1'b0;
+  assign Y_FPGA_DATA[24] = Y_Lval;
+  assign Y_FPGA_DATA[25] = Y_Fval;
+  assign Y_FPGA_DATA[26] = Y_Dval;
+
   assign Z_FPGA_DATA[0]  = Port_G[0];
   assign Z_FPGA_DATA[1]  = Port_G[1];
   assign Z_FPGA_DATA[2]  = Port_G[2];
@@ -112,4 +131,10 @@ module Cameralink_Route_Module (
   assign Z_FPGA_DATA[22] = 1'b0;
   assign Z_FPGA_DATA[16] = 1'b0;
   assign Z_FPGA_DATA[17] = 1'b0;
+
+  assign Z_FPGA_DATA[23] = 1'b0;
+  assign Z_FPGA_DATA[24] = Z_Lval;
+  assign Z_FPGA_DATA[25] = Z_Fval;
+  assign Z_FPGA_DATA[26] = Z_Dval;
+
 endmodule
