@@ -42,17 +42,6 @@ module uart_reg_tx_module #(
   assign wr_en     = uart_tx_req;
   assign din[31:0] = {uart_tx_reg[7:0], uart_tx_reg[15:8], uart_tx_reg[23:16], uart_tx_reg[31:24]};
   /*********************/
-  //   uart_tx_fifo fifo_tx_inst (
-  //       .clk  (clk),     // input wire clk
-  //       .rst  (!rst_n),
-  //       .din  (din),     // input wire [31 : 0] din
-  //       .wr_en(wr_en),   // input wire wr_en
-  //       .rd_en(rd_en),   // input wire rd_en
-  //       .dout (dout),    // output wire [7 : 0] dout
-  //       .full (full),    // output wire full
-  //       .empty(empty),   // output wire empty
-  //       .valid(valid)
-  //   );
   uart_tx_fifo u_uart_tx_fifo (
       .data   (din[31:0]),
       .wrclk  (clk),
@@ -70,8 +59,6 @@ module uart_reg_tx_module #(
   wire [7:0] tx_data;
 
   assign tx_data       = dout;
-  //   assign tx_data_valid = rd_en; //valid不应该等待ready的产生
-  //   assign rd_en         = !empty && tx_data_ready;
   assign tx_data_valid = !empty;
   assign rd_en         = tx_data_valid && tx_data_ready;
   /*********************/
