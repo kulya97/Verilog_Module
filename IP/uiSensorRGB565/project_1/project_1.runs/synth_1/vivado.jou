@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Sat Nov  7 10:41:27 2020
+# Process ID: 1456
+# Current directory: G:/CH04_FDMA_5640/zu_prj/uisrc/03_ip/uiSensorRGB565/project_1/project_1.runs/synth_1
+# Command line: vivado.exe -log uiSensorRGB565.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source uiSensorRGB565.tcl
+# Log file: G:/CH04_FDMA_5640/zu_prj/uisrc/03_ip/uiSensorRGB565/project_1/project_1.runs/synth_1/uiSensorRGB565.vds
+# Journal file: G:/CH04_FDMA_5640/zu_prj/uisrc/03_ip/uiSensorRGB565/project_1/project_1.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source uiSensorRGB565.tcl -notrace

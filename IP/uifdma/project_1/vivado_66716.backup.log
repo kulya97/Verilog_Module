@@ -1,0 +1,141 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Fri Mar 12 20:00:57 2021
+# Process ID: 66716
+# Current directory: G:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent69120 G:\V2020\S02\02_example_fdma_ddr_2\01_fdma_ddr_test_new\uisrc\03_ip\uifdma\project_1\project_1.xpr
+# Log file: G:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/project_1/vivado.log
+# Journal file: G:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project G:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/project_1/project_1.xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'G:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/project_1'
+WARNING: [filemgmt 56-3] IP Repository Path: Could not find the directory 'G:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/project_1/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma'.
+WARNING: [filemgmt 56-3] IP Repository Path: Could not find the directory 'G:/v2020/s01/ch31/fpga_prj/uisrc/03_ip/uiuart'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'g:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma'.
+WARNING: [IP_Flow 19-3656] If you move the project, the path for repository 'g:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma' may become invalid. A better location for the repository would be in a path adjacent to the project. (Current project location is 'g:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/project_1'.)
+WARNING: [IP_Flow 19-3685] Ignored loading user repository 'g:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/project_1/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma'. The path is contained within another repository.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository 'g:/v2020/s01/ch31/fpga_prj/uisrc/03_ip/uiuart'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'g:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uitpg/ip_repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2020.2/data/ip'.
+update_compile_order -fileset sources_1
+ipx::open_ipxact_file {G:\V2020\S02\02_example_fdma_ddr_2\01_fdma_ddr_test_new\uisrc\03_ip\uifdma\component.xml}
+ipx::package_project -root_dir g:/v2020/s02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma -vendor xilinx.com -library user -taxonomy /UserIP -force
+WARNING: [IP_Flow 19-5226] Project source file 'g:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_wburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_rburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+INFO: [IP_Flow 19-5107] Inferred bus interface 'user_FDMA' of definition 'xilinx.com:user:FDMA:1.0' (from User Repositories).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'user_FDMA_S' of definition 'xilinx.com:user:FDMA_S:1.0' (from User Repositories).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI' of definition 'xilinx.com:interface:aximm:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_ARESETN' of definition 'xilinx.com:signal:reset:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_ACLK' of definition 'xilinx.com:signal:clock:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_ARESETN': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_ACLK': Added interface parameter 'ASSOCIATED_BUSIF' with value 'M_AXI'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_ACLK': Added interface parameter 'ASSOCIATED_RESET' with value 'M_AXI_ARESETN'.
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+WARNING: [filemgmt 56-12] File 'g:/v2020/s02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/component.xml' cannot be added to the project because it already exists in the project, skipping this file
+ipx::unload_core g:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/component.xml
+export_ip_user_files -of_objects  [get_files G:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/component.xml] -no_script -reset -force -quiet
+remove_files  G:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/component.xml
+ipx::package_project -root_dir g:/v2020/s02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma -vendor xilinx.com -library user -taxonomy /UserIP -force
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_wburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_rburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+INFO: [IP_Flow 19-5107] Inferred bus interface 'user_FDMA' of definition 'xilinx.com:user:FDMA:1.0' (from User Repositories).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'user_FDMA_S' of definition 'xilinx.com:user:FDMA_S:1.0' (from User Repositories).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI' of definition 'xilinx.com:interface:aximm:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_ARESETN' of definition 'xilinx.com:signal:reset:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_ACLK' of definition 'xilinx.com:signal:clock:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_ARESETN': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_ACLK': Added interface parameter 'ASSOCIATED_BUSIF' with value 'M_AXI'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_ACLK': Added interface parameter 'ASSOCIATED_RESET' with value 'M_AXI_ARESETN'.
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+ipx::remove_bus_interface user_FDMA [ipx::current_core]
+set_property core_revision 2 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path g:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'g:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma'
+set_property core_revision 3 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path g:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'g:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma'
+set_property abstraction_type_vlnv xilinx.com:user:FDMA_rtl:1.0 [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property bus_type_vlnv xilinx.com:user:FDMA:1.0 [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property abstraction_type_vlnv xilinx.com:user:FDMA_S_rtl:1.0 [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property bus_type_vlnv xilinx.com:user:FDMA_S:1.0 [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+ipx::unload_core g:/v2020/s02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/component.xml
+export_ip_user_files -of_objects  [get_files g:/v2020/s02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/component.xml] -no_script -reset -force -quiet
+remove_files  g:/v2020/s02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/component.xml
+ipx::package_project -root_dir g:/v2020/s02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma -vendor xilinx.com -library user -taxonomy /UserIP -force
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_wburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_rburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+INFO: [IP_Flow 19-5107] Inferred bus interface 'user_FDMA' of definition 'xilinx.com:user:FDMA:1.0' (from User Repositories).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'user_FDMA_S' of definition 'xilinx.com:user:FDMA_S:1.0' (from User Repositories).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI' of definition 'xilinx.com:interface:aximm:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_ARESETN' of definition 'xilinx.com:signal:reset:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_ACLK' of definition 'xilinx.com:signal:clock:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_ARESETN': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_ACLK': Added interface parameter 'ASSOCIATED_BUSIF' with value 'M_AXI'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_ACLK': Added interface parameter 'ASSOCIATED_RESET' with value 'M_AXI_ARESETN'.
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+ipx::remove_bus_interface user_FDMA_S [ipx::current_core]
+set_property name FDMA_S [ipx::get_bus_interfaces user_FDMA -of_objects [ipx::current_core]]
+set_property core_revision 2 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path g:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'g:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma'
+ERROR: [Common 17-180] Spawn failed: No error
+ERROR: [Common 17-180] Spawn failed: No error
+ERROR: [Common 17-180] Spawn failed: No error
+ERROR: [Common 17-180] Spawn failed: No error
+ERROR: [Common 17-180] Spawn failed: No error
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+ERROR: [Common 17-180] Spawn failed: No error
+ERROR: [Common 17-180] Spawn failed: No error
+ERROR: [Common 17-180] Spawn failed: No error
+ERROR: [Common 17-180] Spawn failed: No error
+ERROR: [Common 17-180] Spawn failed: No error
+ERROR: [Common 17-180] Spawn failed: No error
+ERROR: [Common 17-180] Spawn failed: No error
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+ERROR: [Common 17-180] Spawn failed: No error
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Sun Mar 14 15:09:35 2021] Launched synth_1...
+Run output will be captured here: G:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/project_1/project_1.runs/synth_1/runme.log
+[Sun Mar 14 15:09:35 2021] Launched impl_1...
+Run output will be captured here: G:/V2020/S02/02_example_fdma_ddr_2/01_fdma_ddr_test_new/uisrc/03_ip/uifdma/project_1/project_1.runs/impl_1/runme.log
+ERROR: [Common 17-180] Spawn failed: No error
+exit
+INFO: [Common 17-206] Exiting Vivado at Sun Mar 14 16:23:08 2021...

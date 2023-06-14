@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7vx485tffg1157-1" LaunchTime="1590375076">
+  <File Type="PA-TCL" Name="uixdmairq.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="uixdmairq_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="uixdmairq_reports.tcl"/>
+  <File Type="RDS-RDS" Name="uixdmairq.vds"/>
+  <File Type="RDS-UTIL" Name="uixdmairq_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="uixdmairq_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="uixdmairq.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="uixdmairq_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="uixdmairq_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../uixdmairq.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../../../../../../boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq/component.xml">
+      <FileInfo SFType="IPXACT"/>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="uixdmairq"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

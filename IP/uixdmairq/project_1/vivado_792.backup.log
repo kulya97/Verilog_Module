@@ -1,0 +1,117 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Tue May 26 09:54:33 2020
+# Process ID: 792
+# Current directory: D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent15584 D:\Boards\MA703\04_example_PCIE\CH01_PCIE_Base\FPGA\pcie_system2\uisrc\uixdmairq\project_1\project_1.xpr
+# Log file: D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1/vivado.log
+# Journal file: D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1/project_1.xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1'
+INFO: [Project 1-313] Project file moved from 'D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system/uisrc/uixdmairq/project_1' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+update_compile_order -fileset sources_1
+ipx::open_ipxact_file {D:\boards\ma703\04_example_pcie\ch01_pcie_base\fpga\pcie_system\uisrc\uixdmairq\component.xml}
+WARNING: [IP_Flow 19-5226] Project source file 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq/uixdmairq.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-4308] Project file 'd:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/uixdmairq.v' is not found in the component files. It will be added automatically when merging sources and repackaging. Please remove the file from the source project if this is not desired.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq/uixdmairq.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-4308] Project file 'd:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/uixdmairq.v' is not found in the component files. It will be added automatically when merging sources and repackaging. Please remove the file from the source project if this is not desired.
+ipx::merge_project_changes ports [ipx::current_core]
+WARNING: [IP_Flow 19-5226] Project source file 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-5109] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq/uixdmairq.v' does not exist in the project sources. It has been removed from the packaged IP. If still required, please add this file to the project, merge sources and re-package.
+WARNING: [IP_Flow 19-5109] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq/uixdmairq.v' does not exist in the project sources. It has been removed from the packaged IP. If still required, please add this file to the project, merge sources and re-package.
+INFO: [IP_Flow 19-3166] Bus Interface 'S_AXI': References existing memory map 'S_AXI'.
+set_property core_revision 2 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+set_property  ip_repo_paths  {d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq d:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq} [current_project]
+update_ip_catalog
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:user:uixdmairq:1.0'. The one found in IP location 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq' will take precedence over the same IP in location d:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq
+set_property core_revision 3 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq'
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:user:uixdmairq:1.0'. The one found in IP location 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq' will take precedence over the same IP in location d:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq
+export_ip_user_files -of_objects  [get_files D:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq/component.xml] -no_script -reset -force -quiet
+remove_files  D:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq/component.xml
+ipx::package_project -root_dir d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system2/uisrc/uixdmairq -vendor xilinx.com -library user -taxonomy /UserIP -force
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXI' of definition 'xilinx.com:interface:aximm:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXI_ARESETN' of definition 'xilinx.com:signal:reset:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXI_ACLK' of definition 'xilinx.com:signal:clock:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI_ARESETN': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI_ACLK': Added interface parameter 'ASSOCIATED_BUSIF' with value 'S_AXI'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI_ACLK': Added interface parameter 'ASSOCIATED_RESET' with value 'S_AXI_ARESETN'.
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+set_property core_revision 2 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+set_property  ip_repo_paths  {d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system2/uisrc/uixdmairq d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq d:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq} [current_project]
+update_ip_catalog
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system2/uisrc/uixdmairq'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:user:uixdmairq:1.0'. The one found in IP location 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq' will take precedence over the same IP in locations: 
+   d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system2/uisrc/uixdmairq
+   d:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq
+open_hw_manager
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2019.2
+  **** Build date : Nov  6 2019 at 22:12:23
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+
+****** Xilinx cs_server v2019.2.0
+  **** Build date : Nov 07 2019-13:28:22
+    ** Copyright 2017-2019 Xilinx, Inc. All Rights Reserved.
+
+
+
+connect_hw_server: Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 1011.289 ; gain = 23.754
+open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210249855547
+current_hw_device [get_hw_devices xc7a100t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-2302] Device xc7a100t (JTAG device index = 0) is programmed with a design that has 2 ILA core(s).
+set_property PROBES.FILE {D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/pcie_system.runs/impl_1/pcie_top.ltx} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/pcie_system.runs/impl_1/pcie_top.ltx} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/pcie_system.runs/impl_1/pcie_top.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-2302] Device xc7a100t (JTAG device index = 0) is programmed with a design that has 2 ILA core(s).
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"pcie_system_i/ila_0"}]]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_2 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"pcie_system_i/system_ila_0/inst/ila_lib"}]]
+save_wave_config {D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1/project_1.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wcfg}
+save_wave_config {D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1/project_1.hw/hw_1/wave/hw_ila_data_2/hw_ila_data_2.wcfg}
+ipx::current_core d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq/component.xml
+ipx::current_core d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system2/uisrc/uixdmairq/component.xml
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue May 26 10:34:19 2020...

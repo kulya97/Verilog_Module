@@ -1,0 +1,392 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Apr 28 10:58:30 2021
+# Process ID: 18840
+# Current directory: G:/ZU07A/EG/fpga/03_fdma_camx1/uisrc/03_ip/uiov5640cfg/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent11956 G:\ZU07A\EG\fpga\03_fdma_camx1\uisrc\03_ip\uiov5640cfg\project_1\project_1.xpr
+# Log file: G:/ZU07A/EG/fpga/03_fdma_camx1/uisrc/03_ip/uiov5640cfg/project_1/vivado.log
+# Journal file: G:/ZU07A/EG/fpga/03_fdma_camx1/uisrc/03_ip/uiov5640cfg/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.xpr
+update_compile_order -fileset sources_1
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:user:uiSensorRGB565:1.0 uiSensorRGB565_0
+endgroup
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:user:uicfg5640:1.0 uicfg5640_0
+endgroup
+startgroup
+set_property -dict [list CONFIG.ADDN_UI_CLKOUT1_FREQ_HZ {100} CONFIG.ADDN_UI_CLKOUT2_FREQ_HZ {24}] [get_bd_cells ddr4_0]
+endgroup
+set_property location {2 347 378} [get_bd_cells uiSensorRGB565_0]
+set_property location {1 163 223} [get_bd_cells uicfg5640_0]
+set_property location {2 396 277} [get_bd_cells uiSensorRGB565_0]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:util_idelay_ctrl:1.0 util_idelay_ctrl_0
+endgroup
+delete_bd_objs [get_bd_cells util_idelay_ctrl_0]
+set_property  ip_repo_paths  {} [current_project]
+update_ip_catalog
+set_property  ip_repo_paths  G:/ZU07A/EG/fpga/03_fdma_camx1/uisrc/03_ip [current_project]
+update_ip_catalog
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:user:uihdmitx:1.0 uihdmitx_0
+endgroup
+set_property location {4 870 14} [get_bd_cells uihdmitx_0]
+set_property location {3 939 -74} [get_bd_cells uihdmitx_0]
+set_property location {3.5 1063 -87} [get_bd_cells uihdmitx_0]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:user:uivtc:1.0 uivtc_0
+endgroup
+set_property location {3 551 -86} [get_bd_cells uivtc_0]
+connect_bd_net [get_bd_pins uivtc_0/vtc_de_o] [get_bd_pins uihdmitx_0/VDE_i]
+connect_bd_net [get_bd_pins uivtc_0/vtc_vs_o] [get_bd_pins uihdmitx_0/VS_i]
+connect_bd_net [get_bd_pins uivtc_0/vtc_hs_o] [get_bd_pins uihdmitx_0/HS_i]
+set_property  ip_repo_paths  {} [current_project]
+update_ip_catalog
+set_property  ip_repo_paths  G:/ZU07A/EG/fpga/03_fdma_camx1/uisrc/03_ip [current_project]
+update_ip_catalog
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz_0
+endgroup
+set_property location {6.5 2213 551} [get_bd_cells clk_wiz_0]
+connect_bd_net [get_bd_pins ddr4_0/c0_init_calib_complete] [get_bd_pins clk_wiz_0/reset]
+undo
+set_property -dict [list CONFIG.RESET_TYPE {ACTIVE_LOW} CONFIG.RESET_PORT {resetn}] [get_bd_cells clk_wiz_0]
+connect_bd_net [get_bd_pins ddr4_0/addn_ui_clkout1] [get_bd_pins clk_wiz_0/clk_in1]
+connect_bd_net [get_bd_pins clk_wiz_0/resetn] [get_bd_pins ddr4_0/c0_init_calib_complete]
+set_property location {2 443 4} [get_bd_cells clk_wiz_0]
+startgroup
+set_property -dict [list CONFIG.CLKOUT2_USED {true} CONFIG.CLKOUT3_USED {true} CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {74.25} CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {185.625} CONFIG.CLKOUT3_REQUESTED_OUT_FREQ {371.25} CONFIG.MMCM_DIVCLK_DIVIDE {10} CONFIG.MMCM_CLKFBOUT_MULT_F {111.375} CONFIG.MMCM_CLKOUT0_DIVIDE_F {15.000} CONFIG.MMCM_CLKOUT1_DIVIDE {6} CONFIG.MMCM_CLKOUT2_DIVIDE {3} CONFIG.NUM_OUT_CLKS {3} CONFIG.CLKOUT1_JITTER {250.227} CONFIG.CLKOUT1_PHASE_ERROR {394.762} CONFIG.CLKOUT2_JITTER {222.018} CONFIG.CLKOUT2_PHASE_ERROR {394.762} CONFIG.CLKOUT3_JITTER {203.119} CONFIG.CLKOUT3_PHASE_ERROR {394.762}] [get_bd_cells clk_wiz_0]
+endgroup
+connect_bd_net [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins uivtc_0/vtc_clk_i]
+startgroup
+set_property -dict [list CONFIG.USE_LOCKED {false}] [get_bd_cells clk_wiz_0]
+endgroup
+startgroup
+set_property -dict [list CONFIG.USE_LOCKED {true}] [get_bd_cells clk_wiz_0]
+endgroup
+connect_bd_net [get_bd_pins clk_wiz_0/locked] [get_bd_pins uivtc_0/vtc_rstn_i]
+connect_bd_net [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins uihdmitx_0/PCLKX1_i]
+connect_bd_net [get_bd_pins clk_wiz_0/clk_out2] [get_bd_pins uihdmitx_0/PCLKX2_5_i]
+connect_bd_net [get_bd_pins clk_wiz_0/clk_out3] [get_bd_pins uihdmitx_0/PCLKX5_i]
+connect_bd_net [get_bd_pins clk_wiz_0/locked] [get_bd_pins uihdmitx_0/RSTn_i]
+undo
+delete_bd_objs [get_bd_nets clk_wiz_0_locked]
+connect_bd_net [get_bd_pins uicfg5640_0/cfg_done] [get_bd_pins uivtc_0/vtc_rstn_i]
+connect_bd_net [get_bd_pins ddr4_0/addn_ui_clkout2] [get_bd_pins uicfg5640_0/clk_i]
+connect_bd_net [get_bd_pins uicfg5640_0/rst_n] [get_bd_pins ddr4_0/c0_init_calib_complete]
+disconnect_bd_net /ddr4_0_c0_init_calib_complete [get_bd_pins uicfg5640_0/rst_n]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:user:uidelay:1.0 uidelay_0
+endgroup
+set_property -dict [list CONFIG.num {0x01FFFF00}] [get_bd_cells uidelay_0]
+connect_bd_net [get_bd_pins uidelay_0/rst_o] [get_bd_pins uicfg5640_0/rst_n]
+connect_bd_net [get_bd_pins uidelay_0/clk_i] [get_bd_pins ddr4_0/addn_ui_clkout2]
+connect_bd_net [get_bd_pins uidelay_0/rstn_i] [get_bd_pins ddr4_0/c0_init_calib_complete]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0
+endgroup
+set_property location {2 195 223} [get_bd_cells xlconstant_0]
+connect_bd_net [get_bd_pins xlconstant_0/dout] [get_bd_pins uicfg5640_0/CAM_HSIZE]
+startgroup
+set_property -dict [list CONFIG.CONST_WIDTH {16} CONFIG.CONST_VAL {1280}] [get_bd_cells xlconstant_0]
+endgroup
+copy_bd_objs /  [get_bd_cells {xlconstant_0}]
+set_property location {1 200 355} [get_bd_cells xlconstant_1]
+connect_bd_net [get_bd_pins xlconstant_1/dout] [get_bd_pins uicfg5640_0/CAM_VSIZE]
+startgroup
+set_property -dict [list CONFIG.CONST_VAL {720}] [get_bd_cells xlconstant_1]
+endgroup
+set_property  ip_repo_paths  {} [current_project]
+update_ip_catalog
+set_property  ip_repo_paths  G:/ZU07A/EG/fpga/03_fdma_camx1/uisrc/03_ip [current_project]
+update_ip_catalog
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+delete_bd_objs [get_bd_intf_nets FDMA_S_0_1]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:user:uifdma_vbuf:2.0 uifdma_vbuf_0
+endgroup
+set_property location {3 631 64} [get_bd_cells uifdma_vbuf_0]
+delete_bd_objs [get_bd_intf_ports FDMA_S_0]
+connect_bd_intf_net [get_bd_intf_pins uifdma_vbuf_0/FDMA_M] [get_bd_intf_pins uiFDMA_0/FDMA_S]
+set_property location {0.5 195 -81} [get_bd_cells uiSensorRGB565_0]
+startgroup
+set_property -dict [list CONFIG.AXI_Lite {false} CONFIG.W_HSIZE {1280} CONFIG.W_HSTRIDE {1280} CONFIG.W_VSIZE {720} CONFIG.R_HSIZE {1280} CONFIG.R_HSTRIDE {1280} CONFIG.R_VSIZE {720}] [get_bd_cells uifdma_vbuf_0]
+endgroup
+connect_bd_net [get_bd_pins uiSensorRGB565_0/de_o] [get_bd_pins uifdma_vbuf_0/vid_wde]
+connect_bd_net [get_bd_pins uiSensorRGB565_0/vs_o] [get_bd_pins uifdma_vbuf_0/vid_wvs]
+connect_bd_net [get_bd_pins uiSensorRGB565_0/rgb_o] [get_bd_pins uifdma_vbuf_0/vid_wdata]
+set_property location {3 617 -172} [get_bd_cells uiSensorRGB565_0]
+connect_bd_net [get_bd_pins uicfg5640_0/cfg_done] [get_bd_pins uiSensorRGB565_0/cmos_data_i]
+startgroup
+make_bd_pins_external  [get_bd_cells uicfg5640_0]
+make_bd_intf_pins_external  [get_bd_cells uicfg5640_0]
+endgroup
+set_property name cmos_scl [get_bd_ports cmos_scl_0]
+set_property name cmos_sda [get_bd_ports cmos_sda_0]
+undo
+undo
+delete_bd_objs [get_bd_ports fdma_rstn]
+delete_bd_objs [get_bd_ports C0_init_calib_complete]
+connect_bd_net [get_bd_pins uivtc_0/vtc_de_o] [get_bd_pins uifdma_vbuf_0/vid_rde]
+connect_bd_net [get_bd_pins uivtc_0/vtc_vs_o] [get_bd_pins uifdma_vbuf_0/vid_rvs]
+connect_bd_net [get_bd_pins uifdma_vbuf_0/vid_rclk] [get_bd_pins clk_wiz_0/clk_out1]
+startgroup
+connect_bd_net [get_bd_pins uidelay_0/rst_o] [get_bd_pins uiSensorRGB565_0/rstn_i]
+endgroup
+startgroup
+make_bd_pins_external  [get_bd_cells uiSensorRGB565_0]
+make_bd_intf_pins_external  [get_bd_cells uiSensorRGB565_0]
+endgroup
+connect_bd_net [get_bd_ports cmos_pclk_i_0] [get_bd_pins uifdma_vbuf_0/vid_wclk]
+connect_bd_net [get_bd_pins uifdma_vbuf_0/S_AXI_ACLK] [get_bd_pins ddr4_0/addn_ui_clkout1]
+connect_bd_net [get_bd_pins uifdma_vbuf_0/S_AXI_ARESETN] [get_bd_pins ddr4_0/c0_init_calib_complete]
+connect_bd_net [get_bd_pins uidelay_0/rst_o] [get_bd_pins uihdmitx_0/RSTn_i]
+undo
+connect_bd_net [get_bd_pins uidelay_0/rst_o] [get_bd_pins uihdmitx_0/RSTn_i]
+connect_bd_net [get_bd_pins uifdma_vbuf_0/vid_rdata] [get_bd_pins uihdmitx_0/RGB_i]
+connect_bd_net [get_bd_pins uifdma_vbuf_0/vid_wsync_o] [get_bd_pins uifdma_vbuf_0/vid_wbuf_i]
+connect_bd_net [get_bd_pins uifdma_vbuf_0/vid_rbuf_i] [get_bd_pins uifdma_vbuf_0/vid_wsync_o]
+regenerate_bd_layout
+delete_bd_objs [get_bd_intf_nets uiSensorRGB565_0_svidout] [get_bd_intf_ports svidout_0]
+regenerate_bd_layout
+delete_bd_objs [get_bd_ports ui_clk]
+disconnect_bd_net /ddr4_0_c0_init_calib_complete [get_bd_pins uifdma_vbuf_0/S_AXI_ARESETN]
+undo
+disconnect_bd_net /ddr4_0_addn_ui_clkout1 [get_bd_pins uifdma_vbuf_0/S_AXI_ACLK]
+connect_bd_net [get_bd_pins ddr4_0/dbg_clk] [get_bd_pins uifdma_vbuf_0/S_AXI_ACLK]
+disconnect_bd_net /ddr4_0_c0_ddr4_ui_clk1 [get_bd_pins uiFDMA_0/M_AXI_ACLK]
+undo
+delete_bd_objs [get_bd_nets ddr4_0_dbg_clk]
+connect_bd_net [get_bd_pins uifdma_vbuf_0/S_AXI_ACLK] [get_bd_pins ddr4_0/c0_ddr4_ui_clk]
+disconnect_bd_net /ddr4_0_c0_init_calib_complete [get_bd_pins uifdma_vbuf_0/S_AXI_ARESETN]
+connect_bd_net [get_bd_pins rst_ddr4_0_300M/peripheral_aresetn] [get_bd_pins uifdma_vbuf_0/S_AXI_ARESETN]
+startgroup
+make_bd_pins_external  [get_bd_cells uihdmitx_0]
+make_bd_intf_pins_external  [get_bd_cells uihdmitx_0]
+endgroup
+regenerate_bd_layout
+set_property offset 0x00000000 [get_bd_addr_segs {uiFDMA_0/M_AXI/SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK}]
+delete_bd_objs [get_bd_intf_nets vid_in_0_1]
+delete_bd_objs [get_bd_intf_ports vid_in_0]
+regenerate_bd_layout
+delete_bd_objs [get_bd_nets reset_rtl_0_1] [get_bd_ports ddr_rst]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_2
+endgroup
+set_property location {5 1357 1033} [get_bd_cells xlconstant_2]
+connect_bd_net [get_bd_pins xlconstant_2/dout] [get_bd_pins ddr4_0/sys_rst]
+regenerate_bd_layout
+disconnect_bd_net /uicfg5640_0_cfg_done [get_bd_pins uiSensorRGB565_0/cmos_data_i]
+startgroup
+make_bd_pins_external  [get_bd_pins uiSensorRGB565_0/cmos_data_i]
+endgroup
+regenerate_bd_layout
+export_ip_user_files -of_objects  [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/uisrc/01_rtl/fdma_ddr_test.v] -no_script -reset -force -quiet
+remove_files  G:/ZU07A/EG/fpga/03_fdma_camx1/uisrc/01_rtl/fdma_ddr_test.v
+export_ip_user_files -of_objects  [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/ip/ila_0/ila_0.xci] -no_script -reset -force -quiet
+remove_files  -fileset ila_0 G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/ip/ila_0/ila_0.xci
+file delete -force G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/ip/ila_0
+file delete -force g:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/ip/ila_0
+make_wrapper -files [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -top
+add_files -norecurse G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/hdl/system_wrapper.v
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+set_property name HDMI_TX_CLK_P_0 [get_bd_ports TMDS_TX_CLK_P_0]
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+set_property name HDMI_TX_CLK_P [get_bd_ports HDMI_TX_CLK_P_0]
+set_property name HDMI_TX_CLK_N [get_bd_ports TMDS_TX_CLK_N_0]
+set_property name HDMI_TX_P [get_bd_ports TMDS_TX_P_0]
+set_property name HDMI_TX_N [get_bd_ports TMDS_TX_N_0]
+set_property name cmos_xclk_o [get_bd_ports cmos_xclk_o_0]
+set_property name cmos_scl [get_bd_ports cmos_scl_0]
+set_property name cmos_sda [get_bd_ports cmos_sda_0]
+set_property name cmos_clk_i [get_bd_ports cmos_clk_i_0]
+set_property name cmos_pclk_i [get_bd_ports cmos_pclk_i_0]
+set_property name cmos_href_i [get_bd_ports cmos_href_i_0]
+set_property name cmos_vsync_i [get_bd_ports cmos_vsync_i_0]
+set_property name cmos_data_i [get_bd_ports cmos_data_i_0]
+regenerate_bd_layout
+save_bd_design
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+set_property name cmos1_clk_i [get_bd_ports cmos_clk_i]
+set_property name cmos1_pclk_i [get_bd_ports cmos_pclk_i]
+set_property name cmos1_href_i [get_bd_ports cmos_href_i]
+set_property name cmos1_vsync_i [get_bd_ports cmos_vsync_i]
+set_property name cmos1_data_i [get_bd_ports cmos_data_i]
+set_property name cmos1_scl [get_bd_ports cmos_scl]
+set_property name cmos1_sda [get_bd_ports cmos_sda]
+set_property name cmos1_xclk_o [get_bd_ports cmos_xclk_o]
+save_bd_design
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_3
+endgroup
+startgroup
+make_bd_pins_external  [get_bd_pins xlconstant_3/dout]
+endgroup
+set_property name card1_power_en [get_bd_ports dout_0]
+copy_bd_objs /  [get_bd_ports {card1_power_en}]
+connect_bd_net [get_bd_ports card1_power_en1] [get_bd_pins xlconstant_3/dout]
+set_property name card2_power_en [get_bd_ports card1_power_en1]
+regenerate_bd_layout
+save_bd_design
+validate_bd_design
+startgroup
+set_property -dict [list CONFIG.USE_LOCKED {false}] [get_bd_cells clk_wiz_0]
+endgroup
+regenerate_bd_layout
+save_bd_design
+validate_bd_design
+save_bd_design
+make_wrapper -files [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -top
+make_wrapper -files [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -top
+reset_run synth_1
+reset_run system_ddr4_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+delete_bd_objs [get_bd_nets cmos_clk_i_0_1] [get_bd_ports cmos1_clk_i]
+connect_bd_net [get_bd_pins uiSensorRGB565_0/cmos_clk_i] [get_bd_pins ddr4_0/addn_ui_clkout2]
+regenerate_bd_layout
+startgroup
+set_property -dict [list CONFIG.CLK_DIV {249}] [get_bd_cells uicfg5640_0]
+endgroup
+regenerate_bd_layout
+save_bd_design
+reset_run synth_1
+reset_run system_uicfg5640_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+current_hw_device [get_hw_devices xczu7_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xczu7_0] 0]
+current_hw_device [get_hw_devices arm_dap_1]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices arm_dap_1] 0]
+current_hw_device [get_hw_devices xczu7_0]
+set_property PROBES.FILE {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.runs/impl_1/system_wrapper.ltx} [get_hw_devices xczu7_0]
+set_property FULL_PROBES.FILE {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.runs/impl_1/system_wrapper.ltx} [get_hw_devices xczu7_0]
+set_property PROGRAM.FILE {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.runs/impl_1/system_wrapper.bit} [get_hw_devices xczu7_0]
+program_hw_devices [get_hw_devices xczu7_0]
+refresh_hw_device [lindex [get_hw_devices xczu7_0] 0]
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+startgroup
+set_property -dict [list CONFIG.CONST_VAL {0}] [get_bd_cells xlconstant_2]
+endgroup
+regenerate_bd_layout
+save_bd_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+set_property PROBES.FILE {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.runs/impl_1/system_wrapper.ltx} [get_hw_devices xczu7_0]
+set_property FULL_PROBES.FILE {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.runs/impl_1/system_wrapper.ltx} [get_hw_devices xczu7_0]
+set_property PROGRAM.FILE {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.runs/impl_1/system_wrapper.bit} [get_hw_devices xczu7_0]
+program_hw_devices [get_hw_devices xczu7_0]
+refresh_hw_device [lindex [get_hw_devices xczu7_0] 0]
+update_ip_catalog -rebuild -scan_changes
+report_ip_status -name ip_status
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+report_ip_status -name ip_status 
+upgrade_ip -vlnv xilinx.com:user:uicfg5640:1.0 [get_ips  system_uicfg5640_0_0] -log ip_upgrade.log
+export_ip_user_files -of_objects [get_ips system_uicfg5640_0_0] -no_script -sync -force -quiet
+generate_target all [get_files  G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd]
+catch { config_ip_cache -export [get_ips -all system_uicfg5640_0_0] }
+catch { config_ip_cache -export [get_ips -all system_s00_regslice_0] }
+catch { config_ip_cache -export [get_ips -all system_auto_us_df_0] }
+export_ip_user_files -of_objects [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd]
+launch_runs system_uicfg5640_0_0_synth_1 -jobs 8
+wait_on_run system_uicfg5640_0_0_synth_1
+export_simulation -of_objects [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -directory G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files/sim_scripts -ip_user_files_dir G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files -ipstatic_source_dir G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files/ipstatic -lib_map_path [list {modelsim=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/modelsim} {questa=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/questa} {riviera=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/riviera} {activehdl=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+report_ip_status -name ip_status 
+reset_run synth_1
+reset_run system_uicfg5640_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+update_ip_catalog -rebuild -scan_changes
+report_ip_status -name ip_status
+upgrade_ip -vlnv xilinx.com:user:uicfg5640:1.0 [get_ips  system_uicfg5640_0_0] -log ip_upgrade.log
+export_ip_user_files -of_objects [get_ips system_uicfg5640_0_0] -no_script -sync -force -quiet
+generate_target all [get_files  G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd]
+catch { config_ip_cache -export [get_ips -all system_uicfg5640_0_0] }
+catch { config_ip_cache -export [get_ips -all system_s00_regslice_0] }
+catch { config_ip_cache -export [get_ips -all system_auto_us_df_0] }
+export_ip_user_files -of_objects [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd]
+launch_runs system_uicfg5640_0_0_synth_1 -jobs 8
+wait_on_run system_uicfg5640_0_0_synth_1
+export_simulation -of_objects [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -directory G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files/sim_scripts -ip_user_files_dir G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files -ipstatic_source_dir G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files/ipstatic -lib_map_path [list {modelsim=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/modelsim} {questa=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/questa} {riviera=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/riviera} {activehdl=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+update_ip_catalog -rebuild -scan_changes
+report_ip_status -name ip_status
+upgrade_ip -vlnv xilinx.com:user:uicfg5640:1.0 [get_ips  system_uicfg5640_0_0] -log ip_upgrade.log
+export_ip_user_files -of_objects [get_ips system_uicfg5640_0_0] -no_script -sync -force -quiet
+generate_target all [get_files  G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd]
+catch { config_ip_cache -export [get_ips -all system_uicfg5640_0_0] }
+catch { config_ip_cache -export [get_ips -all system_s00_regslice_0] }
+catch { config_ip_cache -export [get_ips -all system_auto_us_df_0] }
+export_ip_user_files -of_objects [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd]
+launch_runs system_uicfg5640_0_0_synth_1 -jobs 8
+wait_on_run system_uicfg5640_0_0_synth_1
+export_simulation -of_objects [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -directory G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files/sim_scripts -ip_user_files_dir G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files -ipstatic_source_dir G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files/ipstatic -lib_map_path [list {modelsim=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/modelsim} {questa=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/questa} {riviera=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/riviera} {activehdl=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+report_ip_status -name ip_status 
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+report_ip_status -name ip_status 
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+reset_run synth_1
+reset_run system_uicfg5640_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+update_ip_catalog -rebuild -scan_changes
+report_ip_status -name ip_status
+upgrade_ip -vlnv xilinx.com:user:uicfg5640:1.0 [get_ips  system_uicfg5640_0_0] -log ip_upgrade.log
+export_ip_user_files -of_objects [get_ips system_uicfg5640_0_0] -no_script -sync -force -quiet
+generate_target all [get_files  G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd]
+catch { config_ip_cache -export [get_ips -all system_uicfg5640_0_0] }
+catch { config_ip_cache -export [get_ips -all system_s00_regslice_0] }
+catch { config_ip_cache -export [get_ips -all system_auto_us_df_0] }
+export_ip_user_files -of_objects [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd]
+launch_runs system_uicfg5640_0_0_synth_1 -jobs 8
+wait_on_run system_uicfg5640_0_0_synth_1
+export_simulation -of_objects [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -directory G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files/sim_scripts -ip_user_files_dir G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files -ipstatic_source_dir G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files/ipstatic -lib_map_path [list {modelsim=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/modelsim} {questa=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/questa} {riviera=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/riviera} {activehdl=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+report_ip_status -name ip_status 
+update_ip_catalog -rebuild -scan_changes
+report_ip_status -name ip_status
+upgrade_ip -vlnv xilinx.com:user:uicfg5640:1.0 [get_ips  system_uicfg5640_0_0] -log ip_upgrade.log
+export_ip_user_files -of_objects [get_ips system_uicfg5640_0_0] -no_script -sync -force -quiet
+generate_target all [get_files  G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd]
+catch { config_ip_cache -export [get_ips -all system_uicfg5640_0_0] }
+catch { config_ip_cache -export [get_ips -all system_s00_regslice_0] }
+catch { config_ip_cache -export [get_ips -all system_auto_us_df_0] }
+export_ip_user_files -of_objects [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd]
+launch_runs system_uicfg5640_0_0_synth_1 -jobs 8
+wait_on_run system_uicfg5640_0_0_synth_1
+export_simulation -of_objects [get_files G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd] -directory G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files/sim_scripts -ip_user_files_dir G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files -ipstatic_source_dir G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.ip_user_files/ipstatic -lib_map_path [list {modelsim=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/modelsim} {questa=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/questa} {riviera=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/riviera} {activehdl=G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+set_property PROBES.FILE {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.runs/impl_1/system_wrapper.ltx} [get_hw_devices xczu7_0]
+set_property FULL_PROBES.FILE {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.runs/impl_1/system_wrapper.ltx} [get_hw_devices xczu7_0]
+set_property PROGRAM.FILE {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.runs/impl_1/system_wrapper.bit} [get_hw_devices xczu7_0]
+program_hw_devices [get_hw_devices xczu7_0]
+refresh_hw_device [lindex [get_hw_devices xczu7_0] 0]
+open_bd_design {G:/ZU07A/EG/fpga/03_fdma_camx1/fpga_prj.srcs/sources_1/bd/system/system.bd}
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0
+endgroup
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 xlslice_0
+endgroup
+delete_bd_objs [get_bd_cells xlslice_0]
+delete_bd_objs [get_bd_cells xlconcat_0]
+close_bd_design [get_bd_designs system]

@@ -1,0 +1,52 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Tue May 26 09:54:33 2020
+# Process ID: 792
+# Current directory: D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent15584 D:\Boards\MA703\04_example_PCIE\CH01_PCIE_Base\FPGA\pcie_system2\uisrc\uixdmairq\project_1\project_1.xpr
+# Log file: D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1/vivado.log
+# Journal file: D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1/project_1.xpr
+update_compile_order -fileset sources_1
+ipx::open_ipxact_file {D:\boards\ma703\04_example_pcie\ch01_pcie_base\fpga\pcie_system\uisrc\uixdmairq\component.xml}
+ipx::merge_project_changes ports [ipx::current_core]
+set_property core_revision 2 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+set_property  ip_repo_paths  {d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq d:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq} [current_project]
+update_ip_catalog
+set_property core_revision 3 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq
+export_ip_user_files -of_objects  [get_files D:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq/component.xml] -no_script -reset -force -quiet
+remove_files  D:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq/component.xml
+ipx::package_project -root_dir d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system2/uisrc/uixdmairq -vendor xilinx.com -library user -taxonomy /UserIP -force
+set_property core_revision 2 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+set_property  ip_repo_paths  {d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system2/uisrc/uixdmairq d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq d:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq} [current_project]
+update_ip_catalog
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+current_hw_device [get_hw_devices xc7a100t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a100t_0] 0]
+set_property PROBES.FILE {D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/pcie_system.runs/impl_1/pcie_top.ltx} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/pcie_system.runs/impl_1/pcie_top.ltx} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/pcie_system.runs/impl_1/pcie_top.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"pcie_system_i/ila_0"}]]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_2 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"pcie_system_i/system_ila_0/inst/ila_lib"}]]
+save_wave_config {D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1/project_1.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wcfg}
+save_wave_config {D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1/project_1.hw/hw_1/wave/hw_ila_data_2/hw_ila_data_2.wcfg}
+ipx::current_core d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq/component.xml
+ipx::current_core d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system2/uisrc/uixdmairq/component.xml

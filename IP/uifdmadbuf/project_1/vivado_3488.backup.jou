@@ -1,0 +1,92 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Fri Sep  3 10:09:20 2021
+# Process ID: 3488
+# Current directory: F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12540 F:\Boards\mz7x\fdma_dbuf_lwip_daq4225\zu_prj\uisrc\03_ip\uifdmadbuf\project_1\project_1.xpr
+# Log file: F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/vivado.log
+# Journal file: F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.xpr
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files F:/boards/zu07a/fdma_dbuf_lwip_7eg/zu_prj/uisrc/03_ip/uifdmadbuf/component.xml] -no_script -reset -force -quiet
+remove_files  F:/boards/zu07a/fdma_dbuf_lwip_7eg/zu_prj/uisrc/03_ip/uifdmadbuf/component.xml
+ipx::package_project -root_dir f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf -vendor xilinx.com -library user -taxonomy /UserIP -force
+set_property widget {checkBox} [ipgui::get_guiparamspec -name "AXI_Lite" -component [ipx::current_core] ]
+set_property value true [ipx::get_user_parameters AXI_Lite -of_objects [ipx::current_core]]
+set_property value true [ipx::get_hdl_parameters AXI_Lite -of_objects [ipx::current_core]]
+set_property value_format bool [ipx::get_user_parameters AXI_Lite -of_objects [ipx::current_core]]
+set_property value_format bool [ipx::get_hdl_parameters AXI_Lite -of_objects [ipx::current_core]]
+set_property widget {checkBox} [ipgui::get_guiparamspec -name "VIDEO_ENABLE" -component [ipx::current_core] ]
+set_property value true [ipx::get_user_parameters VIDEO_ENABLE -of_objects [ipx::current_core]]
+set_property value true [ipx::get_hdl_parameters VIDEO_ENABLE -of_objects [ipx::current_core]]
+set_property value_format bool [ipx::get_user_parameters VIDEO_ENABLE -of_objects [ipx::current_core]]
+set_property value_format bool [ipx::get_hdl_parameters VIDEO_ENABLE -of_objects [ipx::current_core]]
+set_property widget {checkBox} [ipgui::get_guiparamspec -name "ENABLE_WRITE" -component [ipx::current_core] ]
+set_property value true [ipx::get_user_parameters ENABLE_WRITE -of_objects [ipx::current_core]]
+set_property value true [ipx::get_hdl_parameters ENABLE_WRITE -of_objects [ipx::current_core]]
+set_property value_format bool [ipx::get_user_parameters ENABLE_WRITE -of_objects [ipx::current_core]]
+set_property value_format bool [ipx::get_hdl_parameters ENABLE_WRITE -of_objects [ipx::current_core]]
+set_property widget {checkBox} [ipgui::get_guiparamspec -name "ENABLE_READ" -component [ipx::current_core] ]
+set_property value true [ipx::get_user_parameters ENABLE_READ -of_objects [ipx::current_core]]
+set_property value true [ipx::get_hdl_parameters ENABLE_READ -of_objects [ipx::current_core]]
+set_property value_format bool [ipx::get_user_parameters ENABLE_READ -of_objects [ipx::current_core]]
+set_property value_format bool [ipx::get_hdl_parameters ENABLE_READ -of_objects [ipx::current_core]]
+set_property widget {hexEdit} [ipgui::get_guiparamspec -name "W_BASEADDR" -component [ipx::current_core] ]
+set_property value 0x10000000 [ipx::get_user_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value 0x10000000 [ipx::get_hdl_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value_bit_string_length 32 [ipx::get_user_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value_bit_string_length 32 [ipx::get_hdl_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value_format bitString [ipx::get_user_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value_format bitString [ipx::get_hdl_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property widget {hexEdit} [ipgui::get_guiparamspec -name "R_BASEADDR" -component [ipx::current_core] ]
+set_property value 0x10000000 [ipx::get_user_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value 0x10000000 [ipx::get_hdl_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value_bit_string_length 32 [ipx::get_user_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value_bit_string_length 32 [ipx::get_hdl_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value_format bitString [ipx::get_user_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value_format bitString [ipx::get_hdl_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property name FDMA_M [ipx::get_bus_interfaces user_FDMA -of_objects [ipx::current_core]]
+set_property enablement_dependency {$Axi_Lite = 1} [ipx::get_bus_interfaces S_AXI -of_objects [ipx::current_core]]
+ipgui::add_group -name {optional} -component [ipx::current_core] -parent [ipgui::get_pagespec -name "Page 0" -component [ipx::current_core] ] -display_name {optional} -layout {horizontal}
+ipgui::move_param -component [ipx::current_core] -order 0 [ipgui::get_guiparamspec -name "AXI_Lite" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "optional" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 1 [ipgui::get_guiparamspec -name "ENABLE_READ" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "optional" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 2 [ipgui::get_guiparamspec -name "ENABLE_WRITE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "optional" -component [ipx::current_core]]
+ipgui::add_group -name {axi settings} -component [ipx::current_core] -parent [ipgui::get_pagespec -name "Page 0" -component [ipx::current_core] ] -display_name {axi settings}
+ipgui::move_param -component [ipx::current_core] -order 0 [ipgui::get_guiparamspec -name "AXI_ADDR_WIDTH" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "axi settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 1 [ipgui::get_guiparamspec -name "AXI_DATA_WIDTH" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "axi settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 0 [ipgui::get_guiparamspec -name "VIDEO_ENABLE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "optional" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 0 [ipgui::get_guiparamspec -name "AXI_Lite" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "optional" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 2 [ipgui::get_guiparamspec -name "ENABLE_WRITE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "optional" -component [ipx::current_core]]
+ipgui::add_group -name {read settings} -component [ipx::current_core] -parent [ipgui::get_pagespec -name "Page 0" -component [ipx::current_core] ] -display_name {read settings}
+ipgui::move_param -component [ipx::current_core] -order 0 [ipgui::get_guiparamspec -name "R_BASEADDR" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 1 [ipgui::get_guiparamspec -name "R_BUFDEPTH" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 2 [ipgui::get_guiparamspec -name "R_BUFSIZE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 3 [ipgui::get_guiparamspec -name "R_DATAWIDTH" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 4 [ipgui::get_guiparamspec -name "R_DSIZEBITS" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 5 [ipgui::get_guiparamspec -name "R_XDIV" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 6 [ipgui::get_guiparamspec -name "R_XSIZE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 7 [ipgui::get_guiparamspec -name "R_XSTRIDE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 8 [ipgui::get_guiparamspec -name "R_YSIZE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::add_group -name {write settings} -component [ipx::current_core] -parent [ipgui::get_pagespec -name "Page 0" -component [ipx::current_core] ] -display_name {write settings}
+ipgui::move_param -component [ipx::current_core] -order 0 [ipgui::get_guiparamspec -name "W_BASEADDR" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 1 [ipgui::get_guiparamspec -name "W_BUFDEPTH" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 2 [ipgui::get_guiparamspec -name "W_BUFSIZE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 3 [ipgui::get_guiparamspec -name "W_DATAWIDTH" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 4 [ipgui::get_guiparamspec -name "W_DSIZEBITS" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 5 [ipgui::get_guiparamspec -name "W_XDIV" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 6 [ipgui::get_guiparamspec -name "W_XSIZE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 7 [ipgui::get_guiparamspec -name "W_XSTRIDE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 8 [ipgui::get_guiparamspec -name "W_YSIZE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::add_group -name {buf settings} -component [ipx::current_core] -parent [ipgui::get_pagespec -name "Page 0" -component [ipx::current_core] ] -display_name {buf settings}
+ipgui::move_group -component [ipx::current_core] -order 0 [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "buf settings" -component [ipx::current_core]]
+ipgui::move_group -component [ipx::current_core] -order 1 [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "buf settings" -component [ipx::current_core]]
+ipgui::move_group -component [ipx::current_core] -order 0 [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+set_property layout {horizontal} [ipgui::get_groupspec -name "buf settings" -component [ipx::current_core] ]
+set_property layout {horizontal} [ipgui::get_groupspec -name "axi settings" -component [ipx::current_core] ]
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1

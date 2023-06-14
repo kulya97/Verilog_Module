@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Mon May 25 10:51:19 2020
+# Process ID: 2596
+# Current directory: D:/Boards/MA703/04_example_PCIE/CH07_FDMA_HDMI/fpga_prj/uisrc/03_ip/uixdmairq/project_1/project_1.runs/synth_1
+# Command line: vivado.exe -log uixdmairq.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source uixdmairq.tcl
+# Log file: D:/Boards/MA703/04_example_PCIE/CH07_FDMA_HDMI/fpga_prj/uisrc/03_ip/uixdmairq/project_1/project_1.runs/synth_1/uixdmairq.vds
+# Journal file: D:/Boards/MA703/04_example_PCIE/CH07_FDMA_HDMI/fpga_prj/uisrc/03_ip/uixdmairq/project_1/project_1.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source uixdmairq.tcl -notrace

@@ -1,0 +1,29 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Wed May 27 09:53:39 2020
+# Process ID: 8952
+# Current directory: D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9548 D:\Boards\MA703\04_example_PCIE\CH01_PCIE_Base\FPGA\pcie_system2\uisrc\uixdmairq\project_1\project_1.xpr
+# Log file: D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1/vivado.log
+# Journal file: D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1/project_1.xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system2/uisrc/uixdmairq/project_1'
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system2/uisrc/uixdmairq'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:user:uixdmairq:1.0'. The one found in IP location 'd:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system2/uisrc/uixdmairq' will take precedence over the same IP in locations: 
+   d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq
+   d:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq
+open_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:05 . Memory (MB): peak = 868.078 ; gain = 212.930
+update_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed May 27 10:27:33 2020...

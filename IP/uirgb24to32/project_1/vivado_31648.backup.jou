@@ -1,0 +1,30 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Wed Nov 17 14:48:42 2021
+# Process ID: 31648
+# Current directory: F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14852 F:\MZU07A-EV\3_02_sdk_adv_app\14_photograph_fdma\9v034_sccb_hdmi\soc_prj\uisrc\03_ip\uidprgb24to36\project_1\project_1.xpr
+# Log file: F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/project_1/vivado.log
+# Journal file: F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/project_1/project_1.xpr
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uidprgb24to36.v] -no_script -reset -force -quiet
+remove_files  F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uidprgb24to36.v
+add_files -norecurse F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uidprgb24to32.v
+update_compile_order -fileset sources_1
+add_files -norecurse F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/component.xml
+ipx::open_ipxact_file {F:\MZU07A-EV\3_02_sdk_adv_app\14_photograph_fdma\9v034_sccb_hdmi\soc_prj\uisrc\03_ip\uidprgb24to36\component.xml}
+set_property file_type IP-XACT [get_files  F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/component.xml]
+export_ip_user_files -of_objects  [get_files F:/zu07a-4gb/01_soc_base_7eg/40dp_for/02_dpdma_live/zu_prj/uisrc/03_ip/uidprgb24to36/component.xml] -no_script -reset -force -quiet
+remove_files  F:/zu07a-4gb/01_soc_base_7eg/40dp_for/02_dpdma_live/zu_prj/uisrc/03_ip/uidprgb24to36/component.xml
+export_ip_user_files -of_objects  [get_files F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/component.xml] -no_script -reset -force -quiet
+remove_files  F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/component.xml
+export_ip_user_files -of_objects  [get_files F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uidprgb24to32.v] -no_script -reset -force -quiet
+remove_files  F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uidprgb24to32.v
+add_files -norecurse F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uirgb24to32.v
+ipx::unload_core f:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/component.xml
+ipx::package_project -root_dir f:/mzu07a-ev/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36 -vendor xilinx.com -library user -taxonomy /UserIP -force

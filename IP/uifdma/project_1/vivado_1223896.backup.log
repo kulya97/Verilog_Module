@@ -1,0 +1,47 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sat Feb  6 21:32:31 2021
+# Process ID: 1223896
+# Current directory: G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1262792 G:\V2020\S02\02_example_fdma_ddr_20\02_fdma_3buf_test\prj_normal\uisrc\03_ip\uifdma\project_1\project_1.xpr
+# Log file: G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/project_1/vivado.log
+# Journal file: G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/project_1/project_1.xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/project_1'
+WARNING: [filemgmt 56-3] IP Repository Path: Could not find the directory 'G:/V2020/v2020/s01/ch31/fpga_prj/uisrc/03_ip/uiuart'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository 'g:/V2020/v2020/s01/ch31/fpga_prj/uisrc/03_ip/uiuart'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'g:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uitpg/ip_repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2020.2/data/ip'.
+open_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:05 . Memory (MB): peak = 1094.477 ; gain = 0.000
+update_compile_order -fileset sources_1
+ipx::open_ipxact_file {G:\v2020\s02\02_example_fdma_ddr_20\02_fdma_3buf_test\prj_normal\uisrc\03_ip\uifdma\component.xml}
+WARNING: [IP_Flow 19-5226] Project source file 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/uiFDMA.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/uiFDMA.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+ipx::merge_project_changes hdl_parameters [ipx::current_core]
+WARNING: [IP_Flow 19-5226] Project source file 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_wburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_rburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+INFO: [IP_Flow 19-3164] Bus Interface 'M_AXI': References existing address space 'M_AXI'.
+set_property core_revision 3 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma'
+exit
+INFO: [Common 17-206] Exiting Vivado at Sat Feb  6 22:20:04 2021...

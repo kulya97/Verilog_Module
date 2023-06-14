@@ -1,0 +1,129 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Tue Sep 27 14:45:43 2022
+# Process ID: 32724
+# Current directory: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent29656 F:\XILINX\FDMA_DDR\fdma_data_path\01_axi4-uifdma_ip\uisrc\03_ip\uifdma\project_1.xpr
+# Log file: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/vivado.log
+# Journal file: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/project_1.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/project_1.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2021.1/data/ip'.
+open_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:05 . Memory (MB): peak = 1232.539 ; gain = 0.000
+update_compile_order -fileset sources_1
+ipx::open_ipxact_file {F:\xilinx\fdma_ddr\fdma_data_path\01_axi4-uifdma_ip\uisrc\03_ip\uifdma\component.xml}
+WARNING: [IP_Flow 19-5226] Project source file 'f:/xilinx/fdma_ddr/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'f:/xilinx/fdma_ddr/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/uiFDMA.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'f:/xilinx/fdma_ddr/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/uiFDMA.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+ipx::merge_project_changes ports [ipx::current_core]
+WARNING: [IP_Flow 19-5226] Project source file 'f:/xilinx/fdma_ddr/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_wburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_rburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+INFO: [IP_Flow 19-3164] Bus Interface 'M_AXI': References existing address space 'M_AXI'.
+ipx::remove_bus_interface FDMA_S [ipx::current_core]
+ipx::create_abstraction_definition xilinx.com user FDMA_S_rtl 1.0
+ipx::create_bus_definition xilinx.com user FDMA_S 1.0
+set_property xml_file_name F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/FDMA_S_rtl.xml [ipx::current_busabs]
+set_property xml_file_name F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/FDMA_S.xml [ipx::current_busdef]
+set_property bus_type_vlnv xilinx.com:user:FDMA_S:1.0 [ipx::current_busabs]
+ipx::save_abstraction_definition [ipx::current_busabs]
+ipx::save_bus_definition [ipx::current_busdef]
+ipx::add_bus_abstraction_port fdma_waddr [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wareq [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wsize [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wbusy [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wdata [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wvalid [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wready [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_raddr [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rareq [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rsize [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rbusy [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rdata [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rvalid [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rready [ipx::current_busabs]
+ipx::save_bus_definition [ipx::current_busdef]
+ipx::save_abstraction_definition [ipx::current_busabs]
+update_ip_catalog -rebuild
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma'.
+update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma'
+ipx::infer_bus_interface {fdma_waddr fdma_wareq fdma_wsize fdma_wbusy fdma_wdata fdma_wvalid fdma_wready fdma_raddr fdma_rareq fdma_rsize fdma_rbusy fdma_rdata fdma_rvalid fdma_rready} xilinx.com:user:FDMA_S:1.0 [ipx::current_core]
+INFO: [IP_Flow 19-5107] Inferred bus interface 'FDMA_S_1' of definition 'xilinx.com:user:FDMA_S:1.0' (from TCL Argument).
+set_property name FDMA_S [ipx::get_bus_interfaces FDMA_S_1 -of_objects [ipx::current_core]]
+set_property core_revision 12 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma'
+ipx::remove_bus_interface FDMA_S [ipx::current_core]
+ipx::create_abstraction_definition xilinx.com user FDMA_rtl 1.0
+ipx::create_bus_definition xilinx.com user FDMA 1.0
+set_property xml_file_name F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/FDMA_rtl.xml [ipx::current_busabs]
+set_property xml_file_name F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/FDMA.xml [ipx::current_busdef]
+set_property bus_type_vlnv xilinx.com:user:FDMA:1.0 [ipx::current_busabs]
+ipx::save_abstraction_definition [ipx::current_busabs]
+ipx::save_bus_definition [ipx::current_busdef]
+ipx::add_bus_abstraction_port fdma_waddr [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wareq [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wsize [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wbusy [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wdata [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wvalid [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wready [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_raddr [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rareq [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rsize [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rbusy [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rdata [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rvalid [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rready [ipx::current_busabs]
+ipx::save_bus_definition [ipx::current_busdef]
+ipx::save_abstraction_definition [ipx::current_busabs]
+update_ip_catalog -rebuild
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma'.
+update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma'
+ipx::infer_bus_interface {fdma_waddr fdma_wareq fdma_wsize fdma_wbusy fdma_wdata fdma_wvalid fdma_wready fdma_raddr fdma_rareq fdma_rsize fdma_rbusy fdma_rdata fdma_rvalid fdma_rready} xilinx.com:user:FDMA:1.0 [ipx::current_core]
+INFO: [IP_Flow 19-5107] Inferred bus interface 'FDMA_1' of definition 'xilinx.com:user:FDMA:1.0' (from TCL Argument).
+set_property name FDMA_S [ipx::get_bus_interfaces FDMA_1 -of_objects [ipx::current_core]]
+set_property interface_mode slave [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property core_revision 13 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_waddr' and definition port 'fdma_waddr'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_wareq' and definition port 'fdma_wareq'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_wsize' and definition port 'fdma_wsize'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_wbusy' and definition port 'fdma_wbusy'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_wdata' and definition port 'fdma_wdata'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_wvalid' and definition port 'fdma_wvalid'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_wready' and definition port 'fdma_wready'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_raddr' and definition port 'fdma_raddr'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_rareq' and definition port 'fdma_rareq'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_rsize' and definition port 'fdma_rsize'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_rbusy' and definition port 'fdma_rbusy'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_rdata' and definition port 'fdma_rdata'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_rvalid' and definition port 'fdma_rvalid'.
+WARNING: [IP_Flow 19-3480] slave: Portmap direction mismatched between component port 'fdma_rready' and definition port 'fdma_rready'.
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma'

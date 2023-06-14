@@ -1,0 +1,18 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Tue May 26 09:19:27 2020
+# Process ID: 9324
+# Current directory: D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system/uisrc/uixdmairq/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent8288 D:\Boards\MA703\04_example_PCIE\CH01_PCIE_Base\FPGA\pcie_system\uisrc\uixdmairq\project_1\project_1.xpr
+# Log file: D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system/uisrc/uixdmairq/project_1/vivado.log
+# Journal file: D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system/uisrc/uixdmairq/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/Boards/MA703/04_example_PCIE/CH01_PCIE_Base/FPGA/pcie_system/uisrc/uixdmairq/project_1/project_1.xpr
+update_compile_order -fileset sources_1
+ipx::open_ipxact_file {D:\boards\ma703\04_example_pcie\ch07_fdma_hdmi\fpga_prj\uisrc\03_ip\uixdmairq\component.xml}
+export_ip_user_files -of_objects  [get_files D:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq/component.xml] -no_script -reset -force -quiet
+remove_files  D:/boards/ma703/04_example_pcie/ch07_fdma_hdmi/fpga_prj/uisrc/03_ip/uixdmairq/component.xml
+ipx::package_project -root_dir d:/boards/ma703/04_example_pcie/ch01_pcie_base/fpga/pcie_system/uisrc/uixdmairq -vendor xilinx.com -library user -taxonomy /UserIP -force

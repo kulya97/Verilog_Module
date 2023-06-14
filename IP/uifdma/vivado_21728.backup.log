@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Mon Sep 26 11:23:40 2022
+# Process ID: 21728
+# Current directory: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent21500 F:\XILINX\FDMA_DDR\fdma_data_path\01_axi4-uifdma_ip\uisrc\03_ip\uifdma\project_1.xpr
+# Log file: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/vivado.log
+# Journal file: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/project_1.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/project_1.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2021.1/data/ip'.
+open_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:05 . Memory (MB): peak = 1231.035 ; gain = 0.000
+update_compile_order -fileset sources_1
+ipx::open_ipxact_file {F:\xilinx\fdma_ddr\fdma_data_path\01_axi4-uifdma_ip\uisrc\03_ip\uifdma\component.xml}
+WARNING: [IP_Flow 19-5226] Project source file 'f:/xilinx/fdma_ddr/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'f:/xilinx/fdma_ddr/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/uiFDMA.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'f:/xilinx/fdma_ddr/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/uiFDMA.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Sep 26 11:28:52 2022...

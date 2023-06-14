@@ -1,0 +1,597 @@
+/*
+
+Xilinx Vivado v2021.1 (64-bit) [Major: 2021, Minor: 1]
+SW Build: 3247384 on Thu Jun 10 19:36:33 MDT 2021
+IP Build: 3246043 on Fri Jun 11 00:30:35 MDT 2021
+
+Process ID (PID): 32724
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Tue Sep 27 14:45:58 CST 2022
+Time zone: 	China Standard Time (Asia/Shanghai)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 16
+
+Screen size: 2560x1440
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.2 64-bit
+Java home: 	D:/Xilinx/Vivado/2021.1/tps/win64/jre11.0.2
+Java executable: 	D:/Xilinx/Vivado/2021.1/tps/win64/jre11.0.2/bin/java.exe
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	tjy
+User home directory: C:/Users/tjy
+User working directory: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+User country: 	CN
+User language: 	zh
+User locale: 	zh_CN
+
+RDI_BASEROOT: D:/Xilinx/Vivado
+HDI_APPROOT: D:/Xilinx/Vivado/2021.1
+RDI_DATADIR: D:/Xilinx/Vivado/2021.1/data
+RDI_BINDIR: D:/Xilinx/Vivado/2021.1/bin
+
+Vivado preferences file: C:/Users/tjy/AppData/Roaming/Xilinx/Vivado/2021.1/vivado.xml
+Vivado preferences directory: C:/Users/tjy/AppData/Roaming/Xilinx/Vivado/2021.1/
+Vivado layouts directory: C:/Users/tjy/AppData/Roaming/Xilinx/Vivado/2021.1/data/layouts
+PlanAhead jar file: 	D:/Xilinx/Vivado/2021.1/lib/classes/planAhead.jar
+Vivado log file: 	F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/vivado.log
+Vivado journal file: 	F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/vivado.jou
+Engine tmp dir: 	F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/.Xil/Vivado-32724-DESKTOP-EG0H8ND
+
+Xilinx Environment Variables
+----------------------------
+XILINX: D:/Xilinx/Vivado/2021.1/ids_lite/ISE
+XILINX_DSP: D:/Xilinx/Vivado/2021.1/ids_lite/ISE
+XILINX_HLS: D:/Xilinx/Vitis_HLS/2021.1
+XILINX_PLANAHEAD: D:/Xilinx/Vivado/2021.1
+XILINX_SDK: D:/Xilinx/Vitis/2021.1
+XILINX_VITIS: D:/Xilinx/Vitis/2021.1
+XILINX_VIVADO: D:/Xilinx/Vivado/2021.1
+XILINX_VIVADO_HLS: D:/Xilinx/Vivado/2021.1
+
+
+GUI allocated memory:	256 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,240 MB
+
+Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// TclEventType: PROJECT_OPEN_DIALOG
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 82 MB (+83434kb) [00:00:04]
+// [Engine Memory]: 1,240 MB (+1148541kb) [00:00:04]
+// bz (cs):  Open Project : addNotify
+// Opening Vivado Project: F:\XILINX\FDMA_DDR\fdma_data_path\01_axi4-uifdma_ip\uisrc\03_ip\uifdma\project_1.xpr. Version: Vivado v2021.1 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: open_project F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/project_1.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/project_1.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 109 MB (+24359kb) [00:00:08]
+// [GUI Memory]: 115 MB (+167kb) [00:00:09]
+// [GUI Memory]: 125 MB (+4433kb) [00:00:09]
+// WARNING: HEventQueue.dispatchEvent() is taking  2179 ms.
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma'. INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2021.1/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,240 MB. GUI used memory: 72 MB. Current time: 9/27/22, 2:45:58 PM CST
+// Project name: project_1; location: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma; part: xczu7eg-ffvc1156-2-i
+// Tcl Message: open_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:05 . Memory (MB): peak = 1232.539 ; gain = 0.000 
+dismissDialog("Open Project"); // bz
+// Tcl Command: 'rdi::info_commands {device::*}'
+// Tcl Command: 'rdi::info_commands {debug::*}'
+// Tcl Command: 'rdi::info_commands {*}'
+// [GUI Memory]: 144 MB (+13574kb) [00:00:13]
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 11 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, IP-XACT]", 2); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, IP-XACT, component.xml]", 3, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, IP-XACT, component.xml]", 3, false, false, false, false, false, true); // D - Double Click
+// bz (cs):  Open IP-XACT File : addNotify
+// TclEventType: LOAD_FEATURE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: LOAD_FEATURE
+// TclEventType: PACKAGER_CURRENT_CORE
+// Run Command: PAResourceCommand.PACommandNames_IP_PACKAGER
+// WARNING: HEventQueue.dispatchEvent() is taking  1152 ms.
+// TclEventType: PACKAGER_OBJECT_CHANGE
+// Tcl Message: ipx::open_ipxact_file {F:\xilinx\fdma_ddr\fdma_data_path\01_axi4-uifdma_ip\uisrc\03_ip\uifdma\component.xml} 
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// TclEventType: PACKAGER_OBJECT_CHANGE
+dismissDialog("Open IP-XACT File"); // bz
+// [GUI Memory]: 158 MB (+7150kb) [00:00:24]
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Ports and Interfaces", 4); // ar
+selectButton(PAResourceItoN.MessageBanner_CHANGES_DETECTED_IN_VIVADO_PROJECT_THAT, "Merge changes from Ports and Interfaces Wizard"); // h
+// TclEventType: PACKAGER_COMPONENT_RESET
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_OBJECT_CHANGE
+// Tcl Message: ipx::merge_project_changes ports [ipx::current_core] 
+// Tcl Message: INFO: [IP_Flow 19-3164] Bus Interface 'M_AXI': References existing address space 'M_AXI'. 
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization GUI", 6); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Addressing and Memory", 5); // ar
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Ports and Interfaces", 4); // ar
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0); // M
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true); // M - Node
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "M_AXI ; master ;  ;  ;  ;  ;  ;  ;  ; ", 15); // M
+collapseTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "M_AXI ; master ;  ;  ;  ;  ;  ;  ;  ; ", 15); // M
+// WARNING: HEventQueue.dispatchEvent() is taking  1229 ms.
+// Elapsed time: 10 seconds
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectMenuItem(PAResourceOtoP.PortAndInterfaceFacetTable_EDIT_INTERFACE, "Edit Interface..."); // an
+// [GUI Memory]: 188 MB (+22427kb) [00:00:48]
+// H (cs): Edit Interface: addNotify
+// [GUI Memory]: 227 MB (+31046kb) [00:00:58]
+// Elapsed time: 13 seconds
+selectRadioButton(PAResourceItoN.InterfaceConfigurationPanel_OPTIONAL, "Optional"); // a
+selectRadioButton(PAResourceItoN.InterfaceConfigurationPanel_MANDATORY, "Mandatory"); // a
+// Elapsed time: 62 seconds
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Edit Interface"); // H
+// Elapsed time: 101 seconds
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "M_AXI ; master ;  ;  ;  ;  ;  ;  ;  ; ", 15); // M
+collapseTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "M_AXI ; master ;  ;  ;  ;  ;  ;  ;  ; ", 15); // M
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "M_AXI ; master ;  ;  ;  ;  ;  ;  ;  ; ", 15); // M
+collapseTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "M_AXI ; master ;  ;  ;  ;  ;  ;  ;  ; ", 15); // M
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "Clock and Reset Signals ;  ;  ;  ;  ;  ;  ;  ;  ; ", 16); // M
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "M_AXI ; master ;  ;  ;  ;  ;  ;  ;  ; ", 15); // M
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Addressing and Memory", 5); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization GUI", 6); // ar
+// Elapsed time: 12 seconds
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Review and Package", 7); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization GUI", 6); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization Parameters", 3); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Ports and Interfaces", 4); // ar
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+// Elapsed time: 47 seconds
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Addressing and Memory", 5); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization GUI", 6); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Review and Package", 7); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization Parameters", 3); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "File Groups", 2); // ar
+expandTreeTable(PAResourceEtoH.FileGroupFacetTable_FILE_GROUP_FACET_TABLE, "UI Layout ;  ;  ; false ;  ; ", 4); // M
+selectTreeTable(PAResourceEtoH.FileGroupFacetTable_FILE_GROUP_FACET_TABLE, "xgui/uiFDMA_v3_1.tcl ;  ; tclSource ; false ; xilinx_xpgui ; ", 5, "xgui/uiFDMA_v3_1.tcl", 0, false); // M
+expandTreeTable(PAResourceEtoH.FileGroupFacetTable_FILE_GROUP_FACET_TABLE, "Simulation ;  ;  ; false ;  ; uiFDMA", 2); // M
+collapseTreeTable(PAResourceEtoH.FileGroupFacetTable_FILE_GROUP_FACET_TABLE, "Simulation ;  ;  ; false ;  ; uiFDMA", 2); // M
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization Parameters", 3); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "File Groups", 2); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Compatibility", 1); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Identification", 0); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Compatibility", 1); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "File Groups", 2); // ar
+// Elapsed time: 52 seconds
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "File Groups", 2); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization Parameters", 3); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Ports and Interfaces", 4); // ar
+collapseTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0); // M
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true); // M - Node
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectMenuItem(PAResourceOtoP.PortAndInterfaceFacetTable_EDIT_INTERFACE, "Edit Interface..."); // an
+// H (cs): Edit Interface: addNotify
+selectButton(PAResourceItoN.InterfaceDefinitionChooser_INTERFACE_DEFINITION_CHOOSER, (String) null); // t
+// u (cs): Interface Definition Chooser: addNotify
+expandTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "IO Interfaces ; ", 6); // ai
+expandTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "Advanced ; ", 16); // ai
+selectTreeTableHeader(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "Name", 0); // ai
+expandTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "User ; ", 174); // ai
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 175, "FDMA_S_rtl", 0, false); // ai
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Interface Definition Chooser"); // u
+selectComboBox(PAResourceItoN.InterfaceConfigurationPanel_MODE, "slave", 1); // e
+selectTab(PAResourceEtoH.EditInterfaceDialog_TABBED_PANE, PAResourceEtoH.EditInterfaceDialog_PARAMETERS, "General", 2); // I
+selectTab(PAResourceEtoH.EditInterfaceDialog_TABBED_PANE, PAResourceEtoH.EditInterfaceDialog_PARAMETERS, "Parameters", 2); // I
+selectTab(PAResourceEtoH.EditInterfaceDialog_TABBED_PANE, PAResourceEtoH.EditInterfaceDialog_PORT_MAPPING, "Port Mapping", 1); // I
+// Elapsed time: 12 seconds
+selectTab(PAResourceEtoH.EditInterfaceDialog_TABBED_PANE, PAResourceEtoH.EditInterfaceDialog_PARAMETERS, "Parameters", 2); // I
+selectTree(PAResourceEtoH.EditInterfaceDialog_RECOMMENDED_PARAMETERS_TREE, "[, Auto-calculated]", 0, false); // T
+selectTree(PAResourceEtoH.EditInterfaceDialog_RECOMMENDED_PARAMETERS_TREE, "[, Requires User Setting]", 1, false); // T
+selectTree(PAResourceEtoH.EditInterfaceDialog_RECOMMENDED_PARAMETERS_TREE, "[, Optional]", 2, false); // T
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Edit Interface"); // H
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization GUI", 6); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Review and Package", 7); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization GUI", 6); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "File Groups", 2); // ar
+expandTreeTable(PAResourceEtoH.FileGroupFacetTable_FILE_GROUP_FACET_TABLE, "Synthesis ;  ;  ; false ;  ; uiFDMA", 1); // M
+expandTreeTable(PAResourceEtoH.FileGroupFacetTable_FILE_GROUP_FACET_TABLE, "Simulation ;  ;  ; false ;  ; uiFDMA", 3); // M
+selectTreeTable(PAResourceEtoH.FileGroupFacetTable_FILE_GROUP_FACET_TABLE, "xgui/uiFDMA_v3_1.tcl ;  ; tclSource ; false ; xilinx_xpgui ; ", 7, "xgui/uiFDMA_v3_1.tcl", 0, false); // M
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, IP-XACT, component.xml]", 3, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, uiFDMA (uiFDMA.v)]", 1, false); // D
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Compatibility", 1); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Identification", 0); // ar
+// Elapsed time: 43 seconds
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Addressing and Memory", 5); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization GUI", 6); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization GUI", 6); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Review and Package", 7); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Addressing and Memory", 5); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Ports and Interfaces", 4); // ar
+collapseTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "M_AXI ; master ;  ;  ;  ;  ;  ;  ;  ; ", 1); // M
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true); // M - Node
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true); // M - Node
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0); // M
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true, false, false, false, false, true); // M - Double Click - Node
+// H (cs): Edit Interface: addNotify
+dismissDialog("Edit Interface"); // H
+// Elapsed time: 390 seconds
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectMenuItem(PAResourceOtoP.PortAndInterfaceFacetTable_EDIT_INTERFACE, "Edit Interface..."); // an
+// H (cs): Edit Interface: addNotify
+selectButton(PAResourceItoN.InterfaceDefinitionChooser_INTERFACE_DEFINITION_CHOOSER, (String) null); // t
+// u (cs): Interface Definition Chooser: addNotify
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "User ; ", 8, "User", 0, true); // ai - Node
+expandTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "User ; ", 8); // ai
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 9, "FDMA_S_rtl", 0, false); // ai
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 9, "FDMA_S_rtl", 0, false, false, false, false, true, false); // ai - Popup Trigger
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 9, "FDMA_S_rtl", 0, false); // ai
+expandTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "Advanced ; ", 7); // ai
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "IO Interfaces ; ", 6, "IO Interfaces", 0, true); // ai - Node
+expandTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "IO Interfaces ; ", 6); // ai
+expandTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "Signal ; ", 5); // ai
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 185, "FDMA_S_rtl", 0, false); // ai
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 185, "FDMA_S_rtl", 0, false); // ai
+expandTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 185); // ai
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 185, "FDMA_S_rtl", 0, false, false, false, false, false, true); // ai - Double Click
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 185, "FDMA_S_rtl", 0, false, false, false, false, true, false); // ai - Popup Trigger
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 185, "FDMA_S_rtl", 0, false); // ai
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 185, "FDMA_S_rtl", 0, false, false, false, false, true, false); // ai - Popup Trigger
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 185, "FDMA_S_rtl", 0, false); // ai
+// Elapsed time: 195 seconds
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "User ; ", 184, "User", 0, true, false, false, false, true, false); // ai - Popup Trigger - Node
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "User ; ", 184, "User", 0, true); // ai - Node
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Interface Definition Chooser"); // u
+dismissDialog("Edit Interface"); // H
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectMenuItem(PAResourceOtoP.PortAndInterfaceFacetTable_EDIT_INTERFACE, "Edit Interface..."); // an
+// H (cs): Edit Interface: addNotify
+selectButton(PAResourceItoN.InterfaceDefinitionChooser_INTERFACE_DEFINITION_CHOOSER, (String) null); // t
+// u (cs): Interface Definition Chooser: addNotify
+dismissDialog("Interface Definition Chooser"); // u
+// [GUI Memory]: 250 MB (+13131kb) [00:19:17]
+selectTab(PAResourceEtoH.EditInterfaceDialog_TABBED_PANE, PAResourceEtoH.EditInterfaceDialog_PARAMETERS, "Parameters", 2); // I
+selectTab(PAResourceEtoH.EditInterfaceDialog_TABBED_PANE, PAResourceEtoH.EditInterfaceDialog_PORT_MAPPING, "Port Mapping", 1); // I
+selectTab(PAResourceEtoH.EditInterfaceDialog_TABBED_PANE, PAResourceEtoH.EditInterfaceDialog_GENERAL, "General", 0); // I
+dismissDialog("Edit Interface"); // H
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectMenuItem(PAResourceCommand.PACommandNames_PACKAGER_PORT_IMPORT, "Import IP Ports..."); // an
+// Run Command: PAResourceCommand.PACommandNames_PACKAGER_PORT_IMPORT
+// ak (cs): Import Ports from HDL: addNotify
+// 'r' command handler elapsed time: 9 seconds
+dismissDialog("Import Ports from HDL"); // ak
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectMenuItem(PAResourceQtoS.RefreshPackagerTableAction_REFRESH_ALL_ROWS_IN_TABLE, "Refresh Table"); // an
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectMenuItem(PAResourceCommand.PACommandNames_PACKAGER_AUTO_INFER_INTERFACE, "Auto Infer Interface..."); // an
+// Run Command: PAResourceCommand.PACommandNames_PACKAGER_AUTO_INFER_INTERFACE
+// e (cs): Auto Infer Interface Chooser: addNotify
+expandTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "User ; ", 8); // ai
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "FDMA_S_rtl ; ", 9, "FDMA_S_rtl", 0, false); // ai
+// 'c' command handler elapsed time: 8 seconds
+dismissDialog("Auto Infer Interface Chooser"); // e
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 0, "FDMA_S", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectMenuItem(PAResourceOtoP.PortAndInterfaceFacetTable_REMOVE_PORT, "Remove Port"); // an
+selectMenuItem(PAResourceOtoP.PortAndInterfaceFacetTable_REMOVE_INTERFACE, "Remove Interface"); // an
+// TclEventType: PACKAGER_OBJECT_DELETE
+// Tcl Message: ipx::remove_bus_interface FDMA_S [ipx::current_core] 
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_waddr ;  ;  ; in ;  ; 31 ; 0 ; (spirit:decode(id('MODELPARAM_VALUE.M_AXI_ADDR_WIDTH')) - 1) ;  ; wire", 2, "fdma_waddr", 0, false); // M
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_rready ;  ;  ; in ;  ;  ;  ;  ;  ; wire", 15, "fdma_rready", 0, false, true, false, false, false, false); // M - Shift Key
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_rready ;  ;  ; in ;  ;  ;  ;  ;  ; wire", 15, "fdma_rready", 0, false, false, false, false, true, false); // M - Popup Trigger
+selectMenuItem(PAResourceCommand.PACommandNames_PACKAGER_ADD_BUS_INTERFACE, "Add Bus Interface..."); // an
+// Run Command: PAResourceCommand.PACommandNames_PACKAGER_ADD_BUS_INTERFACE
+// H (cs): Add Interface: addNotify
+// HOptionPane Error: 'You've entered an invalid name for new IP Interface. (Invalid IP Interface Name)'
+selectButton("OptionPane.button", "OK"); // JButton
+selectButton(PAResourceItoN.InterfaceDefinitionChooser_INTERFACE_DEFINITION_CHOOSER, (String) null); // t
+// u (cs): Interface Definition Chooser: addNotify
+selectTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "User ; ", 8, "User", 0, true); // ai - Node
+expandTreeTable(PAResourceItoN.InterfaceDefinitionTreeTable_INTERFACES_TREE_TABLE, "User ; ", 8); // ai
+dismissDialog("Interface Definition Chooser"); // u
+// 'a' command handler elapsed time: 10 seconds
+dismissDialog("Add Interface"); // H
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_waddr ;  ;  ; in ;  ; 31 ; 0 ; (spirit:decode(id('MODELPARAM_VALUE.M_AXI_ADDR_WIDTH')) - 1) ;  ; wire", 2, "fdma_waddr", 0, false); // M
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_rready ;  ;  ; in ;  ;  ;  ;  ;  ; wire", 15, "fdma_rready", 0, false, true, false, false, false, false); // M - Shift Key
+// Elapsed time: 25 seconds
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_waddr ;  ;  ; in ;  ; 31 ; 0 ; (spirit:decode(id('MODELPARAM_VALUE.M_AXI_ADDR_WIDTH')) - 1) ;  ; wire", 2, "fdma_waddr", 0, false, false, false, false, true, false); // M - Popup Trigger
+selectMenuItem(PAResourceCommand.PACommandNames_PACKAGER_PORT_IMPORT, "Import IP Ports..."); // an
+// Run Command: PAResourceCommand.PACommandNames_PACKAGER_PORT_IMPORT
+// ak (cs): Import Ports from HDL: addNotify
+selectButton(PAResourceItoN.ImportPortsDialog_CHOOSE_TOP_LEVEL_SOURCE_FILE, (String) null); // t
+dismissFileChooser();
+// 'r' command handler elapsed time: 8 seconds
+dismissDialog("Import Ports from HDL"); // ak
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "Clock and Reset Signals ;  ;  ;  ;  ;  ;  ;  ;  ; ", 1, "Clock and Reset Signals", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_waddr ;  ;  ; in ;  ; 31 ; 0 ; (spirit:decode(id('MODELPARAM_VALUE.M_AXI_ADDR_WIDTH')) - 1) ;  ; wire", 2, "fdma_waddr", 0, false); // M
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_rready ;  ;  ; in ;  ;  ;  ;  ;  ; wire", 15, "fdma_rready", 0, false, true, false, false, false, false); // M - Shift Key
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_rready ;  ;  ; in ;  ;  ;  ;  ;  ; wire", 15, "fdma_rready", 0, false, false, false, false, true, false); // M - Popup Trigger
+selectMenuItem(PAResourceOtoP.PortAndInterfaceFacetTable_EDIT_PORT, "Edit Port..."); // an
+// af (cs): Edit Port: addNotify
+dismissDialog("Edit Port"); // af
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_waddr ;  ;  ; in ;  ; 31 ; 0 ; (spirit:decode(id('MODELPARAM_VALUE.M_AXI_ADDR_WIDTH')) - 1) ;  ; wire", 2, "fdma_waddr", 0, false, false, false, false, true, false); // M - Popup Trigger
+selectMenuItem(PAResourceOtoP.PortAndInterfaceFacetTable_CREATE_INTERFACE_DEFINITION, "Create Interface Definition..."); // an
+// am (cs): Create Interface Definition: addNotify
+// Elapsed time: 67 seconds
+setText(PAResourceTtoZ.VLNVPanel_NAME, "FDMA_S"); // bu
+selectRadioButton(PAResourceAtoD.DefinitionCreationDialog_SLAVE, "Slave"); // a
+setText(PAResourceAtoD.DefinitionCreationDialog_CHOOSE_DIRECTORY_WHERE_NEW_INTERFACE, "F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma"); // ao
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// HOptionPane Error: 'A definition file with the same name already exists at this location. Please choose a different location or name. (Existing Definition File)'
+// HMemoryUtils.trashcanNow. Engine heap size: 1,265 MB. GUI used memory: 115 MB. Current time: 9/27/22, 3:08:22 PM CST
+selectButton("OptionPane.button", "OK"); // JButton
+// Elapsed time: 10 seconds
+setText(PAResourceTtoZ.VLNVPanel_VERSION, "2.0"); // bu
+setText(PAResourceTtoZ.VLNVPanel_VERSION, "1.0"); // bu
+// Elapsed time: 42 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// HOptionPane Error: 'A definition file with the same name already exists at this location. Please choose a different location or name. (Existing Definition File)'
+selectButton("OptionPane.button", "OK"); // JButton
+// HMemoryUtils.trashcanNow. Engine heap size: 1,287 MB. GUI used memory: 114 MB. Current time: 9/27/22, 3:09:27 PM CST
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// TclEventType: PACKAGER_OBJECT_CHANGE
+// TclEventType: PACKAGER_OBJECT_ADD
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// Tcl Message: ipx::create_abstraction_definition xilinx.com user FDMA_S_rtl 1.0 
+// Tcl Message: ipx::create_bus_definition xilinx.com user FDMA_S 1.0 
+// Tcl Message: set_property xml_file_name F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/FDMA_S_rtl.xml [ipx::current_busabs] 
+// Tcl Message: set_property xml_file_name F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/FDMA_S.xml [ipx::current_busdef] 
+// Tcl Message: set_property bus_type_vlnv xilinx.com:user:FDMA_S:1.0 [ipx::current_busabs] 
+// Tcl Message: ipx::save_abstraction_definition [ipx::current_busabs] 
+// Tcl Message: ipx::save_bus_definition [ipx::current_busdef] 
+// TclEventType: CREATE_IP_CATALOG
+// Tcl Message: ipx::add_bus_abstraction_port fdma_waddr [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_wareq [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_wsize [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_wbusy [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_wdata [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_wvalid [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_wready [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_raddr [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_rareq [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_rsize [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_rbusy [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_rdata [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_rvalid [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_rready [ipx::current_busabs] 
+// Tcl Message: ipx::save_bus_definition [ipx::current_busdef] 
+// Tcl Message: ipx::save_abstraction_definition [ipx::current_busabs] 
+// Tcl Message: update_ip_catalog -rebuild 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma'. 
+dismissDialog("Create Interface Definition"); // am
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// Tcl Message: update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma 
+// Tcl Message: INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma' 
+// TclEventType: PACKAGER_OBJECT_CHANGE
+selectButton("OptionPane.button", "Yes"); // JButton
+// Tcl Message: ipx::infer_bus_interface {fdma_waddr fdma_wareq fdma_wsize fdma_wbusy fdma_wdata fdma_wvalid fdma_wready fdma_raddr fdma_rareq fdma_rsize fdma_rbusy fdma_rdata fdma_rvalid fdma_rready} xilinx.com:user:FDMA_S:1.0 [ipx::current_core] 
+// Tcl Message: INFO: [IP_Flow 19-5107] Inferred bus interface 'FDMA_S_1' of definition 'xilinx.com:user:FDMA_S:1.0' (from TCL Argument). 
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S_1 ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 1, "FDMA_S_1", 0, true); // M - Node
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+setText("Name:", "FDMA_S"); // aa
+// TclEventType: PACKAGER_OBJECT_CHANGE
+// Tcl Message: set_property name FDMA_S [ipx::get_bus_interfaces FDMA_S_1 -of_objects [ipx::current_core]] 
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Review and Package", 7); // ar
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 1, "FDMA_S", 0, true); // M - Node
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 1); // M
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// [Engine Memory]: 1,303 MB (+1135kb) [00:23:55]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, IP-XACT, component.xml]", 3, false); // D
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Addressing and Memory", 5); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Ports and Interfaces", 4); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Ports and Interfaces", 4); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization Parameters", 3); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization GUI", 6); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Review and Package", 7); // ar
+selectButton(PAResourceQtoS.ReviewContentPanel_RE_PACKAGE_IP, "Re-Package IP"); // a
+// TclEventType: PACKAGER_OBJECT_CHANGE
+// Tcl Message: set_property core_revision 12 [ipx::current_core] 
+// Tcl Message: ipx::create_xgui_files [ipx::current_core] 
+// Tcl Message: ipx::update_checksums [ipx::current_core] 
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// Tcl Message: ipx::check_integrity [ipx::current_core] 
+// Tcl Message: INFO: [IP_Flow 19-2181] Payment Required is not set for this core. INFO: [IP_Flow 19-2187] The Product Guide file is missing. INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed. 
+// Tcl Message: ipx::save_core [ipx::current_core] 
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// Tcl Message: update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma 
+// Tcl Message: INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma' 
+selectButton("OptionPane.button", "OK"); // JButton
+// TclEventType: FILE_SET_CHANGE
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Addressing and Memory", 5); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Ports and Interfaces", 4); // ar
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 1); // M
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 1, "FDMA_S", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectMenuItem(PAResourceOtoP.PortAndInterfaceFacetTable_EDIT_INTERFACE, "Edit Interface..."); // an
+// H (cs): Edit Interface: addNotify
+selectTab(PAResourceEtoH.EditInterfaceDialog_TABBED_PANE, PAResourceEtoH.EditInterfaceDialog_PORT_MAPPING, "Port Mapping", 1); // I
+selectTab(PAResourceEtoH.EditInterfaceDialog_TABBED_PANE, PAResourceEtoH.EditInterfaceDialog_PARAMETERS, "Parameters", 2); // I
+selectTab(PAResourceEtoH.EditInterfaceDialog_TABBED_PANE, PAResourceEtoH.EditInterfaceDialog_PORT_MAPPING, "Port Mapping", 1); // I
+dismissDialog("Edit Interface"); // H
+// Elapsed time: 32 seconds
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 1, "FDMA_S", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectMenuItem(PAResourceOtoP.PortAndInterfaceFacetTable_REMOVE_INTERFACE, "Remove Interface"); // an
+// TclEventType: PACKAGER_OBJECT_DELETE
+// Tcl Message: ipx::remove_bus_interface FDMA_S [ipx::current_core] 
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_waddr ;  ;  ; in ;  ; 31 ; 0 ; (spirit:decode(id('MODELPARAM_VALUE.M_AXI_ADDR_WIDTH')) - 1) ;  ; wire", 2, "fdma_waddr", 0, false); // M
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_rvalid ;  ;  ; out ;  ;  ;  ;  ;  ; wire", 14, "fdma_rvalid", 0, false, true, false, false, false, false); // M - Shift Key
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_rready ;  ;  ; in ;  ;  ;  ;  ;  ; wire", 15, "fdma_rready", 0, false, true, false, false, false, false); // M - Shift Key
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "fdma_waddr ;  ;  ; in ;  ; 31 ; 0 ; (spirit:decode(id('MODELPARAM_VALUE.M_AXI_ADDR_WIDTH')) - 1) ;  ; wire", 2, "fdma_waddr", 0, false, false, false, false, true, false); // M - Popup Trigger
+selectMenuItem(PAResourceOtoP.PortAndInterfaceFacetTable_CREATE_INTERFACE_DEFINITION, "Create Interface Definition..."); // an
+// am (cs): Create Interface Definition: addNotify
+setText(PAResourceTtoZ.VLNVPanel_NAME, "FDMA"); // bu
+setText(PAResourceAtoD.DefinitionCreationDialog_CHOOSE_DIRECTORY_WHERE_NEW_INTERFACE, "F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma"); // ao
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// TclEventType: PACKAGER_OBJECT_CHANGE
+// TclEventType: PACKAGER_OBJECT_ADD
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// Tcl Message: ipx::create_abstraction_definition xilinx.com user FDMA_rtl 1.0 
+// Tcl Message: ipx::create_bus_definition xilinx.com user FDMA 1.0 
+// Tcl Message: set_property xml_file_name F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/FDMA_rtl.xml [ipx::current_busabs] 
+// Tcl Message: set_property xml_file_name F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/FDMA.xml [ipx::current_busdef] 
+// Tcl Message: set_property bus_type_vlnv xilinx.com:user:FDMA:1.0 [ipx::current_busabs] 
+// Tcl Message: ipx::save_abstraction_definition [ipx::current_busabs] 
+// Tcl Message: ipx::save_bus_definition [ipx::current_busdef] 
+// TclEventType: CREATE_IP_CATALOG
+// Tcl Message: ipx::add_bus_abstraction_port fdma_waddr [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_wareq [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_wsize [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_wbusy [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_wdata [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_wvalid [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_wready [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_raddr [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_rareq [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_rsize [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_rbusy [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_rdata [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_rvalid [ipx::current_busabs] 
+// Tcl Message: ipx::add_bus_abstraction_port fdma_rready [ipx::current_busabs] 
+// Tcl Message: ipx::save_bus_definition [ipx::current_busdef] 
+// Tcl Message: ipx::save_abstraction_definition [ipx::current_busabs] 
+// Tcl Message: update_ip_catalog -rebuild 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma'. 
+dismissDialog("Create Interface Definition"); // am
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// Tcl Message: update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma 
+// Tcl Message: INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma' 
+// TclEventType: PACKAGER_OBJECT_CHANGE
+selectButton("OptionPane.button", "Yes"); // JButton
+// Tcl Message: ipx::infer_bus_interface {fdma_waddr fdma_wareq fdma_wsize fdma_wbusy fdma_wdata fdma_wvalid fdma_wready fdma_raddr fdma_rareq fdma_rsize fdma_rbusy fdma_rdata fdma_rvalid fdma_rready} xilinx.com:user:FDMA:1.0 [ipx::current_core] 
+// Tcl Message: INFO: [IP_Flow 19-5107] Inferred bus interface 'FDMA_1' of definition 'xilinx.com:user:FDMA:1.0' (from TCL Argument). 
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_1 ; master ;  ;  ;  ;  ;  ;  ;  ; ", 1, "FDMA_1", 0, true); // M - Node
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_1 ; master ;  ;  ;  ;  ;  ;  ;  ; ", 1, "FDMA_1", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectMenuItem(PAResourceOtoP.PortAndInterfaceFacetTable_EDIT_INTERFACE, "Edit Interface..."); // an
+// H (cs): Edit Interface: addNotify
+setText(PAResourceItoN.InterfaceConfigurationPanel_NAME, "FDMA_S"); // B
+selectComboBox(PAResourceItoN.InterfaceConfigurationPanel_MODE, "slave", 1); // e
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// TclEventType: PACKAGER_OBJECT_CHANGE
+// Tcl Message: set_property name FDMA_S [ipx::get_bus_interfaces FDMA_1 -of_objects [ipx::current_core]] 
+// Tcl Message: set_property interface_mode slave [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]] 
+dismissDialog("Edit Interface"); // H
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 1); // M
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,371 MB. GUI used memory: 129 MB. Current time: 9/27/22, 3:11:22 PM CST
+// [Engine Memory]: 1,371 MB (+3139kb) [00:25:35]
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 1, "FDMA_S", 0, true, false, false, false, true, false); // M - Popup Trigger - Node
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Addressing and Memory", 5); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Ports and Interfaces", 4); // ar
+selectButton(PAResourceOtoP.PortAndInterfaceContentPanel_REFRESH, (String) null); // E
+selectButton(PAResourceOtoP.PortAndInterfaceContentPanel_REFRESH, (String) null); // E
+selectButton(PAResourceOtoP.PortAndInterfaceContentPanel_REFRESH, (String) null); // E
+selectButton(PAResourceOtoP.PackagerStepContentPanel_MESSAGES, "14"); // h
+selectButton(PAResourceOtoP.PortAndInterfaceContentPanel_REFRESH, (String) null); // E
+selectButton(PAResourceOtoP.PortAndInterfaceContentPanel_REFRESH, (String) null); // E
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Review and Package", 7); // ar
+selectButton(PAResourceItoN.MessageBanner_SEE_LIST_OF_WARNING_MESSAGES, "14 warnings"); // h
+selectButton(PAResourceQtoS.ReviewContentPanel_RE_PACKAGE_IP, "Re-Package IP"); // a
+// TclEventType: PACKAGER_OBJECT_CHANGE
+// Tcl Message: set_property core_revision 13 [ipx::current_core] 
+// Tcl Message: ipx::create_xgui_files [ipx::current_core] 
+// Tcl Message: ipx::update_checksums [ipx::current_core] 
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// Tcl Message: ipx::check_integrity [ipx::current_core] 
+// Tcl Message: INFO: [IP_Flow 19-2181] Payment Required is not set for this core. INFO: [IP_Flow 19-2187] The Product Guide file is missing. INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed. 
+// Tcl Message: ipx::save_core [ipx::current_core] 
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// TclEventType: CREATE_IP_CATALOG
+// bz (cs):  Package IP : addNotify
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma 
+// Tcl Message: INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma' 
+// TclEventType: FILE_SET_CHANGE
+selectButton("OptionPane.button", "OK"); // JButton
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Addressing and Memory", 5); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Ports and Interfaces", 4); // ar
+selectButton(PAResourceOtoP.PortAndInterfaceContentPanel_REFRESH, (String) null); // E
+selectButton(PAResourceOtoP.PortAndInterfaceContentPanel_REFRESH, (String) null); // E
+selectButton(PAResourceOtoP.PortAndInterfaceContentPanel_REFRESH, (String) null); // E
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "FDMA_S ; slave ;  ;  ;  ;  ;  ;  ;  ; ", 1); // M
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "Clock and Reset Signals ;  ;  ;  ;  ;  ;  ;  ;  ; ", 16, "Clock and Reset Signals", 0, true); // M - Node
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "Clock and Reset Signals ;  ;  ;  ;  ;  ;  ;  ;  ; ", 16); // M
+selectTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "M_AXI ; master ;  ;  ;  ;  ;  ;  ;  ; ", 0, "M_AXI", 0, true); // M - Node
+expandTreeTable(PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, "M_AXI ; master ;  ;  ;  ;  ;  ;  ;  ; ", 0); // M
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization Parameters", 3); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Ports and Interfaces", 4); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Addressing and Memory", 5); // ar
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Customization GUI", 6); // ar
+// Elapsed time: 54 seconds
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Ports and Interfaces", 4); // ar
+selectButton(PAResourceOtoP.PortAndInterfaceContentPanel_REFRESH, (String) null); // E
+selectButton(PAResourceOtoP.PackagerStepContentPanel_MESSAGES, "14"); // h
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Review and Package", 7); // ar

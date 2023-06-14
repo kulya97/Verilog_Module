@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Tue Sep 27 16:00:17 2022
+# Process ID: 40136
+# Current directory: F:/XILINX/FDMA_DDR/fdma_data_path/06_stream_with_ddrbuf/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent39772 F:\XILINX\FDMA_DDR\fdma_data_path\06_stream_with_ddrbuf\uisrc\03_ip\uifdmadbuf\uifdma_dbuf_v1_0_project\uifdma_dbuf_v1_0_project.xpr
+# Log file: F:/XILINX/FDMA_DDR/fdma_data_path/06_stream_with_ddrbuf/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project/vivado.log
+# Journal file: F:/XILINX/FDMA_DDR/fdma_data_path/06_stream_with_ddrbuf/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/XILINX/FDMA_DDR/fdma_data_path/06_stream_with_ddrbuf/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project/uifdma_dbuf_v1_0_project.xpr
+update_compile_order -fileset sources_1

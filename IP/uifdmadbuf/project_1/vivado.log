@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Wed Sep  8 10:43:15 2021
+# Process ID: 114680
+# Current directory: F:/Boards/mz7x/fdma_dbuf_vdma_5640/zu_prj/uisrc/03_ip/uifdmadbuf/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent116640 F:\Boards\mz7x\fdma_dbuf_vdma_5640\zu_prj\uisrc\03_ip\uifdmadbuf\project_1\project_1.xpr
+# Log file: F:/Boards/mz7x/fdma_dbuf_vdma_5640/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/vivado.log
+# Journal file: F:/Boards/mz7x/fdma_dbuf_vdma_5640/zu_prj/uisrc/03_ip/uifdmadbuf/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/Boards/mz7x/fdma_dbuf_vdma_5640/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.xpr
+INFO: [Project 1-313] Project file moved from 'F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1' since last save.
+WARNING: [filemgmt 56-2] Default IP Output Path : Could not find the directory 'F:/Boards/mz7x/fdma_dbuf_vdma_5640/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.gen/sources_1', nor could it be found using path 'F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/Boards/mz7x/fdma_dbuf_vdma_5640/zu_prj/uisrc/03_ip/uifdmadbuf'.
+WARNING: [IP_Flow 19-3656] If you move the project, the path for repository 'f:/Boards/mz7x/fdma_dbuf_vdma_5640/zu_prj/uisrc/03_ip/uifdmadbuf' may become invalid. A better location for the repository would be in a path adjacent to the project. (Current project location is 'f:/Boards/mz7x/fdma_dbuf_vdma_5640/zu_prj/uisrc/03_ip/uifdmadbuf/project_1'.)
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2021.1/data/ip'.
+update_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Sep  8 11:34:23 2021...

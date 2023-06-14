@@ -1,0 +1,66 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Mon Feb 24 12:01:39 2020
+# Process ID: 23076
+# Current directory: G:/V2020/S01/CH26/fpga_prj/uisrc/03_ip/uidelay/Delay_rst
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent23068 G:\V2020\S01\CH26\fpga_prj\uisrc\03_ip\uidelay\Delay_rst\Delay_rst.xpr
+# Log file: G:/V2020/S01/CH26/fpga_prj/uisrc/03_ip/uidelay/Delay_rst/vivado.log
+# Journal file: G:/V2020/S01/CH26/fpga_prj/uisrc/03_ip/uidelay/Delay_rst\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project G:/V2020/S01/CH26/fpga_prj/uisrc/03_ip/uidelay/Delay_rst/Delay_rst.xpr
+INFO: [Project 1-313] Project file moved from 'F:/MZ7015FA/XMDA_LINUX/CH09_OV56402PC/FPGA/pcie_system/user_src/Delay_rst/Delay_rst' since last save.
+CRITICAL WARNING: [Project 1-311] Could not find the file 'G:/V2020/S01/CH26/fpga_prj/uisrc/03_ip/uidelay/IPSRC/Delay_rst.v', nor could it be found using path 'F:/MZ7015FA/XMDA_LINUX/CH09_OV56402PC/FPGA/pcie_system/user_src/Delay_rst/IPSRC/Delay_rst.v'.
+Scanning sources...
+Finished scanning sources
+WARNING: [filemgmt 56-2] IP Repository Path: Could not find the directory 'G:/V2020/S01/CH26/fpga_prj/uisrc/03_ip/uidelay/Delay_rst_ip', nor could it be found using path 'F:/MZ7015FA/XMDA_LINUX/CH09_OV56402PC/FPGA/pcie_system/user_src/Delay_rst/Delay_rst_ip'.
+INFO: [Project 1-230] Project 'Delay_rst.xpr' upgraded for this version of Vivado.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository 'g:/V2020/S01/CH26/fpga_prj/uisrc/03_ip/uidelay/Delay_rst_ip'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+open_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:06 . Memory (MB): peak = 930.824 ; gain = 166.152
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files G:/V2020/S01/CH26/fpga_prj/uisrc/03_ip/uidelay/IPSRC/Delay_rst.v] -no_script -reset -force -quiet
+remove_files  G:/V2020/S01/CH26/fpga_prj/uisrc/03_ip/uidelay/IPSRC/Delay_rst.v
+add_files -norecurse G:/V2020/S01/CH26/fpga_prj/uisrc/03_ip/uidelay/uidelay.v
+ipx::package_project -root_dir g:/v2020/s01/ch26/fpga_prj/uisrc/03_ip/uidelay -vendor xilinx.com -library user -taxonomy /UserIP
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+set_property widget {textEdit} [ipgui::get_guiparamspec -name "num" -component [ipx::current_core] ]
+set_property value 1000000 [ipx::get_user_parameters num -of_objects [ipx::current_core]]
+set_property value 1000000 [ipx::get_hdl_parameters num -of_objects [ipx::current_core]]
+set_property value_format long [ipx::get_user_parameters num -of_objects [ipx::current_core]]
+set_property value_format long [ipx::get_hdl_parameters num -of_objects [ipx::current_core]]
+set_property value_bit_string_length 0 [ipx::get_user_parameters num -of_objects [ipx::current_core]]
+ipx::merge_project_changes hdl_parameters [ipx::current_core]
+WARNING: [IP_Flow 19-5226] Project source file 'g:/v2020/s01/ch26/fpga_prj/uisrc/03_ip/uidelay/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-4300] HDL parameter 'num' has its value changed from '1000000' to '0x00FFFF00'.
+ERROR: [Common 17-39] 'ipx::merge_project_changes' failed due to earlier errors.
+set_property widget {hexEdit} [ipgui::get_guiparamspec -name "num" -component [ipx::current_core] ]
+set_property value_format bitString [ipx::get_user_parameters num -of_objects [ipx::current_core]]
+set_property value_format bitString [ipx::get_hdl_parameters num -of_objects [ipx::current_core]]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+set_property core_revision 2 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+set_property  ip_repo_paths  {g:/v2020/s01/ch26/fpga_prj/uisrc/03_ip/uidelay g:/V2020/S01/CH26/fpga_prj/uisrc/03_ip/uidelay/Delay_rst_ip} [current_project]
+update_ip_catalog
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'g:/v2020/s01/ch26/fpga_prj/uisrc/03_ip/uidelay'.
+WARNING: [IP_Flow 19-3685] Ignored loading user repository 'g:/V2020/S01/CH26/fpga_prj/uisrc/03_ip/uidelay/Delay_rst_ip'. The path is contained within another repository.
+set_property core_revision 3 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path g:/v2020/s01/ch26/fpga_prj/uisrc/03_ip/uidelay
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'g:/v2020/s01/ch26/fpga_prj/uisrc/03_ip/uidelay'
+ipx::package_project -root_dir g:/v2020/s01/ch26/fpga_prj/uisrc/03_ip/uidelay -vendor xilinx.com -library user -taxonomy /UserIP -force
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Feb 24 13:21:45 2020...

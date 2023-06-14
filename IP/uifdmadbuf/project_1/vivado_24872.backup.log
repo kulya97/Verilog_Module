@@ -1,0 +1,81 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Tue Aug 24 12:48:25 2021
+# Process ID: 24872
+# Current directory: F:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent20252 F:\Boards\mz7xab\fdma_dbuf_test\zq_prj\uisrc\03_ip\uifdmadbuf\project_1\project_1.xpr
+# Log file: F:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf/project_1/vivado.log
+# Journal file: F:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'F:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf'.
+WARNING: [IP_Flow 19-3656] If you move the project, the path for repository 'f:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf' may become invalid. A better location for the repository would be in a path adjacent to the project. (Current project location is 'f:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf/project_1'.)
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2021.1/data/ip'.
+open_project: Time (s): cpu = 00:00:15 ; elapsed = 00:00:06 . Memory (MB): peak = 1232.121 ; gain = 0.000
+update_compile_order -fileset sources_1
+add_files -norecurse F:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf/component.xml
+ipx::open_ipxact_file {F:\Boards\mz7xab\fdma_dbuf_test\zq_prj\uisrc\03_ip\uifdmadbuf\component.xml}
+ipx::remove_bus_interface FDMA_M [ipx::current_core]
+ipx::create_abstraction_definition xilinx.com user FDMA_rtl 1.0
+ipx::create_bus_definition xilinx.com user FDMA 1.0
+set_property xml_file_name F:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf/project_1/../ip_repo/FDMA_rtl.xml [ipx::current_busabs]
+set_property xml_file_name F:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf/project_1/../ip_repo/FDMA.xml [ipx::current_busdef]
+set_property bus_type_vlnv xilinx.com:user:FDMA:1.0 [ipx::current_busabs]
+ipx::save_abstraction_definition [ipx::current_busabs]
+ipx::save_bus_definition [ipx::current_busdef]
+ipx::add_bus_abstraction_port fdma_waddr [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wareq [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wsize [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wbusy [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wdata [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wvalid [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wready [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_raddr [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rareq [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rsize [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rbusy [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rdata [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rvalid [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rready [ipx::current_busabs]
+ipx::save_bus_definition [ipx::current_busdef]
+ipx::save_abstraction_definition [ipx::current_busabs]
+update_ip_catalog -rebuild
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf'.
+WARNING: [IP_Flow 19-3656] If you move the project, the path for repository 'f:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf' may become invalid. A better location for the repository would be in a path adjacent to the project. (Current project location is 'f:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf/project_1'.)
+update_ip_catalog -rebuild -repo_path f:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf'
+ipx::infer_bus_interface {fdma_waddr fdma_wareq fdma_wsize fdma_wbusy fdma_wdata fdma_wvalid fdma_wready fdma_raddr fdma_rareq fdma_rsize fdma_rbusy fdma_rdata fdma_rvalid fdma_rready} xilinx.com:user:FDMA:1.0 [ipx::current_core]
+INFO: [IP_Flow 19-5107] Inferred bus interface 'FDMA_1' of definition 'xilinx.com:user:FDMA:1.0' (from TCL Argument).
+set_property name FDMA_M [ipx::get_bus_interfaces FDMA_1 -of_objects [ipx::current_core]]
+set_property file_type IP-XACT [get_files  F:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf/component.xml]
+set_property core_revision 3 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf'
+ipgui::move_param -component [ipx::current_core] -order 1 [ipgui::get_guiparamspec -name "W_ENABLE" -component [ipx::current_core]]
+set_property core_revision 4 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/Boards/mz7xab/fdma_dbuf_test/zq_prj/uisrc/03_ip/uifdmadbuf'
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue Aug 24 13:34:37 2021...

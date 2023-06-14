@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Fri Sep  3 10:25:56 2021
+# Process ID: 13212
+# Current directory: F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.runs/synth_1
+# Command line: vivado.exe -log uifdma_dbuf.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source uifdma_dbuf.tcl
+# Log file: F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.runs/synth_1/uifdma_dbuf.vds
+# Journal file: F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source uifdma_dbuf.tcl -notrace

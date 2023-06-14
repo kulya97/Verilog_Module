@@ -1,0 +1,23 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Sun Nov 21 09:53:06 2021
+# Process ID: 35444
+# Current directory: F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent36012 F:\7035FA\3_02_sdk_adv_app\17_daq967x_wave_fdma\soc_prj\uisrc\03_ip\uifdmadbuf\uifdma_dbuf_v1_0_project\uifdma_dbuf_v1_0_project.xpr
+# Log file: F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project/vivado.log
+# Journal file: F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project/uifdma_dbuf_v1_0_project.xpr
+update_compile_order -fileset sources_1
+close_project
+open_project F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.xpr
+update_compile_order -fileset sources_1
+add_files -norecurse F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/component.xml
+export_ip_user_files -of_objects  [get_files F:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/component.xml] -no_script -reset -force -quiet
+remove_files  F:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/component.xml
+set_property file_type IP-XACT [get_files  F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/component.xml]
+ipx::open_ipxact_file {F:\7035FA\3_02_sdk_adv_app\17_daq967x_wave_fdma\soc_prj\uisrc\03_ip\uifdmadbuf\component.xml}
+ipx::merge_project_changes hdl_parameters [ipx::current_core]

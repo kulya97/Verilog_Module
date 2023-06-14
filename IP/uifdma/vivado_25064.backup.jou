@@ -1,0 +1,94 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Sat Sep 24 14:07:54 2022
+# Process ID: 25064
+# Current directory: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent25180 F:\XILINX\FDMA_DDR\fdma_data_path\01_axi4-uifdma_ip\uisrc\03_ip\uifdma\project_1.xpr
+# Log file: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/vivado.log
+# Journal file: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/project_1.xpr
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files F:/../zu07a/eg/soc/02_axi_bus_7eg/07_axi_full_fdma2axi_slave/uisrc/03_ip/uifdma/component.xml] -no_script -reset -force -quiet
+remove_files  F:/../zu07a/eg/soc/02_axi_bus_7eg/07_axi_full_fdma2axi_slave/uisrc/03_ip/uifdma/component.xml
+ipx::package_project -root_dir f:/xilinx/fdma_ddr/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma -vendor xilinx.com -library user -taxonomy /UserIP -force
+ipgui::move_param -component [ipx::current_core] -order 3 [ipgui::get_guiparamspec -name "M_AXI_ID" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 4 [ipgui::get_guiparamspec -name "M_AXI_ID" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 3 [ipgui::get_guiparamspec -name "M_AXI_ID_WIDTH" -component [ipx::current_core]]
+set_property core_revision 2 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+set_property version 3.1 [ipx::current_core]
+set_property display_name uiFDMA_v3_1 [ipx::current_core]
+set_property description uiFDMA_v3_1 [ipx::current_core]
+set_property core_revision 3 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+set_property name FDMA_S [ipx::get_bus_interfaces user_FDMA_S -of_objects [ipx::current_core]]
+set_property core_revision 4 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+set_property core_revision 5 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+set_property core_revision 6 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+set_property core_revision 7 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+set_property core_revision 8 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+set_property core_revision 9 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+current_hw_device [get_hw_devices xcku040_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xcku040_0] 0]
+set_property PROBES.FILE {K:/KU040_CS_TEST/fpga_prj_ku040_cus_test/fpga_prj.runs/impl_1/top_fpga.ltx} [get_hw_devices xcku040_0]
+set_property FULL_PROBES.FILE {K:/KU040_CS_TEST/fpga_prj_ku040_cus_test/fpga_prj.runs/impl_1/top_fpga.ltx} [get_hw_devices xcku040_0]
+set_property PROGRAM.FILE {K:/KU040_CS_TEST/fpga_prj_ku040_cus_test/fpga_prj.runs/impl_1/top_fpga.bit} [get_hw_devices xcku040_0]
+program_hw_devices [get_hw_devices xcku040_0]
+refresh_hw_device [lindex [get_hw_devices xcku040_0] 0]
+refresh_hw_device [lindex [get_hw_devices xcku040_0] 0]
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {K:\KU040_CS_TEST\fpga_prj_ku040_cus_test\fpga_prj.runs\impl_1\top_fpga.bit} [get_hw_devices xcku040_0]
+set_property PROBES.FILE {K:\KU040_CS_TEST\fpga_prj_ku040_cus_test\fpga_prj.runs\impl_1\top_fpga.ltx} [get_hw_devices xcku040_0]
+set_property FULL_PROBES.FILE {K:\KU040_CS_TEST\fpga_prj_ku040_cus_test\fpga_prj.runs\impl_1\top_fpga.ltx} [get_hw_devices xcku040_0]
+current_hw_device [get_hw_devices xcku040_0]
+refresh_hw_device [lindex [get_hw_devices xcku040_0] 0]
+disconnect_hw_server localhost:3121

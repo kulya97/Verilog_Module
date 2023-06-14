@@ -1,0 +1,66 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Sun Nov 21 09:53:06 2021
+# Process ID: 35444
+# Current directory: F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent36012 F:\7035FA\3_02_sdk_adv_app\17_daq967x_wave_fdma\soc_prj\uisrc\03_ip\uifdmadbuf\uifdma_dbuf_v1_0_project\uifdma_dbuf_v1_0_project.xpr
+# Log file: F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project/vivado.log
+# Journal file: F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project/uifdma_dbuf_v1_0_project.xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project'
+INFO: [Project 1-313] Project file moved from 'f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project' since last save.
+WARNING: [filemgmt 56-2] IP Repository Path: Could not find the directory 'F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip', nor could it be found using path 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip'.
+WARNING: [filemgmt 56-2] Default IP Output Path : Could not find the directory 'F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project/uifdma_dbuf_v1_0_project.gen/sources_1', nor could it be found using path 'f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf_v1_0_project/uifdma_dbuf_v1_0_project.gen/sources_1'.
+CRITICAL WARNING: [Project 1-311] Could not find the file 'F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/fs_cap.v', nor could it be found using path 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/fs_cap.v'.
+CRITICAL WARNING: [Project 1-311] Could not find the file 'F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uidbuf.v', nor could it be found using path 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uidbuf.v'.
+CRITICAL WARNING: [Project 1-311] Could not find the file 'F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uidbufirq.v', nor could it be found using path 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uidbufirq.v'.
+CRITICAL WARNING: [Project 1-311] Could not find the file 'F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf.v', nor could it be found using path 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf.v'.
+CRITICAL WARNING: [Project 1-311] Could not find the file 'F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/component.xml', nor could it be found using path 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/component.xml'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2021.1/data/ip'.
+update_compile_order -fileset sources_1
+close_project
+open_project F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/project_1'
+INFO: [Project 1-313] Project file moved from 'F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1' since last save.
+WARNING: [filemgmt 56-2] Default IP Output Path : Could not find the directory 'F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.gen/sources_1', nor could it be found using path 'F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.gen/sources_1'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'F:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/component.xml'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf'.
+WARNING: [IP_Flow 19-3656] If you move the project, the path for repository 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf' may become invalid. A better location for the repository would be in a path adjacent to the project. (Current project location is 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/project_1'.)
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2021.1/data/ip'.
+update_compile_order -fileset sources_1
+add_files -norecurse F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/component.xml
+export_ip_user_files -of_objects  [get_files F:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/component.xml] -no_script -reset -force -quiet
+remove_files  F:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/component.xml
+set_property file_type IP-XACT [get_files  F:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/component.xml]
+ipx::open_ipxact_file {F:\7035FA\3_02_sdk_adv_app\17_daq967x_wave_fdma\soc_prj\uisrc\03_ip\uifdmadbuf\component.xml}
+WARNING: [IP_Flow 19-5226] Project source file 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/fs_cap.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uidbuf.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uidbufirq.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/fs_cap.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uidbuf.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uidbufirq.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-5897] The set of required XPM macros has changed from 'XPM_FIFO' to ''
+ipx::merge_project_changes hdl_parameters [ipx::current_core]
+WARNING: [IP_Flow 19-5226] Project source file 'f:/7035FA/3_02_sdk_adv_app/17_daq967x_wave_fdma/soc_prj/uisrc/03_ip/uifdmadbuf/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-4300] HDL parameter 'W_BASEADDR' has its value changed from '0x10000000' to '0'.
+WARNING: [IP_Flow 19-4300] HDL parameter 'R_BASEADDR' has its value changed from '0x10000000' to '0'.
+INFO: [IP_Flow 19-3166] Bus Interface 'S_AXI': References existing memory map 'S_AXI'.
+exit
+INFO: [Common 17-206] Exiting Vivado at Sun Nov 21 09:55:14 2021...

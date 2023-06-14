@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Wed Sep  8 10:43:15 2021
+# Process ID: 114680
+# Current directory: F:/Boards/mz7x/fdma_dbuf_vdma_5640/zu_prj/uisrc/03_ip/uifdmadbuf/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent116640 F:\Boards\mz7x\fdma_dbuf_vdma_5640\zu_prj\uisrc\03_ip\uifdmadbuf\project_1\project_1.xpr
+# Log file: F:/Boards/mz7x/fdma_dbuf_vdma_5640/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/vivado.log
+# Journal file: F:/Boards/mz7x/fdma_dbuf_vdma_5640/zu_prj/uisrc/03_ip/uifdmadbuf/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/Boards/mz7x/fdma_dbuf_vdma_5640/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.xpr
+update_compile_order -fileset sources_1

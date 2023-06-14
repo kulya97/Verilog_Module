@@ -1,0 +1,19 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Sat Sep 24 20:21:43 2022
+# Process ID: 38176
+# Current directory: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent38616 F:\XILINX\FDMA_DDR\fdma_data_path\01_axi4-uifdma_ip\uisrc\03_ip\uifdma\project_1.xpr
+# Log file: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/vivado.log
+# Journal file: F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/uisrc/03_ip/uifdma/project_1.xpr
+update_compile_order -fileset sources_1
+ipx::open_ipxact_file {F:\xilinx\fdma_ddr\fdma_data_path\01_axi4-uifdma_ip\uisrc\03_ip\uifdma\component.xml}
+close_project
+open_project F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/fpga_prj.xpr
+update_compile_order -fileset sources_1
+open_bd_design {F:/XILINX/FDMA_DDR/fdma_data_path/01_axi4-uifdma_ip/fpga_prj.srcs/sources_1/bd/system/system.bd}

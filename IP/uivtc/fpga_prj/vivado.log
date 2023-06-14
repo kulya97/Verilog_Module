@@ -1,0 +1,41 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Fri Apr 24 13:28:04 2020
+# Process ID: 17188
+# Current directory: G:/V2020/S01/CH32/fpga_prj/uisrc/03_ip/uivtc/fpga_prj
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent17308 G:\V2020\S01\CH32\fpga_prj\uisrc\03_ip\uivtc\fpga_prj\fpga_prj.xpr
+# Log file: G:/V2020/S01/CH32/fpga_prj/uisrc/03_ip/uivtc/fpga_prj/vivado.log
+# Journal file: G:/V2020/S01/CH32/fpga_prj/uisrc/03_ip/uivtc/fpga_prj\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project G:/V2020/S01/CH32/fpga_prj/uisrc/03_ip/uivtc/fpga_prj/fpga_prj.xpr
+INFO: [Project 1-313] Project file moved from 'G:/V2020/S01/CH33/uisrc/03_ip/uivtc/fpga_prj' since last save.
+CRITICAL WARNING: [Project 1-311] Could not find the file 'G:/V2020/v2020/s01/ch33/uisrc/03_ip/uivtc/component.xml', nor could it be found using path 'G:/v2020/s01/ch33/uisrc/03_ip/uivtc/component.xml'.
+Scanning sources...
+Finished scanning sources
+WARNING: [filemgmt 56-2] IP Repository Path: Could not find the directory 'G:/V2020/v2020/s01/ch33/uisrc/03_ip/uivtc', nor could it be found using path 'G:/v2020/s01/ch33/uisrc/03_ip/uivtc'.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository 'g:/V2020/v2020/s01/ch33/uisrc/03_ip/uivtc'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+open_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:05 . Memory (MB): peak = 895.453 ; gain = 240.008
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files G:/V2020/v2020/s01/ch33/uisrc/03_ip/uivtc/component.xml] -no_script -reset -force -quiet
+remove_files  G:/V2020/v2020/s01/ch33/uisrc/03_ip/uivtc/component.xml
+ipx::package_project -root_dir g:/v2020/s01/ch32/fpga_prj/uisrc/03_ip/uivtc -vendor xilinx.com -library user -taxonomy /UserIP -force
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+set_property core_revision 2 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+set_property  ip_repo_paths  {g:/v2020/s01/ch32/fpga_prj/uisrc/03_ip/uivtc g:/V2020/v2020/s01/ch33/uisrc/03_ip/uivtc} [current_project]
+update_ip_catalog
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'g:/v2020/s01/ch32/fpga_prj/uisrc/03_ip/uivtc'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository 'g:/V2020/v2020/s01/ch33/uisrc/03_ip/uivtc'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri Apr 24 13:31:58 2020...

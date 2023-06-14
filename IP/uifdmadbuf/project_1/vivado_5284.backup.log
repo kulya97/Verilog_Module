@@ -1,0 +1,180 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Fri Sep  3 10:15:55 2021
+# Process ID: 5284
+# Current directory: F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1716 F:\Boards\mz7x\fdma_dbuf_lwip_daq4225\zu_prj\uisrc\03_ip\uifdmadbuf\project_1\project_1.xpr
+# Log file: F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/vivado.log
+# Journal file: F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf'.
+WARNING: [IP_Flow 19-3656] If you move the project, the path for repository 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf' may become invalid. A better location for the repository would be in a path adjacent to the project. (Current project location is 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1'.)
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2021.1/data/ip'.
+update_compile_order -fileset sources_1
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.runs/synth_1
+
+launch_runs synth_1 -jobs 8
+[Fri Sep  3 10:22:10 2021] Launched synth_1...
+Run output will be captured here: F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.runs/synth_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.runs/synth_1
+
+launch_runs synth_1 -jobs 8
+[Fri Sep  3 10:25:52 2021] Launched synth_1...
+Run output will be captured here: F:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/project_1/project_1.runs/synth_1/runme.log
+ipx::open_ipxact_file {F:\boards\mz7x\fdma_dbuf_lwip_daq4225\zu_prj\uisrc\03_ip\uifdmadbuf\component.xml}
+WARNING: [IP_Flow 19-5226] Project source file 'f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/fs_cap.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uidbuf.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uidbufirq.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/fs_cap.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uidbuf.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uidbufirq.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/uifdma_dbuf.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-5897] The set of required XPM macros has changed from 'XPM_FIFO' to ''
+ipx::merge_project_changes ports [ipx::current_core]
+WARNING: [IP_Flow 19-5226] Project source file 'f:/boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-4300] HDL parameter 'W_BASEADDR' has its value changed from '0x10000000' to '0'.
+WARNING: [IP_Flow 19-4300] HDL parameter 'R_BASEADDR' has its value changed from '0x10000000' to '0'.
+INFO: [IP_Flow 19-3166] Bus Interface 'S_AXI': References existing memory map 'S_AXI'.
+set_property widget {hexEdit} [ipgui::get_guiparamspec -name "W_BASEADDR" -component [ipx::current_core] ]
+set_property value 0x10000000 [ipx::get_user_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value 0x10000000 [ipx::get_hdl_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property widget {hexEdit} [ipgui::get_guiparamspec -name "R_BASEADDR" -component [ipx::current_core] ]
+set_property value 0x10000000 [ipx::get_user_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value 0x10000000 [ipx::get_hdl_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property widget {textEdit} [ipgui::get_guiparamspec -name "W_BASEADDR" -component [ipx::current_core] ]
+set_property value 0 [ipx::get_user_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value 0 [ipx::get_hdl_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value_format long [ipx::get_user_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value_format long [ipx::get_hdl_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value_bit_string_length 0 [ipx::get_user_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property widget {textEdit} [ipgui::get_guiparamspec -name "R_BASEADDR" -component [ipx::current_core] ]
+set_property value 0 [ipx::get_user_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value 0 [ipx::get_hdl_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value_format long [ipx::get_user_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value_format long [ipx::get_hdl_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value_bit_string_length 0 [ipx::get_user_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property widget {hexEdit} [ipgui::get_guiparamspec -name "W_BASEADDR" -component [ipx::current_core] ]
+set_property value 0x10000000 [ipx::get_user_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value 0x10000000 [ipx::get_hdl_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value_bit_string_length 32 [ipx::get_user_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value_bit_string_length 32 [ipx::get_hdl_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value_format bitString [ipx::get_user_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property value_format bitString [ipx::get_hdl_parameters W_BASEADDR -of_objects [ipx::current_core]]
+set_property widget {hexEdit} [ipgui::get_guiparamspec -name "R_BASEADDR" -component [ipx::current_core] ]
+set_property value 0x10000000 [ipx::get_user_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value 0x10000000 [ipx::get_hdl_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value_bit_string_length 32 [ipx::get_user_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value_bit_string_length 32 [ipx::get_hdl_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value_format bitString [ipx::get_user_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property value_format bitString [ipx::get_hdl_parameters R_BASEADDR -of_objects [ipx::current_core]]
+set_property core_revision 2 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf'
+ipgui::add_group -name {optinal} -component [ipx::current_core] -parent [ipgui::get_pagespec -name "Page 0" -component [ipx::current_core] ] -display_name {optinal} -layout {horizontal}
+ipgui::move_param -component [ipx::current_core] -order 0 [ipgui::get_guiparamspec -name "AXI_Lite" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "optinal" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 1 [ipgui::get_guiparamspec -name "ENABLE_READ" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "optinal" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 2 [ipgui::get_guiparamspec -name "ENABLE_WRITE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "optinal" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 3 [ipgui::get_guiparamspec -name "VIDEO_ENABLE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "optinal" -component [ipx::current_core]]
+ipgui::add_group -name {axi settings} -component [ipx::current_core] -parent [ipgui::get_pagespec -name "Page 0" -component [ipx::current_core] ] -display_name {axi settings} -layout {horizontal}
+ipgui::move_param -component [ipx::current_core] -order 0 [ipgui::get_guiparamspec -name "AXI_ADDR_WIDTH" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "axi settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 1 [ipgui::get_guiparamspec -name "AXI_DATA_WIDTH" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "axi settings" -component [ipx::current_core]]
+ipgui::add_group -name {read settings} -component [ipx::current_core] -parent [ipgui::get_pagespec -name "Page 0" -component [ipx::current_core] ] -display_name {read settings}
+ipgui::move_param -component [ipx::current_core] -order 0 [ipgui::get_guiparamspec -name "R_BASEADDR" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 1 [ipgui::get_guiparamspec -name "R_BUFDEPTH" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 2 [ipgui::get_guiparamspec -name "R_BUFSIZE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 3 [ipgui::get_guiparamspec -name "R_DATAWIDTH" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 4 [ipgui::get_guiparamspec -name "R_DSIZEBITS" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 5 [ipgui::get_guiparamspec -name "R_XDIV" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 6 [ipgui::get_guiparamspec -name "R_XSIZE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 7 [ipgui::get_guiparamspec -name "R_XSTRIDE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 8 [ipgui::get_guiparamspec -name "R_YSIZE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]]
+ipgui::add_group -name {write settings} -component [ipx::current_core] -parent [ipgui::get_pagespec -name "Page 0" -component [ipx::current_core] ] -display_name {write settings}
+ipgui::move_param -component [ipx::current_core] -order 0 [ipgui::get_guiparamspec -name "W_BASEADDR" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 1 [ipgui::get_guiparamspec -name "W_BUFDEPTH" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 2 [ipgui::get_guiparamspec -name "W_BUFSIZE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 3 [ipgui::get_guiparamspec -name "W_DATAWIDTH" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 4 [ipgui::get_guiparamspec -name "W_DSIZEBITS" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 5 [ipgui::get_guiparamspec -name "W_XDIV" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 6 [ipgui::get_guiparamspec -name "W_XSIZE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 7 [ipgui::get_guiparamspec -name "W_XSTRIDE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 8 [ipgui::get_guiparamspec -name "W_YSIZE" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::move_group -component [ipx::current_core] -order 2 [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]]
+ipgui::add_group -name {buf settings} -component [ipx::current_core] -parent [ipgui::get_pagespec -name "Page 0" -component [ipx::current_core] ] -display_name {buf settings} -layout {horizontal}
+ipgui::move_group -component [ipx::current_core] -order 0 [ipgui::get_groupspec -name "write settings" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "buf settings" -component [ipx::current_core]]
+ipgui::move_group -component [ipx::current_core] -order 1 [ipgui::get_groupspec -name "read settings" -component [ipx::current_core]] -parent [ipgui::get_groupspec -name "buf settings" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 0 [ipgui::get_guiparamspec -name "W_BUFDEPTH" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 0 [ipgui::get_guiparamspec -name "R_BUFDEPTH" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 3 [ipgui::get_guiparamspec -name "R_DSIZEBITS" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 2 [ipgui::get_guiparamspec -name "R_DSIZEBITS" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 3 [ipgui::get_guiparamspec -name "W_DSIZEBITS" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 2 [ipgui::get_guiparamspec -name "W_DSIZEBITS" -component [ipx::current_core]]
+set_property core_revision 3 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf'
+set_property version 3.0 [ipx::current_core]
+set_property display_name uifdma_dbuf_v3_0 [ipx::current_core]
+set_property description uifdma_dbuf_v3_0 [ipx::current_core]
+set_property core_revision 4 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf'
+ipgui::move_param -component [ipx::current_core] -order 2 [ipgui::get_guiparamspec -name "VIDEO_ENABLE" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 1 [ipgui::get_guiparamspec -name "VIDEO_ENABLE" -component [ipx::current_core]]
+ipgui::move_param -component [ipx::current_core] -order 2 [ipgui::get_guiparamspec -name "ENABLE_WRITE" -component [ipx::current_core]]
+set_property core_revision 5 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'f:/Boards/mz7x/fdma_dbuf_lwip_daq4225/zu_prj/uisrc/03_ip/uifdmadbuf'
+open_hw_manager
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+ERROR: [Labtools 27-2223] Unable to connect to hw_server with URL "TCP:localhost:3121".
+Resolution: 1. Check the host name, port number and network connectivity.
+2. Check to ensure the hw_server is running on the target.
+connect_hw_server: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 1301.328 ; gain = 0.000
+ERROR: [Common 17-39] 'connect_hw_server' failed due to earlier errors.
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri Sep  3 15:09:14 2021...

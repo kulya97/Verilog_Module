@@ -1,0 +1,174 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sat Feb  6 19:29:29 2021
+# Process ID: 1223276
+# Current directory: G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1223156 G:\V2020\S02\02_example_fdma_ddr_20\02_fdma_3buf_test\prj_normal\uisrc\03_ip\uifdma\project_1\project_1.xpr
+# Log file: G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/project_1/vivado.log
+# Journal file: G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/project_1/project_1.xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/project_1'
+WARNING: [filemgmt 56-3] IP Repository Path: Could not find the directory 'G:/V2020/v2020/s01/ch31/fpga_prj/uisrc/03_ip/uiuart'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository 'g:/V2020/v2020/s01/ch31/fpga_prj/uisrc/03_ip/uiuart'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'g:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uitpg/ip_repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2020.2/data/ip'.
+open_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:05 . Memory (MB): peak = 1108.781 ; gain = 0.000
+update_compile_order -fileset sources_1
+ipx::open_ipxact_file {G:\v2020\s02\02_example_fdma_ddr_20\02_fdma_3buf_test\prj_normal\uisrc\03_ip\uifdma\component.xml}
+WARNING: [IP_Flow 19-5226] Project source file 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagesynthesis (Synthesis)': File 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/uiFDMA.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+WARNING: [IP_Flow 19-3898] File Group 'xilinx_anylanguagebehavioralsimulation (Simulation)': File 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/uiFDMA.v' is not found in the project sources. It will be removed from the packaged IP when the sources are merged. If still required, please add this file to the project and re-package.
+ipx::merge_project_changes ports [ipx::current_core]
+WARNING: [IP_Flow 19-5226] Project source file 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_wburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_rburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+INFO: [IP_Flow 19-3164] Bus Interface 'M_AXI': References existing address space 'M_AXI'.
+ipx::remove_bus_interface user_FDMA_S [ipx::current_core]
+add_files -norecurse G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/FDMA.xml
+ipx::open_ipxact_file {G:\V2020\S02\02_example_fdma_ddr_20\02_fdma_3buf_test\prj_normal\uisrc\03_ip\uifdma\FDMA.xml}
+ipx::create_abstraction_definition xilinx.com user FDMA_rtl 1.0
+ipx::create_bus_definition xilinx.com user FDMA 1.0
+set_property xml_file_name G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/FDMA_rtl.xml [ipx::current_busabs]
+set_property xml_file_name G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/FDMA.xml [ipx::current_busdef]
+set_property bus_type_vlnv xilinx.com:user:FDMA:1.0 [ipx::current_busabs]
+ipx::save_abstraction_definition [ipx::current_busabs]
+ipx::save_bus_definition [ipx::current_busdef]
+ipx::add_bus_abstraction_port fdma_waddr [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wareq [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wsize [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wbusy [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wdata [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wvalid [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_wready [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_raddr [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rareq [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rsize [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rbusy [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rdata [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rvalid [ipx::current_busabs]
+ipx::add_bus_abstraction_port fdma_rready [ipx::current_busabs]
+ipx::save_bus_definition [ipx::current_busdef]
+ipx::save_abstraction_definition [ipx::current_busabs]
+update_ip_catalog -rebuild
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository 'g:/V2020/v2020/s01/ch31/fpga_prj/uisrc/03_ip/uiuart'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'g:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uitpg/ip_repo'.
+update_ip_catalog -rebuild -repo_path g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma'
+ipx::infer_bus_interface {fdma_waddr fdma_wareq fdma_wsize fdma_wbusy fdma_wdata fdma_wvalid fdma_wready fdma_raddr fdma_rareq fdma_rsize fdma_rbusy fdma_rdata fdma_rvalid fdma_rready} xilinx.com:user:FDMA:1.0 [ipx::current_core]
+INFO: [IP_Flow 19-5107] Inferred bus interface 'FDMA_1' of definition 'xilinx.com:user:FDMA:1.0' (from TCL Argument).
+set_property name FDMA_S [ipx::get_bus_interfaces FDMA_1 -of_objects [ipx::current_core]]
+ipgui::remove_param -component [ipx::current_core] [ipgui::get_guiparamspec -name "AXI_BYTES" -component [ipx::current_core]]
+set_property core_revision 2 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma'
+ipx::remove_user_parameter AXI_BYTES [ipx::current_core]
+set_property core_revision 3 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma'
+ipx::merge_project_changes files [ipx::current_core]
+WARNING: [IP_Flow 19-5226] Project source file 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-5226] Project source file 'g:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/FDMA.xml' ignored by IP packager.
+export_ip_user_files -of_objects  [get_files G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/FDMA.xml] -no_script -reset -force -quiet
+remove_files  G:/V2020/S02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/FDMA.xml
+ipx::merge_project_changes files [ipx::current_core]
+WARNING: [IP_Flow 19-5226] Project source file 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/component.xml' ignored by IP packager.
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+ipx::merge_project_changes ports [ipx::current_core]
+WARNING: [IP_Flow 19-5226] Project source file 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma/component.xml' ignored by IP packager.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_wburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_rburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+INFO: [IP_Flow 19-3164] Bus Interface 'M_AXI': References existing address space 'M_AXI'.
+set_property core_revision 4 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma'
+ipx::package_project -root_dir g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma -vendor xilinx.com -library user -taxonomy /UserIP -force
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_wburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+WARNING: [IP_Flow 19-587] [HDL Parser] HDL port or parameter 'axi_rburst_size' has a dependency on the module local parameter or undefined parameter 'AXI_BYTES'.
+INFO: [IP_Flow 19-5107] Inferred bus interface 'user_FDMA' of definition 'xilinx.com:user:FDMA:1.0' (from User Repositories).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'user_FDMA_S' of definition 'xilinx.com:user:FDMA_S:1.0' (from User Repositories).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI' of definition 'xilinx.com:interface:aximm:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_ARESETN' of definition 'xilinx.com:signal:reset:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_ACLK' of definition 'xilinx.com:signal:clock:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_ARESETN': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_ACLK': Added interface parameter 'ASSOCIATED_BUSIF' with value 'M_AXI'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_ACLK': Added interface parameter 'ASSOCIATED_RESET' with value 'M_AXI_ARESETN'.
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+ipx::remove_bus_interface user_FDMA [ipx::current_core]
+ipx::remove_bus_interface user_FDMA_S [ipx::current_core]
+ipx::add_bus_interface FDMA_S [ipx::current_core]
+set_property abstraction_type_vlnv xilinx.com:user:FDMA_rtl:1.0 [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property bus_type_vlnv xilinx.com:user:FDMA:1.0 [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+ipx::add_port_map fdma_wready [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_wready [ipx::get_port_maps fdma_wready -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_wvalid [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_wvalid [ipx::get_port_maps fdma_wvalid -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_rdata [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_rdata [ipx::get_port_maps fdma_rdata -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_wdata [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_wdata [ipx::get_port_maps fdma_wdata -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_rareq [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_rareq [ipx::get_port_maps fdma_rareq -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_waddr [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_waddr [ipx::get_port_maps fdma_waddr -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_rready [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_rready [ipx::get_port_maps fdma_rready -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_wsize [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_wsize [ipx::get_port_maps fdma_wsize -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_wbusy [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_wbusy [ipx::get_port_maps fdma_wbusy -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_rbusy [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_rbusy [ipx::get_port_maps fdma_rbusy -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_wareq [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_wareq [ipx::get_port_maps fdma_wareq -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_rsize [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_rsize [ipx::get_port_maps fdma_rsize -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_raddr [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_raddr [ipx::get_port_maps fdma_raddr -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+ipx::add_port_map fdma_rvalid [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]
+set_property physical_name fdma_rvalid [ipx::get_port_maps fdma_rvalid -of_objects [ipx::get_bus_interfaces FDMA_S -of_objects [ipx::current_core]]]
+set_property core_revision 2 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma
+INFO: [IP_Flow 19-725] Reloaded user IP repository 'g:/v2020/s02/02_example_fdma_ddr_20/02_fdma_3buf_test/prj_normal/uisrc/03_ip/uifdma'

@@ -1,0 +1,49 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Wed Nov 17 14:48:42 2021
+# Process ID: 31648
+# Current directory: F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14852 F:\MZU07A-EV\3_02_sdk_adv_app\14_photograph_fdma\9v034_sccb_hdmi\soc_prj\uisrc\03_ip\uidprgb24to36\project_1\project_1.xpr
+# Log file: F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/project_1/vivado.log
+# Journal file: F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/project_1/project_1.xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/project_1'
+INFO: [Project 1-313] Project file moved from 'G:/ZU07A-4GB/01_soc_base_7eg/40dp_for/02_dpdma_live/zu_prj/uisrc/03_ip/uidprgb24to36/project_1' since last save.
+WARNING: [filemgmt 56-2] IP Repository Path: Could not find the directory 'F:/zu07a-4gb/01_soc_base_7eg/40dp_for/02_dpdma_live/zu_prj/uisrc/03_ip/uidprgb24to36', nor could it be found using path 'G:/zu07a-4gb/01_soc_base_7eg/40dp_for/02_dpdma_live/zu_prj/uisrc/03_ip/uidprgb24to36'.
+WARNING: [filemgmt 56-2] Default IP Output Path : Could not find the directory 'F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/project_1/project_1.gen/sources_1', nor could it be found using path 'G:/ZU07A-4GB/01_soc_base_7eg/40dp_for/02_dpdma_live/zu_prj/uisrc/03_ip/uidprgb24to36/project_1/project_1.gen/sources_1'.
+CRITICAL WARNING: [Project 1-311] Could not find the file 'F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uidprgb24to36.v', nor could it be found using path 'G:/ZU07A-4GB/01_soc_base_7eg/40dp_for/02_dpdma_live/zu_prj/uisrc/03_ip/uidprgb24to36/uidprgb24to36.v'.
+CRITICAL WARNING: [Project 1-311] Could not find the file 'F:/zu07a-4gb/01_soc_base_7eg/40dp_for/02_dpdma_live/zu_prj/uisrc/03_ip/uidprgb24to36/component.xml', nor could it be found using path 'G:/zu07a-4gb/01_soc_base_7eg/40dp_for/02_dpdma_live/zu_prj/uisrc/03_ip/uidprgb24to36/component.xml'.
+Scanning sources...
+Finished scanning sources
+INFO: [Project 1-230] Project 'project_1.xpr' upgraded for this version of Vivado.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository 'f:/zu07a-4gb/01_soc_base_7eg/40dp_for/02_dpdma_live/zu_prj/uisrc/03_ip/uidprgb24to36'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2021.1/data/ip'.
+open_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:05 . Memory (MB): peak = 1272.945 ; gain = 0.000
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uidprgb24to36.v] -no_script -reset -force -quiet
+remove_files  F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uidprgb24to36.v
+add_files -norecurse F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uidprgb24to32.v
+update_compile_order -fileset sources_1
+add_files -norecurse F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/component.xml
+ipx::open_ipxact_file {F:\MZU07A-EV\3_02_sdk_adv_app\14_photograph_fdma\9v034_sccb_hdmi\soc_prj\uisrc\03_ip\uidprgb24to36\component.xml}
+set_property file_type IP-XACT [get_files  F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/component.xml]
+export_ip_user_files -of_objects  [get_files F:/zu07a-4gb/01_soc_base_7eg/40dp_for/02_dpdma_live/zu_prj/uisrc/03_ip/uidprgb24to36/component.xml] -no_script -reset -force -quiet
+remove_files  F:/zu07a-4gb/01_soc_base_7eg/40dp_for/02_dpdma_live/zu_prj/uisrc/03_ip/uidprgb24to36/component.xml
+export_ip_user_files -of_objects  [get_files F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/component.xml] -no_script -reset -force -quiet
+remove_files  F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/component.xml
+export_ip_user_files -of_objects  [get_files F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uidprgb24to32.v] -no_script -reset -force -quiet
+remove_files  F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uidprgb24to32.v
+add_files -norecurse F:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/uirgb24to32.v
+ipx::unload_core f:/MZU07A-EV/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36/component.xml
+ipx::package_project -root_dir f:/mzu07a-ev/3_02_sdk_adv_app/14_photograph_fdma/9v034_sccb_hdmi/soc_prj/uisrc/03_ip/uidprgb24to36 -vendor xilinx.com -library user -taxonomy /UserIP -force
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 17 15:15:16 2021...
