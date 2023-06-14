@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
-//Synchronous¿ìÊ±ÖÓÓòµ½ÂıÊ±ÖÓÓò
+//Synchronousï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 module Sync_Pulse_Fast2Slow(
-    input           clka,
-    input           clkb,
+    input           clk_fast,
+    input           clk_slow,
     input           rst_n,
     input           pulse_i,
     output          pulse_o,
@@ -16,8 +16,8 @@ reg     [1:0]   signal_b_r;
 reg     [1:0]   signal_a_r;
 
 //-------------------------------------------------------
-//ÔÚclkaÏÂ£¬Éú³ÉÕ¹¿íĞÅºÅsignal_a
-always @(posedge clka or negedge rst_n)begin
+//ï¿½ï¿½clk_fastï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½Åºï¿½signal_a
+always @(posedge clk_fast or negedge rst_n)begin
     if(rst_n == 1'b0)begin
         signal_a <= 1'b0;
     end
@@ -31,7 +31,7 @@ always @(posedge clka or negedge rst_n)begin
 end
 
 //-------------------------------------------------------
-//ÔÚclkbÏÂÍ¬²½signal_a
+//ï¿½ï¿½clkbï¿½ï¿½Í¬ï¿½ï¿½signal_a
 always @(posedge clkb or negedge rst_n)begin
     if(rst_n == 1'b0)begin
         signal_b <= 1'b0;
@@ -42,7 +42,7 @@ always @(posedge clkb or negedge rst_n)begin
 end
 
 //-------------------------------------------------------
-//ÔÚclkbÏÂÉú³ÉÂö³åĞÅºÅºÍÊä³öĞÅºÅ
+//ï¿½ï¿½clkbï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÅºÅºï¿½ï¿½ï¿½ï¿½ï¿½Åºï¿½
 always @(posedge clkb or negedge rst_n)begin
     if(rst_n == 1'b0)begin
         signal_b_r <= 2'b00;
@@ -56,8 +56,8 @@ assign    pulse_o = ~signal_b_r[1] & signal_b_r[0];
 assign    signal_o = signal_b_r[1];
 
 //-------------------------------------------------------
-//ÔÚclkaÏÂ²É¼¯signal_b[1]£¬Éú³Ésignal_a_r[1]ÓÃÓÚ·´À¡À­µÍsignal_a
-always @(posedge clka or negedge rst_n)begin
+//ï¿½ï¿½clk_fastï¿½Â²É¼ï¿½signal_b[1]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½signal_a_r[1]ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½signal_a
+always @(posedge clk_fast or negedge rst_n)begin
     if(rst_n == 1'b0)begin
         signal_a_r <= 2'b00;
     end
