@@ -29,17 +29,17 @@ module xpm_fifo_sync;
       .dout         (dout),           // data  output读复位
       .data_valid   (data_valid),     // 1-bit output:数据有效
       .wr_ack       (wr_ack),         // 1-bit output:写响应
-      .rd_data_count(rd_data_count),  // 1-bit output:fifo读端口计数
-      .wr_data_count(wr_data_count),  // 1-bit output:fifo写端口计数
       .empty        (empty),          // 1-bit output:fifo空标志位
       .full         (full),           // 1-bit output:fifo满标志位
       .almost_empty (almost_empty),   // 1-bit output:快满标志位
       .almost_full  (almost_full),    // 1-bit output:快空标志位
-      .overflow     (overflow),       // 1-bit output:写溢出标志位
       .prog_empty   (prog_empty),     // 1-bit output:快满标志位
       .prog_full    (prog_full),      // 1-bit output:快空标志位
+      .rd_data_count(rd_data_count),  // 1-bit output:fifo读端口计数
+      .wr_data_count(wr_data_count),  // 1-bit output:fifo写端口计数
       .wr_rst_busy  (wr_rst_busy),    // 1-bit output: 写入复位忙：活动高指示FIFO当前处于复位状态
       .rd_rst_busy  (rd_rst_busy),    // 1-bit output: 读取复位忙：活动高指示FIFO当前处于复位状态
+      .overflow     (overflow),       // 1-bit output:写溢出标志位
       .underflow    (underflow),      // 1-bit output:欠流： 表示上一个时钟周期内的读取请求（rd_en）因FIFO为空而被拒绝。欠流FIFO对FIFO没有破坏性
       .dbiterr      (dbiterr),        // 1-bit output: 双位错误：表示ECC解码器检测到双比特错误，并且FIFO核心中的数据被破坏。
       .sbiterr      (sbiterr),        // 1-bit output: 单个位错误：表示ECC解码器检测到并修复了单个位错误。

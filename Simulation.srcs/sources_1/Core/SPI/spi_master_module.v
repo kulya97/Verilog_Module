@@ -36,7 +36,7 @@ module spi_master_module #(
   wire                 fifo_rden;
   wire                 fifo_full;
   wire                 fifo_empty;
-  
+
   wire [REG_WIDTH-1:0] fifo_dout;
   localparam ADDR_WIDTH = 128;
   sync_fifo #(
@@ -64,12 +64,13 @@ module spi_master_module #(
   localparam CHANNEL = 1;
   spi_master_core #(
       .CHANNEL  (CHANNEL),
-      .REG_WIDTH(REG_WIDTH)
+      .REG_WIDTH(REG_WIDTH),
+      .CPOL     (1),
+      .CPHA     (1),
+      .CLK_DIV  (5)
   ) u_spi_master_core (
       .clk       (clk),
       .rst_n     (rst_n),
-      .CPOL      (1),
-      .CPHA      (1),
       .wr_channel(1),
       .SPI_MISO  (SPI_MISO),
       .SPI_CS    (SPI_CS),
