@@ -28,40 +28,91 @@ module uart_reg_tx_module #(
     input  [REG_WIDTH-1:0] uart_tx_reg,
     input                  uart_tx_req
 );
-
   /*******************************************************************/
-  wire [REG_WIDTH-1:0] din;  // input wire [31 : 0] din
-  wire                 wr_en;  // input wire wr_en
-  wire                 rd_en;  // input wire rd_en
-  wire [          7:0] dout;  // output wire [7 : 0] dout
-  wire                 full;  // output wire full
-  wire                 empty;  // output wire empty
-  wire                 valid;
+  wire [REG_WIDTH-1:0] fifo_din;  // input wire [31 : 0] din
+  wire                 fifo_wr_en;  // input wire wr_en
+  wire                 fifo_rd_en;  // input wire rd_en
+
+  wire [REG_WIDTH-1:0] fifo_dout;  // output wire [7 : 0] dout
+  wire                 fifo_full;  // output wire full
+  wire                 fifo_empty;  // output wire empty 
+  wire                 fifo_valid;
+  /**********************************************/
+  wire                 par_valid;  // input
+  wire [REG_WIDTH-1:0] par_din;  // input
+  wire                 ser_ready;  // input
+  // Par2Ser Outputs
+  wire                 par_ready;
+  wire                 ser_valid;
+  wire [          7:0] ser_dout;
+  /**********************************************/
+  wire                 tx_data_valid;
+  wire                 tx_data_ready;
+  wire                 tx_ack;
+  wire [          7:0] tx_data;
+  /*******************************************************************/
 
   //写tx fifo数据
-  assign wr_en     = uart_tx_req;
-  assign din[31:0] = {uart_tx_reg[7:0], uart_tx_reg[15:8], uart_tx_reg[23:16], uart_tx_reg[31:24]};
-  /*********************/
-  uart_tx_fifo u_uart_tx_fifo (
-      .data   (din[31:0]),
-      .wrclk  (clk),
-      .wrreq  (wr_en),
-      .rdclk  (clk),
-      .rdreq  (rd_en),
-      .q      (dout[7:0]),
-      .rdempty(empty),
-      .wrfull (full)
+  assign fifo_wr_en    = uart_tx_req;
+  assign fifo_din      = uart_tx_reg;
+  assign fifo_rd_en    = par_ready && par_valid;
+
+  assign par_valid     = !fifo_empty;
+  assign par_din       = fifo_dout;
+  assign ser_ready     = tx_data_ready;
+
+  assign tx_data       = ser_dout;
+  assign tx_data_valid = ser_valid;
+  assign rd_en         = tx_data_valid && tx_data_ready;
+  /*******************************************************************/
+
+  xpm_fifo_sync #(
+      .READ_MODE          ("fwft"),     // fifo 类型 "std", "fwft"
+      .FIFO_WRITE_DEPTH   (128),        // fifo 深度
+      .WRITE_DATA_WIDTH   (REG_WIDTH),  // 写端口数据宽度
+      .READ_DATA_WIDTH    (REG_WIDTH),  // 读端口数据宽度
+      .PROG_EMPTY_THRESH  (10),         // 快空水线
+      .PROG_FULL_THRESH   (10),         // 快满水线
+      .RD_DATA_COUNT_WIDTH(1),          // 读侧数据统计值的位宽
+      .WR_DATA_COUNT_WIDTH(1),          // 写侧数据统计值的位宽
+      .USE_ADV_FEATURES   ("0707"),     //各标志位的启用控制
+      .FULL_RESET_VALUE   (0),          // fifo 复位值
+      .DOUT_RESET_VALUE   ("0"),        // fifo 复位值
+      .CASCADE_HEIGHT     (0),          // DECIMAL
+      .ECC_MODE           ("no_ecc"),   // “no_ecc”,"en_ecc"
+      .FIFO_MEMORY_TYPE   ("auto"),     // 指定资源类型，auto，block，distributed
+      .FIFO_READ_LATENCY  (1),          // 读取数据路径中的输出寄存器级数，如果READ_MODE=“fwft”，则唯一适用的值为0。
+      .SIM_ASSERT_CHK     (0),          // 0=禁用仿真消息，1=启用仿真消息
+      .WAKEUP_TIME        (0)           // 禁用sleep
+  ) xpm_fifo_sync_inst (
+      .rst       (!rst_n),      // 1-bit input: fifo复位
+      .wr_clk    (clk),         // 1-bit input:写时钟
+      .wr_en     (fifo_wr_en),  // 1-bit input:写使能
+      .din       (fifo_din),    // data  input:写数据
+      .rd_en     (fifo_rd_en),  // 1-bit input:读使能
+      .dout      (fifo_dout),   // data  output读复位
+      .data_valid(fifo_valid),  // 1-bit output:数据有效
+      .wr_ack    (),            // 1-bit output:写响应
+      .empty     (fifo_empty),  // 1-bit output:fifo空标志位
+      .full      (fifo_full)    // 1-bit output:fifo满标志位
   );
   /*******************************************************************/
-  wire       tx_data_valid;
-  wire       tx_data_ready;
-  wire       tx_ack;
-  wire [7:0] tx_data;
+  Par2Ser #(
+      .SERWIDTH  (8),
+      .PARWIDTH  (REG_WIDTH),
+      .Data_Order(0)
+  ) u_Par2Ser (
+      .clk      (clk),
+      .rst_n    (rst_n),
+      .par_valid(par_valid),
+      .par_din  (par_din),
+      .ser_ready(ser_ready),
 
-  assign tx_data       = dout;
-  assign tx_data_valid = !empty;
-  assign rd_en         = tx_data_valid && tx_data_ready;
-  /*********************/
+      .par_ready(par_ready),
+      .ser_valid(ser_valid),
+      .ser_dout (ser_dout)
+  );
+  /*******************************************************************/
   uart_bit_tx_module #(
       .CLK_FRE  (CLK_FRE),
       .BAUD_RATE(BPS)

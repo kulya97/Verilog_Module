@@ -59,18 +59,20 @@ module uart_reg_rx_module #(
   wire                 reg_dack;
   wire [REG_WIDTH-1:0] reg_dout;
   /****************************************/
-  bit2reg_module #(
-      .WIDTH(REG_WIDTH)
-  ) u_bit2reg_module (
-      .clk   (clk),
-      .rst_n (rst_n),
-      .wr_en (rx_ack),
-      .wr_rst(rx_frame_ack),
-      .din   (rx_data[7:0]),
 
-      .dout(reg_dout[REG_WIDTH-1:0]),
-      .dack(reg_dack)
+  Ser2Par #(
+      .SERWIDTH(8),
+      .PARWIDTH(REG_WIDTH)
+  ) u_bit2reg_module (
+      .clk  (clk),
+      .rst_n(rst_n || rx_frame_ack),
+      .wr_en(rx_ack),
+      .din  (rx_data[7:0]),
+
+      .dack(reg_dack),
+      .dout(reg_dout[REG_WIDTH-1:0])
   );
+
   assign uart_rx_ack = reg_dack;
   assign uart_rx_reg = reg_dout;
 endmodule
