@@ -67,9 +67,9 @@ module uart_bit_rx_module #(
         next_state <= S_DATA;
       else next_state <= S_STOP;
       S_DATA:
-    //   if (rx_data_ready)  //数据接受完成
+      if (rx_data_ready && rx_data_valid)  //数据接受完成
         next_state <= S_IDLE;
-    //   else next_state <= S_DATA;
+      else next_state <= S_DATA;
       default: next_state <= S_IDLE;
     endcase
   end
@@ -104,15 +104,16 @@ module uart_bit_rx_module #(
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) rx_data <= 8'd0;
     else if (state == S_DATA) rx_data <= rx_bits;  //latch received data
-    else rx_data<=rx_data;
+    else rx_data <= rx_data;
   end
   /***********************************************************************/
   //更新数据准备状态
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) rx_data_valid <= 1'b0;
-    else if (state == S_DATA)  //停止位的开始
+    else if (state == S_DATA && !rx_data_valid && rx_data_ready)  //停止位的开始
       rx_data_valid <= 1'b1;
-    else rx_data_valid <= 1'b0;
+    else if (rx_data_valid && rx_data_ready && state == S_DATA) rx_data_valid <= 1'b0;
+    else rx_data_valid <= rx_data_valid;
   end
 
   /*

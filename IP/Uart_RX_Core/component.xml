@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <spirit:vendor>xilinx.com</spirit:vendor>
+  <spirit:vendor>kulya</spirit:vendor>
   <spirit:library>user</spirit:library>
   <spirit:name>uart_reg_rx_module</spirit:name>
   <spirit:version>1.0</spirit:version>
@@ -58,7 +58,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>0c134d3f</spirit:value>
+            <spirit:value>5870ebdf</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -74,7 +74,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>0c134d3f</spirit:value>
+            <spirit:value>5870ebdf</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -332,13 +332,18 @@
       <xilinx:xpmLibraries>
         <xilinx:xpmLibrary>XPM_FIFO</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>2</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-06-15T16:18:07Z</xilinx:coreCreationDateTime>
+      <xilinx:vendorDisplayName>kulya</xilinx:vendorDisplayName>
+      <xilinx:vendorURL>http://www.kulya.cn</xilinx:vendorURL>
+      <xilinx:coreRevision>1</xilinx:coreRevision>
+      <xilinx:upgrades>
+        <xilinx:canUpgradeFrom>xilinx.com:user:uart_reg_rx_module:1.0</xilinx:canUpgradeFrom>
+      </xilinx:upgrades>
+      <xilinx:coreCreationDateTime>2023-06-19T04:11:34Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="1d91acf1"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="b11f05b4"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="4c95637a"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="3d627049"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="f790baf2"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="d0387e59"/>

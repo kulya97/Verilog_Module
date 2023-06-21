@@ -25,7 +25,7 @@ module tb_uart_module;
   reg         RST_N;
   reg         UART_RX;
   wire        UART_TX;
-  wire [31:0] UART_REG;
+  wire [63:0] UART_REG;
   wire        uart_ready_flag;
   reg  [ 9:0] a1 = {1'b1, 8'h1, 1'b0};
   reg  [ 9:0] a2 = {1'b1, 8'h2, 1'b0};
@@ -125,7 +125,8 @@ module tb_uart_module;
   always #1 CLK_UART_50M = ~CLK_UART_50M;
 
   uart_top_module #(
-      .CLK_FRE(CLK_FRE)
+      .CLK_FRE  (CLK_FRE),
+      .REG_WIDTH(64)
   ) uart0 (
       .clk        (CLK_UART_50M),
       .rst_n      (RST_N),

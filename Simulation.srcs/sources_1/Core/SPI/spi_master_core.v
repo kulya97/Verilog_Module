@@ -116,7 +116,7 @@ module spi_master_core #(
 
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) r_CS <= 16'hffff;
-    else if (state == S_IDLE && wr_valid == 1'b1) r_CS <= ~wr_channel;
+    else if (state == S_IDLE && wr_valid) r_CS <= ~wr_channel;
     else if (state == S_ACK_WAIT) r_CS <= 16'hffff;  //0-1?
     else r_CS <= r_CS;
   end
