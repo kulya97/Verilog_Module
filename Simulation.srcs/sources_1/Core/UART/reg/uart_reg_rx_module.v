@@ -65,7 +65,7 @@ module uart_reg_rx_module #(
       .PARWIDTH(REG_WIDTH)
   ) u_bit2reg_module (
       .clk  (clk),
-      .rst_n(rst_n || rx_frame_ack),
+      .rst_n(rst_n && !rx_frame_ack),
       .wr_en(rx_ack),
       .din  (rx_data[7:0]),
 

@@ -25,7 +25,7 @@ module tb_uart_module;
   reg         RST_N;
   reg         UART_RX;
   wire        UART_TX;
-  wire [63:0] UART_REG;
+  wire [31:0] UART_REG;
   wire        uart_ready_flag;
   reg  [ 9:0] a1 = {1'b1, 8'h1, 1'b0};
   reg  [ 9:0] a2 = {1'b1, 8'h2, 1'b0};
@@ -97,10 +97,12 @@ module tb_uart_module;
       UART_RX = a2[i];
       #CYCLE;
     end
+    # (CYCLE*40);
     for (i = 0; i < 10; i = i + 1) begin
       UART_RX = a3[i];
       #CYCLE;
     end
+    
     for (i = 0; i < 10; i = i + 1) begin
       UART_RX = a4[i];
       #CYCLE;
@@ -126,7 +128,7 @@ module tb_uart_module;
 
   uart_top_module #(
       .CLK_FRE  (CLK_FRE),
-      .REG_WIDTH(64)
+      .REG_WIDTH(32)
   ) uart0 (
       .clk        (CLK_UART_50M),
       .rst_n      (RST_N),

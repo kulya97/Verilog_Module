@@ -97,10 +97,12 @@ module tb_uart_module;
       UART_RX = a2[i];
       #CYCLE;
     end
+    # (CYCLE*40);
     for (i = 0; i < 10; i = i + 1) begin
       UART_RX = a3[i];
       #CYCLE;
     end
+    
     for (i = 0; i < 10; i = i + 1) begin
       UART_RX = a4[i];
       #CYCLE;
@@ -125,7 +127,8 @@ module tb_uart_module;
   always #1 CLK_UART_50M = ~CLK_UART_50M;
 
   uart_top_module #(
-      .CLK_FRE(CLK_FRE)
+      .CLK_FRE  (CLK_FRE),
+      .REG_WIDTH(32)
   ) uart0 (
       .clk        (CLK_UART_50M),
       .rst_n      (RST_N),

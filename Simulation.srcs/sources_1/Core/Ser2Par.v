@@ -53,12 +53,10 @@ module Ser2Par #(
       data_cnt <= data_cnt + SERWIDTH;
     end else if (data_cnt == PARWIDTH) begin
       data_cnt <= 'd0;
-    end
+    end else data_cnt <= data_cnt;
   end
   /**************************************************************/
   //生成信号
-  reg [PARWIDTH-1:0] fifo_din;
-  reg                fifo_wren;
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       dout <= 'd0;
@@ -67,6 +65,7 @@ module Ser2Par #(
       dout <= r_din;
       dack <= 'd1;
     end else begin
+      dout <= dout;
       dack <= 'd0;
     end
   end

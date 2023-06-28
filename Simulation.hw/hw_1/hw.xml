@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Product Version: Vivado v2022.1 (64-bit)                     -->
+<!-- Product Version: Vivado v2022.2 (64-bit)                     -->
 <!--                                                              -->
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.        -->
 
@@ -8,6 +8,12 @@
   <ObjectList object_type="hw_device" gui_info="">
     <Object name="xc7k325t_0" gui_info="">
       <Properties Property="PROGRAM.HW_CFGMEM_PART" value="mx25l25673g-spi-x1_x2_x4"/>
+    </Object>
+  </ObjectList>
+  <ObjectList object_type="hw_ila" gui_info="">
+    <Object name="" gui_info="">
+      <Properties Property="CONTROL.TRIGGER_CONDITION" value="AND"/>
+      <Properties Property="CORE_REFRESH_RATE_MS" value="500"/>
     </Object>
   </ObjectList>
   <probeset name="hw project" active="false"/>
