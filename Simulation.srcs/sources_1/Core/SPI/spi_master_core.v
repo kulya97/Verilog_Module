@@ -39,13 +39,13 @@ module spi_master_core #(
     output               SPI_MOSI,  //spi data output
     input                SPI_MISO,  //spi input
 
-    input  [  CHANNEL-1:0] wr_channel,
-    input                  wr_valid,    //请求
-    output                 wr_ready,    //响应
-    input  [REG_WIDTH-1:0] data_in,     //data in
-    output [REG_WIDTH-1:0] data_out     //data out
+    input      [  CHANNEL-1:0] wr_channel,
+    input                      wr_valid,    //请求
+    output                     wr_ready,    //响应
+    output reg                 rd_ack,
+    input      [REG_WIDTH-1:0] data_in,     //data in
+    output     [REG_WIDTH-1:0] data_out     //data out
 );
-
 
 
   localparam BITCNT = REG_WIDTH * 2;
@@ -116,7 +116,7 @@ module spi_master_core #(
 
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) r_CS <= 16'hffff;
-    else if (state == S_IDLE && wr_valid) r_CS <= ~wr_channel;
+    else if (state == S_IDLE && wr_valid == 1'b1) r_CS <= ~wr_channel;
     else if (state == S_ACK_WAIT) r_CS <= 16'hffff;  //0-1?
     else r_CS <= r_CS;
   end
@@ -152,6 +152,12 @@ module spi_master_core #(
     else if (state == S_ACK) r_data_out <= MISO_shift;
     else r_data_out <= r_data_out;
   end
+  always @(posedge clk, negedge rst_n) begin
+    if (!rst_n) rd_ack <= 'd0;
+    else if (state == S_ACK) rd_ack <= 1'd1;
+    else rd_ack <= 'd0;
+  end
+
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) r_wr_ack <= 1'd0;
     else if (!r_wr_ack && wr_valid && state == S_IDLE) r_wr_ack <= 1'b1;

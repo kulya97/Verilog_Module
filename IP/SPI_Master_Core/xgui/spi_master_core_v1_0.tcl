@@ -3,16 +3,11 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "Component_Name"
   #Adding Page
   set Page_0 [ipgui::add_page $IPINST -name "Page 0"]
-  set CHANNEL [ipgui::add_param $IPINST -name "CHANNEL" -parent ${Page_0}]
-  set_property tooltip {spi通道数} ${CHANNEL}
-  set CLK_DIV [ipgui::add_param $IPINST -name "CLK_DIV" -parent ${Page_0}]
-  set_property tooltip {时钟分频系数} ${CLK_DIV}
-  set CPHA [ipgui::add_param $IPINST -name "CPHA" -parent ${Page_0}]
-  set_property tooltip {时钟相位 H sck第二个跳变沿采样，L sck第一个跳变沿采样} ${CPHA}
-  set CPOL [ipgui::add_param $IPINST -name "CPOL" -parent ${Page_0}]
-  set_property tooltip {时钟极性 ，H idle时为高} ${CPOL}
-  set REG_WIDTH [ipgui::add_param $IPINST -name "REG_WIDTH" -parent ${Page_0}]
-  set_property tooltip {读写数据位宽} ${REG_WIDTH}
+  ipgui::add_param $IPINST -name "CHANNEL" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "CLK_DIV" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "CPHA" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "CPOL" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "REG_WIDTH" -parent ${Page_0}
 
 
 }
