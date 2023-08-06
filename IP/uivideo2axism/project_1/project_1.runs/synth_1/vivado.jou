@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sat Jan 23 19:35:32 2021
+# Process ID: 122528
+# Current directory: G:/ZU07A-4GB/01_soc_base_7eg/40dp_for/02_dp_vdma_test/zu_prj/uisrc/03_ip/uivideo2axism/project_1/project_1.runs/synth_1
+# Command line: vivado.exe -log uivideo2axism.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source uivideo2axism.tcl
+# Log file: G:/ZU07A-4GB/01_soc_base_7eg/40dp_for/02_dp_vdma_test/zu_prj/uisrc/03_ip/uivideo2axism/project_1/project_1.runs/synth_1/uivideo2axism.vds
+# Journal file: G:/ZU07A-4GB/01_soc_base_7eg/40dp_for/02_dp_vdma_test/zu_prj/uisrc/03_ip/uivideo2axism/project_1/project_1.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source uivideo2axism.tcl -notrace
