@@ -88,7 +88,7 @@ module AXI_S #(
   assign S_AXI_RVALID  = axi_rvalid;
   /****************************************************************************************************/
   //写通道
-  //只有当
+  //awvalid，awrady，wvalid，wready------->bvalid--------->aw_en---------->awready------->
   /****************************************************************************************************/
   //axi_awready 生成
   //当重置为低电平时，axi_aready被解除断言。
@@ -183,6 +183,7 @@ module AXI_S #(
   end
   /****************************************************************************************************/
   //实现axi_bvalid逻辑生成
+  //axi_awready，S_AXI_AWVALID，axi_wready，S_AXI_WVALID同时有效
   always @(posedge S_AXI_ACLK) begin
     if (S_AXI_ARESETN == 1'b0) begin
       axi_bvalid <= 0;
