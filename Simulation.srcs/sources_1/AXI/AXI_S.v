@@ -14,9 +14,9 @@ module AXI_S #(
 
     // User ports ends
     // Global Clock Signal
-    input wire S_AXI_ACLK,
-    input wire S_AXI_ARESETN,
-
+    input  wire                                S_AXI_ACLK,
+    input  wire                                S_AXI_ARESETN,
+    // Write address
     input  wire [    C_S_AXI_ADDR_WIDTH-1 : 0] S_AXI_AWADDR,
     input  wire [                       2 : 0] S_AXI_AWPROT,
     input  wire                                S_AXI_AWVALID,
@@ -87,7 +87,10 @@ module AXI_S #(
   assign S_AXI_RRESP   = axi_rresp;
   assign S_AXI_RVALID  = axi_rvalid;
   /****************************************************************************************************/
-  //当S_axi_AWVALID和S_axi_WVALID都被断言时，实现axi_aready生成axi_aread被断言一个S_axi_ACLK时钟周期。
+  //写通道
+  //只有当
+  /****************************************************************************************************/
+  //axi_awready 生成
   //当重置为低电平时，axi_aready被解除断言。
   always @(posedge S_AXI_ACLK) begin
     if (S_AXI_ARESETN == 1'b0) begin
@@ -107,8 +110,7 @@ module AXI_S #(
     end
   end
 
-  //实现axi_addr锁存此过程用于在S_axi_AWVALID和S_axi_WVALID都有效时锁存地址。
-
+  //axi_addr锁存
   always @(posedge S_AXI_ACLK) begin
     if (S_AXI_ARESETN == 1'b0) begin
       axi_awaddr <= 0;
@@ -119,8 +121,7 @@ module AXI_S #(
     end
   end
   /****************************************************************************************************/
-  //实现axi_ready生成
-  //axi_ready在S_axi_AWVALID和S_axi_WVALID都被断言时被断言一个S_axi_ACLK时钟周期。重置为低电平时，axi_ready被取消断言。
+  //axi_wready
   always @(posedge S_AXI_ACLK) begin
     if (S_AXI_ARESETN == 1'b0) begin
       axi_wready <= 1'b0;
@@ -132,8 +133,9 @@ module AXI_S #(
       end
     end
   end
-
-  //实现内存映射寄存器选择和写入逻辑生成当axi_awready、S_axi_WVALID、axi_ready和S_axi_WALID断言。
+  /****************************************************************************************************/
+  //实现slv_reg_wren
+  //和写入逻辑生成当axi_awready、S_axi_WVALID、axi_ready和S_axi_WALID断言。
   //写入选通用于在写入时选择从属寄存器的字节启用。
   //当应用复位（低激活）时，这些寄存器被清除。
   //当有效地址和数据可用并且从寄存器准备好接受写入地址和写入数据时，断言从寄存器写入启用。
@@ -152,7 +154,7 @@ module AXI_S #(
           for (byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH / 8) - 1; byte_index = byte_index + 1)
           if (S_AXI_WSTRB[byte_index] == 1) begin
             // 根据写入选通断言相应的字节启用 
-             slv_reg0[(byte_index*8)+:8] <= S_AXI_WDATA[(byte_index*8)+:8];//相当于[ (byte_index*8) + 7: (byte_index*8) ]
+            slv_reg0[(byte_index*8)+:8] <= S_AXI_WDATA[(byte_index*8)+:8];  //相当于[ (byte_index*8) + 7: (byte_index*8) ]
           end
           2'h1:
           for (byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH / 8) - 1; byte_index = byte_index + 1)
@@ -179,71 +181,45 @@ module AXI_S #(
       end
     end
   end
-
-//实现写响应逻辑生成
-//当断言axi_ready、S_axi_WVALID、axy_ready和S_axi_WALID时，写入响应和响应有效信号由从设备断言。
-//这标志着地址的接受，并指示/写入事务的状态。
-
+  /****************************************************************************************************/
+  //实现axi_bvalid逻辑生成
   always @(posedge S_AXI_ACLK) begin
     if (S_AXI_ARESETN == 1'b0) begin
       axi_bvalid <= 0;
       axi_bresp  <= 2'b0;
     end else begin
       if (axi_awready && S_AXI_AWVALID && ~axi_bvalid && axi_wready && S_AXI_WVALID) begin
-        // indicates a valid write response is available
         axi_bvalid <= 1'b1;
         axi_bresp  <= 2'b0;  // 'OKAY' response 
       end                   // work error responses in future
-	      else
-	        begin
-        if (S_AXI_BREADY && axi_bvalid) 
-	            //check if bready is asserted while bvalid is high) 
-	            //(there is a possibility that bready is always asserted high)   
-	            begin
-          axi_bvalid <= 1'b0;
-        end
+        else if (S_AXI_BREADY && axi_bvalid) begin
+        axi_bvalid <= 1'b0;
       end
     end
   end
 
   // Implement axi_arready generation
-  // axi_arready is asserted for one S_AXI_ACLK clock cycle when
-  // S_AXI_ARVALID is asserted. axi_awready is 
-  // de-asserted when reset (active low) is asserted. 
-  // The read address is also latched when S_AXI_ARVALID is 
-  // asserted. axi_araddr is reset to zero on reset assertion.
-
   always @(posedge S_AXI_ACLK) begin
     if (S_AXI_ARESETN == 1'b0) begin
       axi_arready <= 1'b0;
       axi_araddr  <= 32'b0;
     end else begin
       if (~axi_arready && S_AXI_ARVALID) begin
-        // indicates that the slave has acceped the valid read address
         axi_arready <= 1'b1;
-        // Read address latching
         axi_araddr  <= S_AXI_ARADDR;
       end else begin
         axi_arready <= 1'b0;
       end
     end
   end
-
-  // Implement axi_arvalid generation
-  // axi_rvalid is asserted for one S_AXI_ACLK clock cycle when both 
-  // S_AXI_ARVALID and axi_arready are asserted. The slave registers 
-  // data are available on the axi_rdata bus at this instance. The 
-  // assertion of axi_rvalid marks the validity of read data on the 
-  // bus and axi_rresp indicates the status of read transaction.axi_rvalid 
-  // is deasserted on reset (active low). axi_rresp and axi_rdata are 
-  // cleared to zero on reset (active low).  
+  /****************************************************************************************************/
+  // axi_rvalid
   always @(posedge S_AXI_ACLK) begin
     if (S_AXI_ARESETN == 1'b0) begin
       axi_rvalid <= 0;
       axi_rresp  <= 0;
     end else begin
       if (axi_arready && S_AXI_ARVALID && ~axi_rvalid) begin
-        // Valid read data is available at the read data bus
         axi_rvalid <= 1'b1;
         axi_rresp  <= 2'b0;  // 'OKAY' response
       end else if (axi_rvalid && S_AXI_RREADY) begin
@@ -252,10 +228,8 @@ module AXI_S #(
       end
     end
   end
-
-  // Implement memory mapped register select and read logic generation
-  // Slave register read enable is asserted when valid address is available
-  // and the slave is ready to accept the read address.
+  /****************************************************************************************************/
+  // slv_reg_rden
   assign slv_reg_rden = axi_arready & S_AXI_ARVALID & ~axi_rvalid;
   always @(*) begin
     // Address decoding for reading registers
@@ -267,7 +241,7 @@ module AXI_S #(
       default : reg_data_out <= 0;
     endcase
   end
-
+  /****************************************************************************************************/
   // Output register or memory read data
   always @(posedge S_AXI_ACLK) begin
     if (S_AXI_ARESETN == 1'b0) begin
