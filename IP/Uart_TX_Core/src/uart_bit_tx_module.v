@@ -63,7 +63,7 @@ module uart_bit_tx_module #(
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       tx_data_latch <= 8'd0;
-    end else if (state == S_INIT) tx_data_latch <= tx_data;
+    end else if (tx_data_valid && tx_data_ready) tx_data_latch <= tx_data;
 
   end
   /***********************************************************************/
