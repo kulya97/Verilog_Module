@@ -46,7 +46,6 @@
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../verilog_module"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/IP"/>
     <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
     <Option Name="IPDefaultOutputPath" Val="$PGENDIR/sources_1"/>
@@ -255,8 +254,11 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/IP/Uart_TX_Core/component.xml">
-        <FileInfo SFType="IPXACT"/>
+      <File Path="$PSRCDIR/sources_1/imports/Uart_TX_Core/component.xml">
+        <FileInfo SFType="IPXACT">
+          <Attr Name="ImportPath" Val="$PPRDIR/IP/Uart_TX_Core/component.xml"/>
+          <Attr Name="ImportTime" Val="1699265401"/>
+        </FileInfo>
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>

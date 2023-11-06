@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2022/01/04 21:15:15
+// Create Date: 2022/01/04 21:15:22
 // Design Name: 
 // Module Name: 
 // Project Name: 
@@ -76,11 +76,11 @@ module uart_reg_rx_module #(
   wire empty;
   xpm_fifo_sync #(
       .READ_MODE          ("fwft"),     // fifo 类型 "std", "fwft"
-      .FIFO_WRITE_DEPTH   (8),        // fifo 深度
+      .FIFO_WRITE_DEPTH   (8),          // fifo 深度
       .WRITE_DATA_WIDTH   (REG_WIDTH),  // 写端口数据宽度
       .READ_DATA_WIDTH    (REG_WIDTH),  // 读端口数据宽度
-      .PROG_EMPTY_THRESH  (2),         // 快空水线
-      .PROG_FULL_THRESH   (2),         // 快满水线
+      .PROG_EMPTY_THRESH  (2),          // 快空水线
+      .PROG_FULL_THRESH   (2),          // 快满水线
       .RD_DATA_COUNT_WIDTH(1),          // 读侧数据统计值的位宽
       .WR_DATA_COUNT_WIDTH(1),          // 写侧数据统计值的位宽
       .USE_ADV_FEATURES   ("0707"),     //各标志位的启用控制

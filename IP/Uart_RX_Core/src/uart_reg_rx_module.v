@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2022/01/04 21:15:15
+// Create Date: 2022/01/04 21:15:22
 // Design Name: 
 // Module Name: 
 // Project Name: 
@@ -24,11 +24,12 @@ module uart_reg_rx_module #(
     parameter IDLE_CYCLE = 20,      //idle time
     parameter REG_WIDTH  = 32
 ) (
-    input                  clk,          //system clock 50Mhz on board
-    input                  rst_n,        //reset ,low active
-    input                  uart_rx,
-    output [REG_WIDTH-1:0] uart_rx_reg,  //uart reg 
-    output                 uart_rx_ack   //if update ready=1
+    input                  clk,            //system clock 50Mhz on board
+    input                  rst_n,          //reset ,low active
+    input                  uart_rx_port,
+    output [REG_WIDTH-1:0] uart_rx_data,   //uart reg 
+    input                  uart_rx_ready,
+    output                 uart_rx_valid
 );
   /*******************************************************************/
 
@@ -38,7 +39,7 @@ module uart_reg_rx_module #(
   wire       rx_frame_ack;
   wire [7:0] rx_data;
   //开启接收数据
-  assign rx_data_ready = 1'b1;
+  assign rx_data_ready = uart_rx_ready;
 
   /****************************************/
   uart_bit_rx_module #(
@@ -53,7 +54,7 @@ module uart_reg_rx_module #(
       .rx_data_ready(rx_data_ready),
       .rx_frame_ack (rx_frame_ack),
       .rx_ack       (rx_ack),
-      .rx_pin       (uart_rx)
+      .rx_pin       (uart_rx_port)
   );
   /*******************************************************************/
   wire                 reg_dack;
@@ -72,7 +73,37 @@ module uart_reg_rx_module #(
       .dack(reg_dack),
       .dout(reg_dout[REG_WIDTH-1:0])
   );
-
-  assign uart_rx_ack = reg_dack;
-  assign uart_rx_reg = reg_dout;
+  wire empty;
+  xpm_fifo_sync #(
+      .READ_MODE          ("fwft"),     // fifo 类型 "std", "fwft"
+      .FIFO_WRITE_DEPTH   (8),          // fifo 深度
+      .WRITE_DATA_WIDTH   (REG_WIDTH),  // 写端口数据宽度
+      .READ_DATA_WIDTH    (REG_WIDTH),  // 读端口数据宽度
+      .PROG_EMPTY_THRESH  (2),          // 快空水线
+      .PROG_FULL_THRESH   (2),          // 快满水线
+      .RD_DATA_COUNT_WIDTH(1),          // 读侧数据统计值的位宽
+      .WR_DATA_COUNT_WIDTH(1),          // 写侧数据统计值的位宽
+      .USE_ADV_FEATURES   ("0707"),     //各标志位的启用控制
+      .FULL_RESET_VALUE   (0),          // fifo 复位值
+      .DOUT_RESET_VALUE   ("0"),        // fifo 复位值
+      .CASCADE_HEIGHT     (0),          // DECIMAL
+      .ECC_MODE           ("no_ecc"),   // “no_ecc”,"en_ecc"
+      .FIFO_MEMORY_TYPE   ("auto"),     // 指定资源类型，auto，block，distributed
+      .FIFO_READ_LATENCY  (1),          // 读取数据路径中的输出寄存器级数，如果READ_MODE=“fwft”，则唯一适用的值为0。
+      .SIM_ASSERT_CHK     (0),          // 0=禁用仿真消息，1=启用仿真消息
+      .WAKEUP_TIME        (0)           // 禁用sleep
+  ) xpm_fifo_sync_inst (
+      .rst       (!rst_n),         // 1-bit input: fifo复位
+      .wr_clk    (clk),            // 1-bit input:写时钟
+      .wr_en     (reg_dack),       // 1-bit input:写使能
+      .din       (reg_dout),       // data  input:写数据
+      .rd_en     (uart_rx_ready),  // 1-bit input:读使能
+      .dout      (uart_rx_data),   // data  output读复位
+      .data_valid(),               // 1-bit output:数据有效
+      .empty     (empty),          // 1-bit output:fifo空标志位
+      .full      (),               // 1-bit output:fifo满标志位
+      .prog_empty(),               // 1-bit output:快满标志位
+      .prog_full ()                // 1-bit output:快空标志位
+  );
+  assign uart_rx_valid = !empty;
 endmodule

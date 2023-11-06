@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <spirit:vendor>kulya.cn</spirit:vendor>
+  <spirit:vendor>kulya</spirit:vendor>
   <spirit:library>user</spirit:library>
   <spirit:name>uart_reg_rx_module</spirit:name>
   <spirit:version>1.1</spirit:version>
@@ -58,7 +58,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>a0b50bb6</spirit:value>
+            <spirit:value>58da481f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -74,7 +74,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>a0b50bb6</spirit:value>
+            <spirit:value>58da481f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -89,7 +89,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>2ac84d53</spirit:value>
+            <spirit:value>1b2c54ed</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -238,21 +238,8 @@
       <spirit:file>
         <spirit:name>src/uart_reg_rx_module.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_8a0de7f4</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_6065de53</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../Simulation.srcs/sources_1/Core/Ser2Par.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../Simulation.srcs/sources_1/Core/UART/core/uart_bit_rx_module.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../Simulation.srcs/sources_1/Core/UART/reg/uart_reg_rx_module.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_8a0de7f4</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -272,18 +259,6 @@
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
       </spirit:file>
-      <spirit:file>
-        <spirit:name>../../Simulation.srcs/sources_1/Core/Ser2Par.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../Simulation.srcs/sources_1/Core/UART/core/uart_bit_rx_module.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../Simulation.srcs/sources_1/Core/UART/reg/uart_reg_rx_module.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_testbench_view_fileset</spirit:name>
@@ -291,13 +266,6 @@
         <spirit:name>src/tb_uart_top_module.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
-        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../Simulation.srcs/sim_1/new/tb_uart_top_module.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
         <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
         <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
@@ -313,7 +281,7 @@
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
-  <spirit:description>uart_reg_rx_module_v1_1</spirit:description>
+  <spirit:description>uart_reg_rx_module</spirit:description>
   <spirit:parameters>
     <spirit:parameter>
       <spirit:name>CLK_FRE</spirit:name>
@@ -348,21 +316,21 @@
       <xilinx:taxonomies>
         <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
       </xilinx:taxonomies>
-      <xilinx:displayName>uart_reg_rx_module_v1_1</xilinx:displayName>
+      <xilinx:displayName>uart_reg_rx_module</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:xpmLibraries>
         <xilinx:xpmLibrary>XPM_FIFO</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>3</xilinx:coreRevision>
+      <xilinx:coreRevision>1</xilinx:coreRevision>
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>xilinx.com:user:uart_reg_rx_module:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2023-11-06T10:11:55Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2023-11-06T10:00:55Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="1d91acf1"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="c4784c04"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="a01cac52"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="52018b82"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="f790baf2"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="d0387e59"/>
