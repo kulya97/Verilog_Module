@@ -22,11 +22,12 @@ module uart_reg_tx_module #(
     parameter BPS       = 115200,  //uart bps
     parameter REG_WIDTH = 32
 ) (
-    input                  clk,          //system clock 50Mhz on board
-    input                  rst_n,        //reset ,low active
+    input                  clk,            //system clock 50Mhz on board
+    input                  rst_n,          //reset ,low active
     output                 uart_tx,
     input  [REG_WIDTH-1:0] uart_tx_reg,
-    input                  uart_tx_req
+    input                  uart_tx_valid,
+    output                 uart_tx_ready
 );
   /*******************************************************************/
   wire [REG_WIDTH-1:0] fifo_din;  // input wire [31 : 0] din
@@ -37,6 +38,7 @@ module uart_reg_tx_module #(
   wire                 fifo_full;  // output wire full
   wire                 fifo_empty;  // output wire empty 
   wire                 fifo_valid;
+  wire                 fifo_prog_full;
   /**********************************************/
   wire                 par_valid;  // input
   wire [REG_WIDTH-1:0] par_din;  // input
@@ -53,7 +55,7 @@ module uart_reg_tx_module #(
   /*******************************************************************/
 
   //写tx fifo数据
-  assign fifo_wr_en    = uart_tx_req;
+  assign fifo_wr_en    = uart_tx_valid;
   assign fifo_din      = uart_tx_reg;
   assign fifo_rd_en    = par_ready && par_valid;
 
@@ -64,6 +66,8 @@ module uart_reg_tx_module #(
   assign tx_data       = ser_dout;
   assign tx_data_valid = ser_valid;
   assign rd_en         = tx_data_valid && tx_data_ready;
+
+  assign uart_tx_ready = !fifo_prog_full;  //fifo 没满前一直读取数据到fifo中
   /*******************************************************************/
 
   xpm_fifo_sync #(
@@ -85,17 +89,20 @@ module uart_reg_tx_module #(
       .SIM_ASSERT_CHK     (0),          // 0=禁用仿真消息，1=启用仿真消息
       .WAKEUP_TIME        (0)           // 禁用sleep
   ) xpm_fifo_sync_inst (
-      .rst       (!rst_n),      // 1-bit input: fifo复位
-      .wr_clk    (clk),         // 1-bit input:写时钟
-      .wr_en     (fifo_wr_en),  // 1-bit input:写使能
-      .din       (fifo_din),    // data  input:写数据
-      .rd_en     (fifo_rd_en),  // 1-bit input:读使能
-      .dout      (fifo_dout),   // data  output读复位
-      .data_valid(fifo_valid),  // 1-bit output:数据有效
-      .wr_ack    (),            // 1-bit output:写响应
-      .empty     (fifo_empty),  // 1-bit output:fifo空标志位
-      .full      (fifo_full)    // 1-bit output:fifo满标志位
+      .rst       (!rst_n),          // 1-bit input: fifo复位
+      .wr_clk    (clk),             // 1-bit input:写时钟
+      .wr_en     (fifo_wr_en),      // 1-bit input:写使能
+      .din       (fifo_din),        // data  input:写数据
+      .rd_en     (fifo_rd_en),      // 1-bit input:读使能
+      .dout      (fifo_dout),       // data  output读复位
+      .data_valid(fifo_valid),      // 1-bit output:数据有效
+      .wr_ack    (),                // 1-bit output:写响应
+      .prog_empty(),                // 1-bit output:快满标志位
+      .prog_full (fifo_prog_full),  // 1-bit output:快空标志位
+      .empty     (fifo_empty),      // 1-bit output:fifo空标志位
+      .full      (fifo_full)        // 1-bit output:fifo满标志位
   );
+
   /*******************************************************************/
   Par2Ser #(
       .SERWIDTH  (8),
