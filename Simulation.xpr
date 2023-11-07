@@ -46,6 +46,7 @@
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
+    <Option Name="IPRepoPath" Val="$PSRCDIR/sources_1/Core/UART/reg"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/IP"/>
     <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
     <Option Name="IPDefaultOutputPath" Val="$PGENDIR/sources_1"/>
@@ -254,11 +255,8 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Uart_TX_Core_V1_1/component.xml">
-        <FileInfo SFType="IPXACT">
-          <Attr Name="ImportPath" Val="$PPRDIR/IP/Uart_TX_Core_V1_1/component.xml"/>
-          <Attr Name="ImportTime" Val="1699322144"/>
-        </FileInfo>
+      <File Path="$PPRDIR/IP/Uart_TX_Core_V1_1/component.xml">
+        <FileInfo SFType="IPXACT"/>
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>

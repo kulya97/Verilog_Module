@@ -6,7 +6,7 @@
 <Project Version="7" Minor="61" Path="e:/verilog_module/ip/uart_tx_core_v1_1/tmp_edit_project.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="4b80ab1c7f044d848e02cb87f1a86440"/>
+    <Option Name="Id" Val="67a6861079ee4012a30228e6d6301edb"/>
     <Option Name="Part" Val="xc7a200tifbv676-1L"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -46,6 +46,7 @@
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
+    <Option Name="IPRepoPath" Val="$PPRDIR/../../../Verilog_Module/Simulation.srcs/sources_1/Core/UART/reg"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/../../../Verilog_Module/IP"/>
     <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
     <Option Name="IPDefaultOutputPath" Val="$PGENDIR/sources_1"/>
