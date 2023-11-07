@@ -58,7 +58,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>f985465f</spirit:value>
+            <spirit:value>825dd82f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -74,7 +74,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>f985465f</spirit:value>
+            <spirit:value>825dd82f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -107,6 +107,20 @@
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
+      <spirit:view>
+        <spirit:name>archive_project</spirit:name>
+        <spirit:displayName>Miscellaneous</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:misc.files</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>archive_project_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>50f06713</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
     </spirit:views>
     <spirit:ports>
       <spirit:port>
@@ -136,7 +150,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>uart_tx</spirit:name>
+        <spirit:name>uart_tx_port</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
@@ -233,7 +247,7 @@
       <spirit:file>
         <spirit:name>src/uart_reg_tx_module.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_8eae4a8f</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_6cd3c1a6</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -275,6 +289,13 @@
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>archive_project_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>ip_project_archive.zip</spirit:name>
+        <spirit:userFileType>zip</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
   </spirit:fileSets>
   <spirit:description>uart_reg_tx_module_v1_1</spirit:description>
   <spirit:parameters>
@@ -295,7 +316,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">uart_reg_tx_module_v1_0</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">uart_reg_tx_module_v1_1</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -311,19 +332,19 @@
       <xilinx:xpmLibraries>
         <xilinx:xpmLibrary>XPM_FIFO</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>1</xilinx:coreRevision>
+      <xilinx:coreRevision>2</xilinx:coreRevision>
       <xilinx:upgrades>
-        <xilinx:canUpgradeFrom>xilinx.com:user:uart_reg_tx_module:1.0</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>kulya.cn:user:uart_reg_tx_module:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2023-11-06T10:10:01Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2023-11-07T02:01:58Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="1d91acf1"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="0c75c4e3"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="c2242a3c"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="07e32d4e"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="35acf85c"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="59d1ab2d"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="093cfc70"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="4e2f0a8b"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

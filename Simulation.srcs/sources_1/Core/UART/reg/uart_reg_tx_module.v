@@ -8,7 +8,7 @@
 // Module Name: 
 // Project Name: 
 // Target Devices: 
-// Tool Versions: 
+// Tool Versions: V1.1
 // Description: 
 // 
 // Dependencies: 
@@ -24,7 +24,7 @@ module uart_reg_tx_module #(
 ) (
     input                  clk,            //system clock 50Mhz on board
     input                  rst_n,          //reset ,low active
-    output                 uart_tx,
+    output                 uart_tx_port,
     input  [REG_WIDTH-1:0] uart_tx_reg,
     input                  uart_tx_valid,
     output                 uart_tx_ready
@@ -130,6 +130,6 @@ module uart_reg_tx_module #(
       .tx_data_valid(tx_data_valid),
       .tx_data_ready(tx_data_ready),
       .tx_ack       (tx_ack),
-      .tx_pin       (uart_tx)
+      .tx_pin       (uart_tx_port)
   );
 endmodule
