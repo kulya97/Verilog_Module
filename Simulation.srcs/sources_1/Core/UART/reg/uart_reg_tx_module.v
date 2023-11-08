@@ -56,7 +56,6 @@ module uart_reg_tx_module #(
   wire                 tx_ack;
   wire [          7:0] tx_data;
   /*******************************************************************/
-
   //写tx fifo数据
   assign fifo_wr_en    = uart_tx_valid;
   assign fifo_din      = uart_tx_reg;
