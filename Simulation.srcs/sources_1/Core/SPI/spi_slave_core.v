@@ -8,11 +8,11 @@
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
-// Description: ³£ÓÃÄ£Ê½CPOL£ºCPHA
-//(³£ÓÃ)mode 0:00:sclk³¡µÍ£¬µÚÒ»¸ö±ßÑØ²ÉÑù£¬µÚ¶ş¸ö±ßÑØ·¢ËÍ£¬ÏÂ½µÑØ·¢ËÍ£¬ÉÏÉıÑØ²ÉÑù
-//(²»³£)mode 1:01:sclk³¡µÍ£¬µÚÒ»¸ö±ßÑØ·¢ËÍ£¬µÚ¶ş¸ö±ßÑØ²ÉÑù£¬ÏÂ½µÑØ²ÉÑù£¬ÉÏÉıÑØ·¢ËÍ
-//(²»³£)mode 2:10:sclk³£¸ß£¬µÚÒ»¸ö±ßÑØ²ÉÑù£¬µÚ¶ş¸ö±ßÑØ·¢ËÍ£¬ÏÂ½µÑØ²ÉÑù£¬ÉÏÉıÑØ·¢ËÍ
-//(³£ÓÃ)mode 3:11:sclk³£¸ß£¬µÚÒ»¸ö±ßÑØ·¢ËÍ£¬µÚ¶ş¸ö±ßÑØ²ÉÑù£¬ÏÂ½µÑØ·¢ËÍ£¬ÉÏÉıÑØ²ÉÑù
+// Description: å¸¸ç”¨æ¨¡å¼CPOLï¼šCPHA
+//(å¸¸ç”¨)mode 0:00:sclkåœºä½ï¼Œç¬¬ä¸€ä¸ªè¾¹æ²¿é‡‡æ ·ï¼Œç¬¬äºŒä¸ªè¾¹æ²¿å‘é€ï¼Œä¸‹é™æ²¿å‘é€ï¼Œä¸Šå‡æ²¿é‡‡æ ·
+//(ä¸å¸¸)mode 1:01:sclkåœºä½ï¼Œç¬¬ä¸€ä¸ªè¾¹æ²¿å‘é€ï¼Œç¬¬äºŒä¸ªè¾¹æ²¿é‡‡æ ·ï¼Œä¸‹é™æ²¿é‡‡æ ·ï¼Œä¸Šå‡æ²¿å‘é€
+//(ä¸å¸¸)mode 2:10:sclkå¸¸é«˜ï¼Œç¬¬ä¸€ä¸ªè¾¹æ²¿é‡‡æ ·ï¼Œç¬¬äºŒä¸ªè¾¹æ²¿å‘é€ï¼Œä¸‹é™æ²¿é‡‡æ ·ï¼Œä¸Šå‡æ²¿å‘é€
+//(å¸¸ç”¨)mode 3:11:sclkå¸¸é«˜ï¼Œç¬¬ä¸€ä¸ªè¾¹æ²¿å‘é€ï¼Œç¬¬äºŒä¸ªè¾¹æ²¿é‡‡æ ·ï¼Œä¸‹é™æ²¿å‘é€ï¼Œä¸Šå‡æ²¿é‡‡æ ·
 // Dependencies: 
 // 
 // Revision:
@@ -25,8 +25,8 @@ module spi_slave_core (
     input rst_n,
     input en,
 
-    input  CPOL,  // Ê±ÖÓ¼«ĞÔ
-    input  CPHA,  //Ê±ÖÓÏàÎ» 
+    input  CPOL,  // æ—¶é’Ÿææ€§
+    input  CPHA,  //æ—¶é’Ÿç›¸ä½ 
     input  CS,    //chip select (SPI mode)
     input  DCLK,  //spi clock
     input  MOSI,  //spi data input
@@ -34,7 +34,7 @@ module spi_slave_core (
 
     input  [7:0] data_in,    //data in
     output [7:0] data_out,   //data out
-    output       data_ready  //ÏìÓ¦
+    output       data_ready  //å“åº”
 );
 
   /***************************/
@@ -67,16 +67,16 @@ module spi_slave_core (
       r_dclk_d1 <= r_dclk_d0;
     end
   end
-  assign r_sampling_r = r_dclk_d0 & !r_dclk_d1;  //ÉÏÉıÑØ
-  assign r_sampling_f = !r_dclk_d0 & r_dclk_d1;  //ÏÂ½µÑØ
-  assign r_sampling   = (r_dclk_d0 != r_dclk_d1);  //Ìø±äÑØ
-  /**************************Í¬²½×´Ì¬****************************/
+  assign r_sampling_r = r_dclk_d0 & !r_dclk_d1;  //ä¸Šå‡æ²¿
+  assign r_sampling_f = !r_dclk_d0 & r_dclk_d1;  //ä¸‹é™æ²¿
+  assign r_sampling   = (r_dclk_d0 != r_dclk_d1);  //è·³å˜æ²¿
+  /**************************åŒæ­¥çŠ¶æ€****************************/
   reg [4:0] STATE_CURRENT;
   reg [4:0] STATE_NEXT;
-  localparam S_IDLE = 5'd0;  //¿ÕÏĞ
-  localparam S_INIT = 5'd1;  //¿ÕÏĞ
-  localparam S_DCLK_IDLE = 5'd2;  //¿ÕÏĞ
-  localparam S_ACK = 5'd3;  //¿ÕÏĞ
+  localparam S_IDLE = 5'd0;  //ç©ºé—²
+  localparam S_INIT = 5'd1;  //ç©ºé—²
+  localparam S_DCLK_IDLE = 5'd2;  //ç©ºé—²
+  localparam S_ACK = 5'd3;  //ç©ºé—²
 
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) STATE_CURRENT <= S_IDLE;
@@ -88,7 +88,7 @@ module spi_slave_core (
     else if (STATE_NEXT != STATE_CURRENT) state_clk_cnt <= 32'd0;
     else state_clk_cnt <= state_clk_cnt + 1'd1;
   end
-  /**************************×ªÒÆ×´Ì¬****************************/
+  /**************************è½¬ç§»çŠ¶æ€****************************/
   always @(*) begin
     case (STATE_CURRENT)
       S_IDLE: begin
@@ -111,7 +111,7 @@ module spi_slave_core (
     endcase
   end
 
-  /**************************±ßÑØ¼ÆÊı****************************/
+  /**************************è¾¹æ²¿è®¡æ•°****************************/
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) r_rising_cnt <= 'd0;
     else if (STATE_CURRENT == S_INIT) r_rising_cnt <= 'd0;
@@ -130,12 +130,12 @@ module spi_slave_core (
     else if (STATE_CURRENT == S_DCLK_IDLE && r_sampling) r_edge_cnt <= r_edge_cnt + 1'd1;
     else r_edge_cnt <= r_edge_cnt;
   end
-  /**************************ÊäÈë****************************/
+  /**************************è¾“å…¥****************************/
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) MOSI_shift <= 'd0;
     else if (STATE_CURRENT == S_INIT) MOSI_shift <= 'd0;
-    else if (STATE_CURRENT == S_DCLK_IDLE && CPHA == CPOL && r_sampling_r) MOSI_shift <= {MOSI_shift[6:0], MOSI};  //ÉÏÉıÑØ²ÉÑù
-    else if (STATE_CURRENT == S_DCLK_IDLE && CPHA != CPOL && r_sampling_f) MOSI_shift <= {MOSI_shift[6:0], MOSI};  //ÏÂ½µÑØ²ÉÑù
+    else if (STATE_CURRENT == S_DCLK_IDLE && CPHA == CPOL && r_sampling_r) MOSI_shift <= {MOSI_shift[6:0], MOSI};  //ä¸Šå‡æ²¿é‡‡æ ·
+    else if (STATE_CURRENT == S_DCLK_IDLE && CPHA != CPOL && r_sampling_f) MOSI_shift <= {MOSI_shift[6:0], MOSI};  //ä¸‹é™æ²¿é‡‡æ ·
     else MOSI_shift <= MOSI_shift;
   end
   always @(posedge clk, negedge rst_n) begin
@@ -148,14 +148,14 @@ module spi_slave_core (
     else if (STATE_CURRENT == S_ACK) r_data_ready <= 1'b1;
     else r_data_ready <= 1'd0;
   end
-  /*************************Êä³ö****************************/
+  /*************************è¾“å‡º****************************/
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) MISO_shift <= 'd0;
     else if (STATE_CURRENT == S_INIT) MISO_shift <= data_in;
-    else if (STATE_CURRENT == S_DCLK_IDLE && CPHA && CPOL && r_sampling_r && r_edge_cnt != 'd0) MISO_shift <= {MISO_shift[6:0], 1'b0};  //ÉÏÉıÑØ´«Êä
-    else if (STATE_CURRENT == S_DCLK_IDLE && !CPHA && !CPOL && r_sampling_r) MISO_shift <= {MISO_shift[6:0], 1'b0};  //ÉÏÉıÑØ´«Êä
-    else if (STATE_CURRENT == S_DCLK_IDLE && !CPHA && CPOL && r_sampling_f) MISO_shift <= {MISO_shift[6:0], 1'b0};  //ÏÂ½µÑØ´«Êä
-    else if (STATE_CURRENT == S_DCLK_IDLE && CPHA && !CPOL && r_sampling_f && r_edge_cnt != 'd0) MISO_shift <= {MISO_shift[6:0], 1'b0};  //ÏÂ½µÑØ´«Êä
+    else if (STATE_CURRENT == S_DCLK_IDLE && CPHA && CPOL && r_sampling_r && r_edge_cnt != 'd0) MISO_shift <= {MISO_shift[6:0], 1'b0};  //ä¸Šå‡æ²¿ä¼ è¾“
+    else if (STATE_CURRENT == S_DCLK_IDLE && !CPHA && !CPOL && r_sampling_r) MISO_shift <= {MISO_shift[6:0], 1'b0};  //ä¸Šå‡æ²¿ä¼ è¾“
+    else if (STATE_CURRENT == S_DCLK_IDLE && !CPHA && CPOL && r_sampling_f) MISO_shift <= {MISO_shift[6:0], 1'b0};  //ä¸‹é™æ²¿ä¼ è¾“
+    else if (STATE_CURRENT == S_DCLK_IDLE && CPHA && !CPOL && r_sampling_f && r_edge_cnt != 'd0) MISO_shift <= {MISO_shift[6:0], 1'b0};  //ä¸‹é™æ²¿ä¼ è¾“
     else MISO_shift <= MISO_shift;
   end
 endmodule
