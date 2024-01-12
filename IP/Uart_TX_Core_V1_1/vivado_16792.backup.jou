@@ -1,0 +1,28 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Fri Jan 12 00:38:16 2024
+# Process ID: 16792
+# Current directory: E:/Verilog_Module/IP/Uart_TX_Core_V1_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent18308 E:\Verilog_Module\IP\Uart_TX_Core_V1_1\tmp_edit_project.xpr
+# Log file: E:/Verilog_Module/IP/Uart_TX_Core_V1_1/vivado.log
+# Journal file: E:/Verilog_Module/IP/Uart_TX_Core_V1_1\vivado.jou
+# Running On: LAPTOP-728FV7UV, OS: Windows, CPU Frequency: 2304 MHz, CPU Physical cores: 4, Host memory: 8446 MB
+#-----------------------------------------------------------
+start_guioopen_project E:/Verilog_Module/IP/Uart_TX_Core_V1_1/tmp_edit_project.xpr
+update_compile_order -fileset sources_1
+px::open_ipxact_file {E:\Verilog_Module\IP\Uart_TX_Core_V1_1\component.xml}
+ipx::remove_file ip_project_archive.zip [ipx::get_file_groups archive_project -of_objects [ipx::current_core]]
+set_property core_revision 6 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path e:/Verilog_Module/IP
+set_property core_revision 7 [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+ipx::save_core [ipx::current_core]
+update_ip_catalog -rebuild -repo_path e:/Verilog_Module/IP

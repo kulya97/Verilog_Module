@@ -23,7 +23,7 @@
 module Par2Ser #(
     parameter SERWIDTH   = 8,
     parameter PARWIDTH   = 32,
-    parameter Data_Order = 1 //数据方向
+    parameter Data_Order = 1    //数据方向
 
 ) (
     input                     clk,

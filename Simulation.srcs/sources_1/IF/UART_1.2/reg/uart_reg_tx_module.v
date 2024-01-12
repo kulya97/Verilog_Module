@@ -57,7 +57,7 @@ module uart_reg_tx_module #(
   wire [          7:0] tx_data;
   /*******************************************************************/
   //写tx fifo数据
-  assign fifo_wr_en    = uart_tx_valid && uart_tx_ready;
+  assign fifo_wr_en    = uart_tx_valid;
   assign fifo_din      = uart_tx_reg;
   assign fifo_rd_en    = par_ready && par_valid;
 
@@ -69,7 +69,7 @@ module uart_reg_tx_module #(
   assign tx_data_valid = ser_valid;
   assign rd_en         = tx_data_valid && tx_data_ready;
 
-  assign uart_tx_ready = !fifo_prog_full && !fifo_rd_rst_busy && !fifo_wr_rst_busy;  //fifo 没满前一直读取数据到fifo中,并且需要复位完成
+  assign uart_tx_ready = !(fifo_prog_full || fifo_rd_rst_busy || fifo_wr_rst_busy);  //fifo 没满前一直读取数据到fifo中,并且需要复位完成
   /*******************************************************************/
 
   xpm_fifo_sync #(
@@ -77,8 +77,8 @@ module uart_reg_tx_module #(
       .FIFO_WRITE_DEPTH   (16),         // fifo 深度
       .WRITE_DATA_WIDTH   (REG_WIDTH),  // 写端口数据宽度
       .READ_DATA_WIDTH    (REG_WIDTH),  // 读端口数据宽度
-      .PROG_EMPTY_THRESH  (5),          // 快空水线
-      .PROG_FULL_THRESH   (5),          // 快满水线
+      .PROG_EMPTY_THRESH  (5),         // 快空水线
+      .PROG_FULL_THRESH   (5),         // 快满水线
       .RD_DATA_COUNT_WIDTH(1),          // 读侧数据统计值的位宽
       .WR_DATA_COUNT_WIDTH(1),          // 写侧数据统计值的位宽
       .USE_ADV_FEATURES   ("0707"),     //各标志位的启用控制
