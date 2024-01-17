@@ -1,133 +1,184 @@
-module APB_Slave_Core #(
-    parameter ADDR_WITDH = 24,
-    parameter DATA_WITDH = 32
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 2024/01/17 15:00:00
+// Design Name: 
+// Module Name: APB_Master_Core
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
+module APB_Master_Core #(
+    parameter APB_DBIT = 32,
+    parameter APB_ABIT = 32,
+    parameter RD_FLAG  = 2'b00,
+    parameter WR_FLAG  = 2'b11
 ) (
-    input                         PCLK,
-    input                         PRESETn,
-    //
-    input      [  ADDR_WITDH-1:0] PADDR,
-    input                         PSELx,
-    input                         PENABLE,
-    //
-    input                         PWRITE,
-    input      [  DATA_WITDH-1:0] PWDATA,
-    //
-    input      [             2:0] PPROT,    //APB4 sign unused  000
-    input      [DATA_WITDH/8-1:0] PSTRB,    //APB3 sign 
-    //
-    output                        PREADY,   //APB3 sign
-    output reg [  DATA_WITDH-1:0] PRDATA,
-    //
-    output                        PSLVERR,  //APB3 sign unused
-
-    input  uart_rx,
-    output uart_tx
+    //-- user port
+    input                       i_cmd_rvld,
+    output                      o_cmd_rready,
+    input      [           1:0] i_cmd_rw,
+    input      [  APB_ABIT-1:0] i_cmd_addr,
+    input      [  APB_DBIT-1:0] i_cmd_wdata,
+    output reg [  APB_DBIT-1:0] o_cmd_rdata,
+    //-- apb if
+`ifdef APB4
+    output     [           2:0] o_apb_prot,     //APB4 sign unused  000
+    output     [APB_DBIT/8-1:0] o_apb_strb,     //APB4 sign 
+`endif
+    //-- apb3 if
+    input                       i_apb_clk,
+    input                       i_apb_rstn,
+    output reg [  APB_ABIT-1:0] o_apb_addr,
+    output reg                  o_apb_write,
+    output reg                  o_apb_selx,
+    output reg                  o_apb_enable,
+    output reg [  APB_DBIT-1:0] o_apb_wdata,
+    input      [  APB_DBIT-1:0] i_apb_rata,
+    input                       i_apb_ready,
+    input                       i_apb_slverr
 );
 
+  localparam CMD_WIDTH = APB_DBIT + APB_ABIT + 2;
+  //-- FSM state
+  localparam S_IDLE = 3'b001;
+  localparam S_SETUP = 3'b010;
+  localparam S_ACCESS = 3'b100;
+  //-- current state and next state
+  reg [          2:0] cur_state;
+  reg [          2:0] nxt_state;
 
+  //-- data buf
+  reg                 start_flag;
+  reg [CMD_WIDTH-1:0] cmd_in_buf;
+  reg [ APB_DBIT-1:0] cmd_rd_data_buf;
+  /*****************************************************************/
+`ifdef APB4
+  assign o_apb_prot = 3'b000;  //APB4 sign unused  000
+  assign o_apb_strb = o_apb_write ? 4'b0000 : 4'b1111;
+`endif
 
-  parameter REG1_ADDR = 32'h43C0_0000;
-  parameter REG2_ADDR = 32'h43C0_0004;
-  parameter REG3_ADDR = 32'h43C0_0008;
-  parameter REG4_ADDR = 32'h43C0_000c;
-
-  reg  [DATA_WITDH-1:0] r_reg1;
-  reg  [DATA_WITDH-1:0] r_reg2;
-  reg  [DATA_WITDH-1:0] r_reg3;
-  reg  [DATA_WITDH-1:0] r_reg4;  //only read
-  reg  [DATA_WITDH-1:0] r_invld_reg;
-
-  wire                  w_apb_write_vld;
-  wire                  w_apb_read_vld;
-  reg                   r_writedata_vld;
-  reg                   r_readdata_vld;
-
-  wire [          63:0] uart_rx_data;
-  wire                  uart_rx_valid;
-  /*******************************************/
-  assign PREADY          = 1'b1;
-  //   assign PPROT           = 3'b000;
-  //   assign PSTRB           = PWRITE ? 4'b0000 : 4'b1111;
-  assign PSLVERR         = 1'b0;
-
-  assign w_apb_write_vld = PWRITE && PSELx && PENABLE;
-  assign w_apb_read_vld  = (!PWRITE) && PSELx && PENABLE;
-
-  always @(posedge PCLK or negedge PRESETn) begin
-    if (!PRESETn) begin
-      r_reg1          <= 32'd0;
-      r_reg2          <= 32'd0;
-      r_reg3          <= 32'd0;
-      r_writedata_vld <= 1'b0;
-    end else if (w_apb_write_vld) begin
-      case (PADDR[ADDR_WITDH-1:0])
-        REG1_ADDR: begin
-          r_reg1          <= PWDATA;
-          r_writedata_vld <= 1'b1;
-        end
-        REG2_ADDR: begin
-          r_reg2          <= PWDATA;
-          r_writedata_vld <= 1'b1;
-        end
-        REG3_ADDR: begin
-          r_reg3          <= PWDATA;
-          r_writedata_vld <= 1'b1;
-        end
-        default: begin
-          r_invld_reg     <= PWDATA;
-          r_writedata_vld <= 1'b0;
-        end
-      endcase
+  assign o_cmd_rready = i_apb_ready;
+  /*****************************************************************/
+  /*-----------------------------------------------
+ --             update cmd_in_buf              --
+-----------------------------------------------*/
+  always @(posedge i_apb_clk or negedge i_apb_rstn) begin
+    if (!i_apb_rstn) begin
+      cmd_in_buf <= {(CMD_WIDTH) {1'b0}};
+    end else if (i_cmd_rvld && o_cmd_rready) begin
+      cmd_in_buf <= {i_cmd_rw, i_cmd_addr, i_cmd_wdata};
     end
   end
-  always @(*) begin
-    if (w_apb_read_vld) begin
-      case (PADDR[ADDR_WITDH-1:0])
-        REG1_ADDR: begin
-          PRDATA         <= r_reg1;
-          r_readdata_vld <= 1'b1;
-        end
-        REG2_ADDR: begin
-          PRDATA         <= r_reg2;
-          r_readdata_vld <= 1'b1;
-        end
-        REG3_ADDR: begin
-          PRDATA         <= r_reg3;
-          r_readdata_vld <= 1'b1;
-        end
-        REG4_ADDR: begin
-          PRDATA         <= uart_rx_data[31:0];
-          r_readdata_vld <= 1'b1;
-        end
-        default: begin
-          PRDATA         <= r_invld_reg;
-          r_readdata_vld <= 1'b0;
-        end
-      endcase
+
+  /*-----------------------------------------------
+ --             start flag of transfer         --
+-----------------------------------------------*/
+  always @(posedge i_apb_clk or negedge i_apb_rstn) begin
+    if (!i_apb_rstn) begin
+      start_flag <= 1'b0;
+    end else if (i_cmd_rvld && o_cmd_rready) begin
+      start_flag <= 1'b1;
     end else begin
-      PRDATA         <= 32'd0;
-      r_readdata_vld <= 1'b0;
+      start_flag <= 1'b0;
     end
   end
 
-  wire [63:0] uart_tx_reg;
-  assign uart_tx_reg = {REG1_ADDR, r_reg1};
-  uart_reg_tx_module_0 your_instance_name (
-      .clk          (PCLK),             // input wire clk
-      .rst_n        (PRESETn),          // input wire rst_n
-      .uart_tx_port (uart_tx),          // output wire uart_tx_port
-      .uart_tx_reg  (uart_tx_reg),      // input wire [63 : 0] uart_tx_reg
-      .uart_tx_valid(r_writedata_vld),  // input wire uart_tx_valid
-      .uart_tx_ready()                  // output wire uart_tx_ready
-  );
+  /*-----------------------------------------------
+ --           update current state             --
+-----------------------------------------------*/
+  always @(posedge i_apb_clk or negedge i_apb_rstn) begin
+    if (!i_apb_rstn) begin
+      cur_state <= S_IDLE;
+    end else begin
+      cur_state <= nxt_state;
+    end
+  end
 
-  uart_reg_rx_module_0 your_instance_name2 (
-      .clk          (PCLK),          // input wire clk
-      .rst_n        (PRESETn),       // input wire rst_n
-      .uart_rx_port (uart_rx),       // input wire uart_rx_port
-      .uart_rx_data (uart_rx_data),  // output wire [63 : 0] uart_rx_data
-      .uart_rx_ready(1),             // input wire uart_rx_ready
-      .uart_rx_valid(uart_rx_valid)  // output wire uart_rx_valid
-  );
+  /*-----------------------------------------------
+ --               update next state            --
+-----------------------------------------------*/
+  always @(*) begin
+    case (cur_state)
+      S_IDLE:
+      if (start_flag) begin
+        nxt_state = S_SETUP;
+      end else begin
+        nxt_state = S_IDLE;
+      end
+      S_SETUP: nxt_state = S_ACCESS;
+      S_ACCESS:
+      if (!o_cmd_rready) begin
+        nxt_state = S_ACCESS;
+      end else if (start_flag) begin
+        nxt_state = S_SETUP;
+      end else if (!i_cmd_rvld && o_cmd_rready) begin
+        nxt_state = S_IDLE;
+      end
+    endcase
+  end
+
+  /*-----------------------------------------------
+ --         update signal of output            --
+-----------------------------------------------*/
+  always @(posedge i_apb_clk or negedge i_apb_rstn) begin
+    if (!i_apb_rstn) begin
+      o_apb_write  <= 1'b0;
+      o_apb_selx   <= 1'b0;
+      o_apb_enable <= 1'b0;
+      o_apb_addr   <= {(APB_ABIT) {1'b0}};
+      o_apb_wdata  <= {(APB_DBIT) {1'b0}};
+    end else if (nxt_state == S_IDLE) begin
+      o_apb_selx   <= 1'b0;
+      o_apb_enable <= 1'b0;
+    end else if (nxt_state == S_SETUP) begin
+      o_apb_selx   <= 1'b1;
+      o_apb_enable <= 1'b0;
+      o_apb_addr   <= cmd_in_buf[CMD_WIDTH-2-1:APB_DBIT];
+      //-- read
+      if (cmd_in_buf[CMD_WIDTH-1:CMD_WIDTH-2] == RD_FLAG) begin
+        o_apb_write <= 1'b0;
+      end  //-- write
+      else begin
+        o_apb_write <= 1'b1;
+        o_apb_wdata <= cmd_in_buf[APB_DBIT-1:0];
+      end
+    end else if (nxt_state == S_ACCESS) begin
+      o_apb_enable <= 1'b1;
+    end
+  end
+
+  /*-----------------------------------------------
+ --            update cmd_rd_data_buf          --
+-----------------------------------------------*/
+  always @(posedge i_apb_clk or negedge i_apb_rstn) begin
+    if (!i_apb_rstn) begin
+      cmd_rd_data_buf <= {(APB_DBIT) {1'b0}};
+    end else if (i_apb_ready && o_apb_selx && o_apb_enable) begin
+      cmd_rd_data_buf <= i_apb_rata;
+    end
+  end
+
+  /*-----------------------------------------------
+ --            update o_cmd_rdata            --
+-----------------------------------------------*/
+  always @(posedge i_apb_clk or negedge i_apb_rstn) begin
+    if (!i_apb_rstn) begin
+      o_cmd_rdata <= {(APB_DBIT) {1'b0}};
+    end else begin
+      o_cmd_rdata <= cmd_rd_data_buf;
+    end
+  end
+
 endmodule
