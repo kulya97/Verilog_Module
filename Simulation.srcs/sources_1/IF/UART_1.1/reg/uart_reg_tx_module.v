@@ -69,12 +69,12 @@ module uart_reg_tx_module #(
   assign tx_data_valid = ser_valid;
   assign rd_en         = tx_data_valid && tx_data_ready;
 
-  assign uart_tx_ready = !(fifo_prog_full||fifo_rd_rst_busy||fifo_wr_rst_busy);  //fifo 没满前一直读取数据到fifo中,并且需要复位完成
+  assign uart_tx_ready = !(fifo_prog_full || fifo_rd_rst_busy || fifo_wr_rst_busy);  //fifo 没满前一直读取数据到fifo中,并且需要复位完成
   /*******************************************************************/
 
   xpm_fifo_sync #(
       .READ_MODE          ("fwft"),     // fifo 类型 "std", "fwft"
-      .FIFO_WRITE_DEPTH   (128),        // fifo 深度
+      .FIFO_WRITE_DEPTH   (32),         // fifo 深度
       .WRITE_DATA_WIDTH   (REG_WIDTH),  // 写端口数据宽度
       .READ_DATA_WIDTH    (REG_WIDTH),  // 读端口数据宽度
       .PROG_EMPTY_THRESH  (10),         // 快空水线

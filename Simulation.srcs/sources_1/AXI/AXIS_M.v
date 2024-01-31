@@ -1,200 +1,142 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 2024/01/28 18:10:20
+// Design Name: 
+// Module Name: audio2axi_stream_master
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
-`timescale 1 ns / 1 ps
-
-module AXIS_M #(
+module ui2axi_stream_master #(
     // Users to add parameters here
-
+    parameter integer UI_FRAME_SIZE = 1024,
+    parameter integer UI_DATA_WIDTH = 16,
     // User parameters ends
-    // Do not modify the parameters beyond this line
-
-    // Width of S_AXIS address bus. The slave accepts the read and write addresses of width C_M_AXIS_TDATA_WIDTH.
     parameter integer C_M_AXIS_TDATA_WIDTH = 32,
-    // Start count is the number of clock cycles the master will wait before initiating/issuing any transaction.
     parameter integer C_M_START_COUNT = 32
 ) (
-    // Users to add ports here
-
-    // User ports ends
-    // Do not modify the ports beyond this line
-
-    // Global ports
-    input  wire                                  M_AXIS_ACLK,
-    // 
-    input  wire                                  M_AXIS_ARESETN,
-    // Master Stream Ports. TVALID indicates that the master is driving a valid transfer, A transfer takes place when both TVALID and TREADY are asserted. 
-    output wire                                  M_AXIS_TVALID,
-    // TDATA is the primary payload that is used to provide the data that is passing across the interface from the master.
-    output wire [    C_M_AXIS_TDATA_WIDTH-1 : 0] M_AXIS_TDATA,
-    // TSTRB is the byte qualifier that indicates whether the content of the associated byte of TDATA is processed as a data byte or a position byte.
-    output wire [(C_M_AXIS_TDATA_WIDTH/8)-1 : 0] M_AXIS_TSTRB,
-    // TLAST indicates the boundary of a packet.
-    output wire                                  M_AXIS_TLAST,
-    // TREADY indicates that the slave can accept a transfer in the current cycle.
-    input  wire                                  M_AXIS_TREADY
+    //-- Users to add ports here
+    input                                   i_ui_dvld,
+    input  [             UI_DATA_WIDTH-1:0] i_ui_data,
+    output                                  o_ui_drdy,
+    output                                  o_ui_dlast,
+    //-- Global ports
+    input                                   M_AXIS_ACLK,
+    input                                   M_AXIS_ARESETN,
+    output                                  M_AXIS_TVALID,
+    output [    C_M_AXIS_TDATA_WIDTH-1 : 0] M_AXIS_TDATA,
+    output [(C_M_AXIS_TDATA_WIDTH/8)-1 : 0] M_AXIS_TSTRB,
+    output                                  M_AXIS_TLAST,
+    input                                   M_AXIS_TREADY
 );
-  // Total number of output data                                                 
-  localparam NUMBER_OF_OUTPUT_WORDS = 8;
-
-  // function called clogb2 that returns an integer which has the                      
-  // value of the ceiling of the log base 2.                                           
+  //---------------------------------------------------------------------------------------
+  //-- 参数定义
+  //---------------------------------------------------------------------------------------   
+  //-- 一帧数据长度                                             
+  localparam NUMBER_OF_OUTPUT_WORDS = UI_FRAME_SIZE;
+  localparam UI2AXI_WIDTH = C_M_AXIS_TDATA_WIDTH - UI_DATA_WIDTH;
   function integer clogb2(input integer bit_depth);
     begin
       for (clogb2 = 0; bit_depth > 0; clogb2 = clogb2 + 1) bit_depth = bit_depth >> 1;
     end
   endfunction
 
-  // WAIT_COUNT_BITS is the width of the wait counter.                                 
   localparam integer WAIT_COUNT_BITS = clogb2(C_M_START_COUNT - 1);
-
-  // bit_num gives the minimum number of bits needed to address 'depth' size of FIFO.  
   localparam bit_num = clogb2(NUMBER_OF_OUTPUT_WORDS);
-
-  // Define the states of state machine                                                
-  // The control state machine oversees the writing of input streaming data to the FIFO,
-  // and outputs the streaming data from the FIFO                                      
-  parameter [1:0] IDLE = 2'b00,  // This is the initial/idle state               
-
-  INIT_COUNTER = 2'b01,  // This state initializes the counter, once   
-  // the counter reaches C_M_START_COUNT count,        
-  // the state machine changes state to SEND_STREAM     
-  SEND_STREAM = 2'b10;  // In this state the                          
-  // stream data is output through M_AXIS_TDATA   
-  // State variable                                                                    
-  reg  [                       1:0] mst_exec_state;
-  // Example design FIFO read pointer                                                  
-  reg  [               bit_num-1:0] read_pointer;
-
-  // AXI Stream internal signals
-  //wait counter. The master waits for the user defined number of clock cycles before initiating a transfer.
-  reg  [     WAIT_COUNT_BITS-1 : 0] count;
-  //streaming data valid
-  wire                              axis_tvalid;
-  //streaming data valid delayed by one clock cycle
-  reg                               axis_tvalid_delay;
-  //Last of the streaming data 
-  wire                              axis_tlast;
-  //Last of the streaming data delayed by one clock cycle
-  reg                               axis_tlast_delay;
-  //FIFO implementation signals
-  reg  [C_M_AXIS_TDATA_WIDTH-1 : 0] stream_data_out;
-  wire                              tx_en;
-  //The master has issued all the streaming data stored in FIFO
-  reg                               tx_done;
-
-
-  // I/O Connections assignments
-
-  assign M_AXIS_TVALID = axis_tvalid_delay;
-  assign M_AXIS_TDATA  = stream_data_out;
-  assign M_AXIS_TLAST  = axis_tlast_delay;
+  //--------------------------------------------------------------------------------------- 
+  //-- 状态机
+  //---------------------------------------------------------------------------------------                                   
+  parameter [1:0] IDLE = 2'b00;
+  parameter [1:0] INIT_COUNTER = 2'b01;
+  parameter [1:0] SEND_STREAM = 2'b10;
+  reg [                       1:0] s_state_nxt;
+  reg [                       1:0] s_state_cur;
+  //---------------------------------------------------------------------------------------
+  //-- 
+  //---------------------------------------------------------------------------------------  
+  reg [     WAIT_COUNT_BITS-1 : 0] count;
+  reg                              r_axis_dvld_d1;
+  reg [               bit_num-1:0] r_axis_tdata_cnt;
+  reg [C_M_AXIS_TDATA_WIDTH-1 : 0] r_axis_tdata_d1;
+  reg                              r_axis_tlast_d1;
+  //---------------------------------------------------------------------------------------
+  //-- 
+  //---------------------------------------------------------------------------------------  
+  assign M_AXIS_TVALID = r_axis_dvld_d1;
+  assign M_AXIS_TDATA  = r_axis_tdata_d1;
+  assign M_AXIS_TLAST  = r_axis_tlast_d1;
   assign M_AXIS_TSTRB  = {(C_M_AXIS_TDATA_WIDTH / 8) {1'b1}};
 
-
-  // Control state machine implementation                             
+  assign o_ui_drdy     = (s_state_cur == SEND_STREAM);
+  assign o_ui_dlast    = r_axis_tlast_d1;
+  //---------------------------------------------------------------------------------------
+  //-- 
+  //---------------------------------------------------------------------------------------    
   always @(posedge M_AXIS_ACLK) begin
-    if (!M_AXIS_ARESETN)                                                    
-	  // Synchronous reset (active low)                                       
-	    begin
-      mst_exec_state <= IDLE;
-      count          <= 0;
-    end else
-      case (mst_exec_state)
-        IDLE:
-        // The slave starts accepting tdata when                          
-        // there tvalid is asserted to mark the                           
-        // presence of valid streaming data                               
-        //if ( count == 0 )                                                 
-        //  begin                                                           
-        mst_exec_state <= INIT_COUNTER;
-        //  end                                                             
-        //else                                                              
-        //  begin                                                           
-        //    mst_exec_state  <= IDLE;                                      
-        //  end                                                             
+    if (!M_AXIS_ARESETN) s_state_cur <= IDLE;
+    else s_state_cur <= s_state_nxt;
+  end
 
-        INIT_COUNTER:
-        // The slave starts accepting tdata when                          
-        // there tvalid is asserted to mark the                           
-        // presence of valid streaming data                               
-        if (count == C_M_START_COUNT - 1) begin
-          mst_exec_state <= SEND_STREAM;
-        end else begin
-          count          <= count + 1;
-          mst_exec_state <= INIT_COUNTER;
-        end
-
-        SEND_STREAM:
-        // The example design streaming master functionality starts       
-        // when the master drives output tdata from the FIFO and the slave
-        // has finished storing the S_AXIS_TDATA                          
-        if (tx_done) begin
-          mst_exec_state <= IDLE;
-        end else begin
-          mst_exec_state <= SEND_STREAM;
-        end
-      endcase
+  always @(*) begin
+    s_state_nxt = IDLE;
+    case (s_state_cur)
+      IDLE: s_state_nxt = INIT_COUNTER;
+      INIT_COUNTER:  //初始化计数
+      if (count >= C_M_START_COUNT) s_state_nxt = SEND_STREAM;
+      else s_state_nxt = INIT_COUNTER;
+      SEND_STREAM:  //当主设备驱动FIFO的输出tdata并且从设备已完成S_AXIS_DATA的存储时，流式传输主设备功能开始                    
+      if (o_ui_drdy && i_ui_dvld && r_axis_tdata_cnt == NUMBER_OF_OUTPUT_WORDS - 1) s_state_nxt = IDLE;
+      else s_state_nxt = SEND_STREAM;
+    endcase
   end
 
 
-  //tvalid generation
-  //axis_tvalid is asserted when the control state machine's state is SEND_STREAM and
-  //number of output streaming data is less than the NUMBER_OF_OUTPUT_WORDS.
-  assign axis_tvalid = ((mst_exec_state == SEND_STREAM) && (read_pointer < NUMBER_OF_OUTPUT_WORDS));
-
-  // AXI tlast generation                                                                        
-  // axis_tlast is asserted number of output streaming data is NUMBER_OF_OUTPUT_WORDS-1          
-  // (0 to NUMBER_OF_OUTPUT_WORDS-1)                                                             
-  assign axis_tlast  = (read_pointer == NUMBER_OF_OUTPUT_WORDS - 1);
-
-
-  // Delay the axis_tvalid and axis_tlast signal by one clock cycle                              
-  // to match the latency of M_AXIS_TDATA                                                        
   always @(posedge M_AXIS_ACLK) begin
-    if (!M_AXIS_ARESETN) begin
-      axis_tvalid_delay <= 1'b0;
-      axis_tlast_delay  <= 1'b0;
-    end else begin
-      axis_tvalid_delay <= axis_tvalid;
-      axis_tlast_delay  <= axis_tlast;
-    end
+    if (!M_AXIS_ARESETN) count <= 'd0;
+    else if (s_state_cur == INIT_COUNTER) count <= count + 1'b1;
+    else count <= 'd0;
   end
 
-
-  //read_pointer pointer
-
+  //---------------------------------------------------------------------------------------
+  //-- ui data out
+  //---------------------------------------------------------------------------------------   
+  //-- cnts 
   always @(posedge M_AXIS_ACLK) begin
-    if (!M_AXIS_ARESETN) begin
-      read_pointer <= 0;
-      tx_done      <= 1'b0;
-    end else if (read_pointer <= NUMBER_OF_OUTPUT_WORDS - 1) begin
-      if (tx_en)                                                               
-	          // read pointer is incremented after every read from the FIFO          
-	          // when FIFO read signal is enabled.                                   
-	          begin
-        read_pointer <= read_pointer + 1;
-        tx_done      <= 1'b0;
-      end
-    end else if (read_pointer == NUMBER_OF_OUTPUT_WORDS) begin
-      // tx_done is asserted when NUMBER_OF_OUTPUT_WORDS numbers of streaming data
-      // has been out.                                                         
-      tx_done <= 1'b1;
-    end
+    if (!M_AXIS_ARESETN) r_axis_tdata_cnt <= 0;
+    else if (s_state_cur == SEND_STREAM && o_ui_drdy && i_ui_dvld)  //当FIFO读取信号被启用时，读取指针在每次从FIFO读取之后递增。                          
+      r_axis_tdata_cnt <= r_axis_tdata_cnt + 1;
+    else if (s_state_cur != SEND_STREAM) r_axis_tdata_cnt <= 0;
+    else r_axis_tdata_cnt <= r_axis_tdata_cnt;
   end
-
-
-  //FIFO read enable generation 
-
-  assign tx_en = M_AXIS_TREADY && axis_tvalid;
-
-  // Streaming output data is read from FIFO       
+  //-- data out
   always @(posedge M_AXIS_ACLK) begin
-    if (!M_AXIS_ARESETN) begin
-      stream_data_out <= 1;
-    end                                          
-	      else if (tx_en)// && M_AXIS_TSTRB[byte_index]  
-	        begin
-      stream_data_out <= read_pointer + 32'b1;
-    end
+    if (!M_AXIS_ARESETN) r_axis_tdata_d1 <= 0;
+    else if (s_state_cur == SEND_STREAM && o_ui_drdy && i_ui_dvld) r_axis_tdata_d1 <= {{(UI2AXI_WIDTH - 1) {1'b0}}, i_ui_data[UI_DATA_WIDTH-1:0]};
+    else r_axis_tdata_d1 <= 0;
+  end
+  //-- vld out
+  always @(posedge M_AXIS_ACLK) begin
+    if (!M_AXIS_ARESETN) r_axis_dvld_d1 <= 0;
+    else if (s_state_cur == SEND_STREAM && o_ui_drdy && i_ui_dvld) r_axis_dvld_d1 <= 1'b1;
+    else r_axis_dvld_d1 <= 0;
+  end
+  //-- tlast out
+  always @(posedge M_AXIS_ACLK) begin
+    if (!M_AXIS_ARESETN) r_axis_tlast_d1 <= 0;
+    else if (s_state_cur == SEND_STREAM && o_ui_drdy && i_ui_dvld && r_axis_tdata_cnt == NUMBER_OF_OUTPUT_WORDS - 1) r_axis_tlast_d1 <= 1'b1;
+    else r_axis_tlast_d1 <= 0;
   end
 
   // Add user logic here
@@ -202,3 +144,4 @@ module AXIS_M #(
   // User logic ends
 
 endmodule
+
