@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: NJUST
+// Engineer: huangwenjie
 // 
 // Create Date: 2023/06/15 09:49:05
 // Design Name: 
