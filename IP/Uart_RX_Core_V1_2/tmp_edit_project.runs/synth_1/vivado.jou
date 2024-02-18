@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Tue Feb  6 21:08:39 2024
+# Process ID: 34440
+# Current directory: G:/Github/Verilog_Module/IP/Uart_RX_Core_V1_2/tmp_edit_project.runs/synth_1
+# Command line: vivado.exe -log uart_reg_rx_module.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source uart_reg_rx_module.tcl
+# Log file: G:/Github/Verilog_Module/IP/Uart_RX_Core_V1_2/tmp_edit_project.runs/synth_1/uart_reg_rx_module.vds
+# Journal file: G:/Github/Verilog_Module/IP/Uart_RX_Core_V1_2/tmp_edit_project.runs/synth_1\vivado.jou
+# Running On: Administrator, OS: Windows, CPU Frequency: 2995 MHz, CPU Physical cores: 24, Host memory: 34088 MB
+#-----------------------------------------------------------
+source uart_reg_rx_module.tcl -notrace
