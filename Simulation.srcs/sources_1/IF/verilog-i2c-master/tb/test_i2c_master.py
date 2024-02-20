@@ -34,8 +34,8 @@ testbench = 'test_%s' % module
 
 srcs = []
 
-srcs.append("G:/verilog-i2c-master/rtl/%s.v" % module)
-srcs.append("G:/verilog-i2c-master/tb/%s.v" % testbench)
+srcs.append("G:/Github/Verilog_Module/Simulation.srcs/sources_1/IF/verilog-i2c-master/rtl/%s.v" % module)
+srcs.append("G:/Github/Verilog_Module/Simulation.srcs/sources_1/IF/verilog-i2c-master/tb/%s.v" % testbench)
 
 src = ' '.join(srcs)
 
