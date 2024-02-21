@@ -25,7 +25,7 @@ module tb_wr_8bit;
   //
   localparam perid = 10;
   // Parameters
-  localparam integer CLK_FREQ = 32;
+  localparam integer CLK_FREQ = 8;
   localparam integer I2C_FREQ = 1;
 
   //Ports
@@ -44,13 +44,8 @@ module tb_wr_8bit;
   wire       o_busy;
   wire       o_done;
   wire       o_ack;
-  reg        scl_i;
-  wire       scl_o;
-  wire       scl_t;
-  reg        sda_i;
-  wire       sda_o;
-  wire       sda_t;
-
+  wire       i2c_sda;
+  wire       i2c_scl;
 
   always #(perid / 2) clk = !clk;
   initial begin
@@ -65,12 +60,28 @@ module tb_wr_8bit;
     #(perid * 20);
     rst_n = 1;
     #(perid * 20);
-    i_cmd_start = 0;
+    i_cmd_start = 1;
     i_cmd_wdata = 1;
     i_cmd_rdata = 0;
     i_cmd_stop  = 0;
     i_wvalid    = 1;
     i_wdata     = 8'haa;
+    #(perid * 2);
+    i_cmd_start = 0;
+    i_cmd_wdata = 0;
+    i_cmd_rdata = 0;
+    i_cmd_stop  = 0;
+    i_wvalid    = 0;
+    i_wdata     = 8'haa;
+    //--
+    wait (o_done);
+    #(perid * 1);
+    i_cmd_start = 0;
+    i_cmd_wdata = 1;
+    i_cmd_rdata = 0;
+    i_cmd_stop  = 0;
+    i_wvalid    = 1;
+    i_wdata     = 8'h55;
     #(perid * 2);
     i_cmd_start = 0;
     i_cmd_wdata = 0;
@@ -99,12 +110,8 @@ module tb_wr_8bit;
       .o_busy     (o_busy),
       .o_done     (o_done),
       .o_ack      (o_ack),
-      .scl_i      (scl_i),
-      .scl_o      (scl_o),
-      .scl_t      (scl_t),
-      .sda_i      (sda_i),
-      .sda_o      (sda_o),
-      .sda_t      (sda_t)
+      .i2c_scl    (i2c_scl),
+      .i2c_sda    (i2c_sda)
   );
 
 

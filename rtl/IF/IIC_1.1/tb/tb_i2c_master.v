@@ -53,16 +53,8 @@ module tb_i2c_master;
   //--------------------------------------------------------------------------
   wire        scl_pin;
   wire        sda_pin;
-  wire        scl_i = 1;
-  wire        scl_o;
-  wire        scl_t;
-  wire        sda_i = 1;
-  wire        sda_o;
-  wire        sda_t;
-  assign scl_i   = scl_pin;
-  assign scl_pin = scl_t ? 1'bz : scl_o;
-  assign sda_i   = sda_pin;
-  assign sda_pin = sda_t ? 1'bz : sda_o;
+
+
   //--------------------------------------------------------------------------
 
   always #(perid / 2) clk = !clk;
@@ -152,12 +144,14 @@ module tb_i2c_master;
       .m_axis_data_tvalid       (m_axis_data_tvalid),
       .m_axis_data_tready       (m_axis_data_tready),
       .m_axis_data_tlast        (m_axis_data_tlast),
-      .scl_i                    (scl_i),
-      .scl_o                    (scl_o),
-      .scl_t                    (scl_t),
-      .sda_i                    (sda_i),
-      .sda_o                    (sda_o),
-      .sda_t                    (sda_t),
+      // .scl_i                    (scl_i),
+      // .scl_o                    (scl_o),
+      // .scl_t                    (scl_t),
+      // .sda_i                    (sda_i),
+      // .sda_o                    (sda_o),
+      // .sda_t                    (sda_t),
+      .sda_pin                  (sda_pin),
+      .scl_pin                  (scl_pin),
       .busy                     (busy),
       .bus_control              (bus_control),
       .bus_active               (bus_active),
@@ -166,14 +160,42 @@ module tb_i2c_master;
       .stop_on_idle             (stop_on_idle)
   );
 
-  M24LC04B M24LC04B_inst (
-      .A0   (A0),
-      .A1   (A1),
-      .A2   (A2),
-      .WP   (0),
-      .SDA  (sda_o),
-      .SCL  (scl_o),
-      .RESET(rst)
-  );
+  // M24LC04B M24LC04B_inst (
+  //     .A0   (A0),
+  //     .A1   (A1),
+  //     .A2   (A2),
+  //     .WP   (0),
+  //     .SDA  (sda_pin),
+  //     .SCL  (scl_pin),
+  //     .RESET(rst)
+  // );
 
+  i2c_slave #(
+      .FILTER_LEN(FILTER_LEN)
+  ) i2c_slave_inst (
+      .clk                (clk),
+      .rst                (rst),
+      .release_bus        (release_bus),
+      .s_axis_data_tdata  (s_axis_data_tdata),
+      .s_axis_data_tvalid (s_axis_data_tvalid),
+      .s_axis_data_tready (s_axis_data_tready),
+      .s_axis_data_tlast  (s_axis_data_tlast),
+      .m_axis_data_tdata  (m_axis_data_tdata),
+      .m_axis_data_tvalid (m_axis_data_tvalid),
+      .m_axis_data_tready (m_axis_data_tready),
+      .m_axis_data_tlast  (m_axis_data_tlast),
+      .scl_i              (scl_i),
+      .scl_o              (scl_o),
+      .scl_t              (scl_t),
+      .sda_i              (sda_i),
+      .sda_o              (sda_o),
+      .sda_t              (sda_t),
+      .busy               (busy),
+      .bus_address        (bus_address),
+      .bus_addressed      (bus_addressed),
+      .bus_active         (bus_active),
+      .enable             (enable),
+      .device_address     (device_address),
+      .device_address_mask(device_address_mask)
+  );
 endmodule

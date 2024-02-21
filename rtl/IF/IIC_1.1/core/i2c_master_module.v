@@ -26,6 +26,50 @@ module i2c_master_module #(
     output                     o_i2c_busy
 
 );
+
+  localparam CLK_DIV = (CLK_FREQ / I2C_FREQ) >> 2'd2;
+  localparam CLK_DIV_00 = CLK_DIV * 00;
+  localparam CLK_DIV_01 = CLK_DIV * 01;
+  localparam CLK_DIV_02 = CLK_DIV * 02;
+  localparam CLK_DIV_03 = CLK_DIV * 03;
+  localparam CLK_DIV_04 = CLK_DIV * 04;
+  localparam CLK_DIV_05 = CLK_DIV * 05;
+  localparam CLK_DIV_06 = CLK_DIV * 06;
+  localparam CLK_DIV_07 = CLK_DIV * 07;
+  localparam CLK_DIV_08 = CLK_DIV * 08;
+  localparam CLK_DIV_09 = CLK_DIV * 09;
+  localparam CLK_DIV_10 = CLK_DIV * 10;
+  localparam CLK_DIV_11 = CLK_DIV * 11;
+  localparam CLK_DIV_12 = CLK_DIV * 12;
+  localparam CLK_DIV_13 = CLK_DIV * 13;
+  localparam CLK_DIV_14 = CLK_DIV * 14;
+  localparam CLK_DIV_15 = CLK_DIV * 15;
+  localparam CLK_DIV_16 = CLK_DIV * 16;
+  localparam CLK_DIV_17 = CLK_DIV * 17;
+  localparam CLK_DIV_18 = CLK_DIV * 18;
+  localparam CLK_DIV_19 = CLK_DIV * 19;
+  localparam CLK_DIV_20 = CLK_DIV * 20;
+  localparam CLK_DIV_21 = CLK_DIV * 21;
+  localparam CLK_DIV_22 = CLK_DIV * 22;
+  localparam CLK_DIV_23 = CLK_DIV * 23;
+  localparam CLK_DIV_24 = CLK_DIV * 24;
+  localparam CLK_DIV_25 = CLK_DIV * 25;
+  localparam CLK_DIV_26 = CLK_DIV * 26;
+  localparam CLK_DIV_27 = CLK_DIV * 27;
+  localparam CLK_DIV_28 = CLK_DIV * 28;
+  localparam CLK_DIV_29 = CLK_DIV * 29;
+  localparam CLK_DIV_30 = CLK_DIV * 30;
+  localparam CLK_DIV_31 = CLK_DIV * 31;
+  localparam CLK_DIV_32 = CLK_DIV * 32;
+  localparam CLK_DIV_33 = CLK_DIV * 33;
+  localparam CLK_DIV_34 = CLK_DIV * 34;
+  localparam CLK_DIV_35 = CLK_DIV * 35;
+  localparam CLK_DIV_36 = CLK_DIV * 36;
+  localparam CLK_DIV_37 = CLK_DIV * 37;
+  localparam CLK_DIV_38 = CLK_DIV * 38;
+  localparam CLK_DIV_39 = CLK_DIV * 39;
+  localparam CLK_DIV_40 = CLK_DIV * 40;
+
   //----------------------------------------------------------------------------
   localparam ST_IDLE = 8'b0000_0001;  //空闲状态
   localparam ST_SLADDR = 8'b0000_0010;  //发送器件地址(slave address)
@@ -91,30 +135,17 @@ module i2c_master_module #(
     else i_i2c_wready <= 1'b0;
   end
   //----------------------------------------------------------------------------
-  //生成I2C的SCL的四倍频率的驱动时钟用于驱动i2c的操作
-  always @(posedge clk, negedge rst_n) begin
-    if (!rst_n) begin
-      clk_cnt         <= 10'd0;
-      o_dri_clk       <= 1'b0;
-      o_dri_clk_valid <= 1'b0;
-    end else if (clk_cnt == clk_divide[8:1] - 1'd1) begin
-      clk_cnt         <= 10'd0;
-      o_dri_clk       <= ~o_dri_clk;
-      o_dri_clk_valid <= 1'b1;
-    end else begin
-      clk_cnt         <= clk_cnt + 1'b1;
-      o_dri_clk       <= o_dri_clk;
-      o_dri_clk_valid <= 1'b0;
-    end
-  end
-  //----------------------------------------------------------------------------
-  //(三段式状态机)同步时序描述状态转移
   always @(posedge clk, negedge rst_n) begin
     if (!rst_n) cur_state <= ST_IDLE;
     else cur_state <= next_state;
   end
 
-  //组合逻辑判断状态转移条件
+  always @(posedge clk, negedge rst_n) begin
+    if (!rst_n) cnt <= 1'b0;
+    else if (cur_state != next_state) cnt <= 1'b0;
+    else cnt <= cnt + 1'b1;
+  end
+
   always @(*) begin
     next_state = ST_IDLE;
     case (cur_state)
@@ -155,12 +186,7 @@ module i2c_master_module #(
       default: next_state = ST_IDLE;
     endcase
   end
-  always @(posedge clk, negedge rst_n) begin
-    if (!rst_n) cnt <= 1'b0;
-    else if (st_done) cnt <= 1'b0;
-    else if (o_dri_clk_valid) cnt <= cnt + 1'b1;
-    else cnt <= cnt;
-  end
+
   //----------------------------------------------------------------------------
   //时序电路描述状态输出
   always @(posedge clk, negedge rst_n) begin

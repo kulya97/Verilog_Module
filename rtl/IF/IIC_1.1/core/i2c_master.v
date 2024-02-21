@@ -58,13 +58,14 @@ module i2c_master (
     /*
      * I2C interface
      */
-    input  wire scl_i,
-    output wire scl_o,
-    output wire scl_t,
-    input  wire sda_i,
-    output wire sda_o,
-    output wire sda_t,
-
+    // input  wire scl_i,
+    // output wire scl_o,
+    // output wire scl_t,
+    // input  wire sda_i,
+    // output wire sda_o,
+    // output wire sda_t,
+    inout  wire sda_pin,
+    inout  wire scl_pin,
     /*
      * Status
      */
@@ -79,7 +80,15 @@ module i2c_master (
     input wire [15:0] prescale,
     input wire        stop_on_idle
 );
-
+  wire scl_i;
+  wire scl_o;
+  wire scl_t;
+  wire sda_i;
+  wire sda_o;
+  wire sda_t;
+  assign scl_pin = scl_t ? 1'bz : scl_o;
+  assign sda_i   = sda_pin;
+  assign sda_pin = sda_t ? 1'bz : sda_o;
   /*
 
 I2C
@@ -269,6 +278,10 @@ I/O pin.  This would prevent devices from stretching the clock period.
   assign bus_active         = bus_active_reg;
   assign bus_control        = bus_control_reg;
   assign missed_ack         = missed_ack_reg;
+
+
+
+
 
   wire scl_posedge = scl_i_reg & ~last_scl_i_reg;
   wire scl_negedge = ~scl_i_reg & last_scl_i_reg;
