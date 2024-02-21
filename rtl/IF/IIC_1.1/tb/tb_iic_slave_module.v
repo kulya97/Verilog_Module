@@ -23,7 +23,7 @@
 module tb_iic_slave_module;
   // Parameters
   localparam integer SLAVE_ADDR = 7'h5a;
-  localparam integer CLK_FREQ = 256;
+  localparam integer CLK_FREQ = 8;
   localparam integer I2C_FREQ = 1;
   localparam integer WR_BITS = 4;
   localparam integer RD_BITS = 4;
@@ -57,7 +57,7 @@ module tb_iic_slave_module;
     #(period * 20);
     i_rstn = 1;
     #(period * 20);
-    for (i = 0; i < 50; i = i + 1) begin
+    for (i = 0; i < 3; i = i + 1) begin
       i_i2c_wvalid = 1;
       i_i2c_addr   = 16'h0002 + i;
       i_i2c_wdata  = 32'h0102_0304 + i;
@@ -65,6 +65,7 @@ module tb_iic_slave_module;
 
       i_i2c_wvalid = 0;
       wait (o_i2c_done);
+      #(period * 200);
     end
   end
   i2c_master_module #(
