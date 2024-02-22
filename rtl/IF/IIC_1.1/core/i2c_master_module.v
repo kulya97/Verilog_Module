@@ -20,13 +20,11 @@ module i2c_master_module #(
     //-- i2c interface
     output reg                 i2c_scl,         //I2C的SCL时钟信号
     inout                      i2c_sda,         //I2C的SDA信号
-    //user interface
+    //-- user interface
     output                     o_i2c_done,      //I2C一次操作完成
     output                     o_i2c_ack,       //I2C应答标志 0:应答 1:未应答
     output                     o_i2c_busy
-
 );
-
   localparam CLK_DIV = (CLK_FREQ / I2C_FREQ) >> 2'd2;
   localparam CLK_DIV_00 = CLK_DIV * 00;
   localparam CLK_DIV_01 = CLK_DIV * 01;
