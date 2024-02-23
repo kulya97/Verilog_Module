@@ -73,7 +73,97 @@ module i2c_master_apb_if #(
   assign i_i2c_wdata    = apb_valid && i_apb_pwdata[15:0];
   assign o_apb_pready   = o_i2c_done;
 
-  assign o_apb_slverr=0;
+  assign o_apb_slverr   = 0;
+
+  //---------------------------------------------------------------
+
+  parameter REG1_ADDR = 32'h43C0_0000;
+  parameter REG2_ADDR = 32'h43C0_0004;
+  parameter REG3_ADDR = 32'h43C0_0008;
+  parameter REG4_ADDR = 32'h43C0_000c;
+
+  reg  [31:0] r_reg1;
+  reg  [31:0] r_reg2;
+  reg  [31:0] r_reg3;
+  reg  [31:0] r_reg4;  //only read
+  reg  [31:0] r_invld_reg;
+
+  wire                  w_apb_write_vld;
+  wire                  w_apb_read_vld;
+  reg                   r_writedata_vld;
+  reg                   r_readdata_vld;
+
+  wire [          63:0] uart_rx_data;
+  wire                  uart_rx_valid;
+  //---------------------------------------------------------------
+  assign PREADY          = 1'b1;
+  //   assign PPROT           = 3'b000;
+  //   assign PSTRB           = PWRITE ? 4'b0000 : 4'b1111;
+  assign PSLVERR         = 1'b0;
+
+  assign w_apb_write_vld = i_apb_pwrite && i_apb_psel && i_apb_penable;
+  assign w_apb_read_vld  = (!PWRITE) && PSELx && PENABLE;
+
+  always @(posedge PCLK or negedge PRESETn) begin
+    if (!PRESETn) begin
+      r_reg1          <= 32'd0;
+      r_reg2          <= 32'd0;
+      r_reg3          <= 32'd0;
+      r_writedata_vld <= 1'b0;
+    end else if (w_apb_write_vld) begin
+      case (PADDR[ADDR_WITDH-1:0])
+        REG1_ADDR: begin
+          r_reg1          <= PWDATA;
+          r_writedata_vld <= 1'b1;
+        end
+        REG2_ADDR: begin
+          r_reg2          <= PWDATA;
+          r_writedata_vld <= 1'b1;
+        end
+        REG3_ADDR: begin
+          r_reg3          <= PWDATA;
+          r_writedata_vld <= 1'b1;
+        end
+        default: begin
+          r_invld_reg     <= PWDATA;
+          r_writedata_vld <= 1'b0;
+        end
+      endcase
+    end
+  end
+  always @(*) begin
+    if (w_apb_read_vld) begin
+      case (PADDR[ADDR_WITDH-1:0])
+        REG1_ADDR: begin
+          PRDATA         <= r_reg1;
+          r_readdata_vld <= 1'b1;
+        end
+        REG2_ADDR: begin
+          PRDATA         <= r_reg2;
+          r_readdata_vld <= 1'b1;
+        end
+        REG3_ADDR: begin
+          PRDATA         <= r_reg3;
+          r_readdata_vld <= 1'b1;
+        end
+        REG4_ADDR: begin
+          PRDATA         <= uart_rx_data[31:0];
+          r_readdata_vld <= 1'b1;
+        end
+        default: begin
+          PRDATA         <= r_invld_reg;
+          r_readdata_vld <= 1'b0;
+        end
+      endcase
+    end else begin
+      PRDATA         <= 32'd0;
+      r_readdata_vld <= 1'b0;
+    end
+  end
+
+
+
+
   //---------------------------------------------------------------
   i2c_master_module #(
       .SLAVE_ADDR(SLAVE_ADDR),
