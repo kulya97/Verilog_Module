@@ -1,29 +1,33 @@
 module i2c_master_module #(
-    parameter         [6:0] SLAVE_ADDR = 7'b1010000,      //EEPROM从机地址
-    parameter integer       CLK_FREQ   = 26'd50_000_000,  //模块输入的时钟频率
-    parameter integer       I2C_FREQ   = 18'd250_000,     //IIC_SCL的时钟频率
-    parameter integer       WR_BITS    = 8'd1,
-    parameter integer       RD_BITS    = 8'd1
+    parameter integer CLK_FREQ = 26'd50_000_000,  //模块输入的时钟频率
+    parameter integer I2C_FREQ = 18'd250_000     //IIC_SCL的时钟频率
 ) (
-    input                      clk,
-    input                      rst_n,
+    input             i_clk,
+    input             i_rst_n,
     //--
-    input                      i_i2c_wvalid,
-    output reg                 i_i2c_wready,
+    input             i_cmd_bit_ctrl,  //字地址位控制(16b/8b)
+    input             i_cmd_rh_wl,     //I2C读写控制信号
+    input      [ 6:0] i_cmd_sladdr,
+    input      [15:0] i_cmd_regaddr,   //I2C器件内地址
+    input             i_cmd_wvalid,
+    output reg        i_cmd_wready,
     //--
-    input                      i_cmd_bit_ctrl,  //字地址位控制(16b/8b)
-    input                      i_cmd_rh_wl,     //I2C读写控制信号
-    input      [         15:0] i_i2c_addr,      //I2C器件内地址
-    input      [WR_BITS*8-1:0] i_i2c_wdata,     //I2C要写的数据
-    output reg [RD_BITS*8-1:0] o_i2c_rdata,     //I2C读出的数据
-    output reg                 o_i2c_rvalid,
+    //  input             i_i2c_wvalid,
+    //  output            i_i2c_wready,
+    input      [ 7:0] i_i2c_wdata,     //I2C要写的数据
+    //  input             i_i2c_wlast,
+    //--
+    output reg [ 7:0] o_i2c_rdata,     //I2C读出的数据
+    //  input             i_i2c_rready,
+    output reg        o_i2c_rvalid,
+    //  output reg        o_i2c_rlast,
     //-- i2c interface
-    output reg                 i2c_scl,         //I2C的SCL时钟信号
-    inout                      i2c_sda,         //I2C的SDA信号
+    output reg        i2c_scl,         //I2C的SCL时钟信号
+    inout             i2c_sda,         //I2C的SDA信号
     //-- user interface
-    output                     o_i2c_done,      //I2C一次操作完成
-    output                     o_i2c_ack,       //I2C应答标志 0:应答 1:未应答
-    output                     o_i2c_busy
+    output            o_i2c_done,      //I2C一次操作完成
+    output            o_i2c_ack,       //I2C应答标志 0:应答 1:未应答
+    output            o_i2c_busy
 );
   localparam CLK_DIV = (CLK_FREQ / I2C_FREQ) >> 2'd2;
   localparam CLK_DIV_00 = CLK_DIV * 00;
@@ -79,31 +83,27 @@ module i2c_master_module #(
   localparam ST_STOP = 8'd07;  //结束I2C操作
   //----------------------------------------------------------------------------
   //reg define
-  reg                  sda_dir;  //I2C数据(SDA)方向控制
-  reg                  sda_out;  //SDA输出信号
-  wire                 sda_in;  //SDA输入信号
+  reg         sda_dir;  //I2C数据(SDA)方向控制
+  reg         sda_out;  //SDA输出信号
+  wire        sda_in;  //SDA输入信号
   //--
-  reg                  st_done;  //状态结束
-  reg  [          7:0] cur_state;  //状态机当前状态
-  reg  [          7:0] next_state;  //状态机下一状态
+  reg         st_done;  //状态结束
+  reg  [ 7:0] cur_state;  //状态机当前状态
+  reg  [ 7:0] next_state;  //状态机下一状态
   //--
-  reg  [         31:0] cnt;
-  reg                  cnt_clr;
+  reg  [31:0] cnt;
+  reg         cnt_clr;
   //--
-  reg                  wr_flag_t;
-  reg                  bit_ctrl_t;
-  reg  [         15:0] addr_t;
-  reg  [          7:0] data_rd_8bit_t;
-  reg  [RD_BITS*8-1:0] data_rd_t;
-  reg  [          7:0] data_wr_8bit_t;
-  reg  [WR_BITS*8-1:0] data_wr_t;
-  //--
-  reg  [          3:0] wbit_cnt;
-  reg  [          3:0] rbit_cnt;
+  reg         wr_flag_t;
+  reg         bit_ctrl_t;
+  reg  [15:0] addr_t;
+  reg  [ 7:0] data_rd_t;
+  reg  [ 7:0] data_wr_t;
+  reg  [ 6:0] sladdr_t;
   //-- 
-  reg                  i2c_done_t;
-  reg                  i2c_ack_t;
-  reg                  i2c_busy_t;
+  reg         i2c_done_t;
+  reg         i2c_ack_t;
+  reg         i2c_busy_t;
 
   //----------------------------------------------------------------------------
   assign o_i2c_done = i2c_done_t;
@@ -114,20 +114,20 @@ module i2c_master_module #(
   assign sda_in     = i2c_sda;  //SDA数据输入
   //----------------------------------------------------------------------------
   //--
-  always @(posedge clk, negedge rst_n) begin
-    if (!rst_n) begin
-      i_i2c_wready <= 1'b0;
-    end else if (i_i2c_wvalid && !i_i2c_wready && cur_state == ST_IDLE) i_i2c_wready <= 1'b1;
-    else i_i2c_wready <= 1'b0;
+  always @(posedge i_clk, negedge i_rst_n) begin
+    if (!i_rst_n) begin
+      i_cmd_wready <= 1'b0;
+    end else if (i_cmd_wvalid && !i_cmd_wready && cur_state == ST_IDLE) i_cmd_wready <= 1'b1;
+    else i_cmd_wready <= 1'b0;
   end
   //----------------------------------------------------------------------------
-  always @(posedge clk, negedge rst_n) begin
-    if (!rst_n) cur_state <= ST_IDLE;
+  always @(posedge i_clk, negedge i_rst_n) begin
+    if (!i_rst_n) cur_state <= ST_IDLE;
     else cur_state <= next_state;
   end
 
-  always @(posedge clk, negedge rst_n) begin
-    if (!rst_n) cnt <= 1'b0;
+  always @(posedge i_clk, negedge i_rst_n) begin
+    if (!i_rst_n) cnt <= 1'b0;
     else if (cur_state != next_state || cnt_clr) cnt <= 1'b0;
     else cnt <= cnt + 1'b1;
   end
@@ -136,7 +136,7 @@ module i2c_master_module #(
     next_state = ST_IDLE;
     case (cur_state)
       ST_IDLE: begin  //空闲状态
-        if (i_i2c_wready && i_i2c_wvalid) next_state = ST_SLADDR;
+        if (i_cmd_wready && i_cmd_wvalid) next_state = ST_SLADDR;
         else next_state = ST_IDLE;
       end
       ST_SLADDR: begin  //判断是16位还是8位字地址
@@ -175,28 +175,25 @@ module i2c_master_module #(
 
   //----------------------------------------------------------------------------
   //时序电路描述状态输出
-  always @(posedge clk, negedge rst_n) begin
+  always @(posedge i_clk, negedge i_rst_n) begin
     //复位初始化
-    if (!rst_n) begin
-      o_i2c_rdata    <= 1'b0;
-      st_done        <= 1'b0;
-      i2c_scl        <= 1'b1;
-      sda_out        <= 1'b1;
-      sda_dir        <= 1'b1;
-      i2c_done_t     <= 1'b0;
-      i2c_ack_t      <= 1'b0;
-      wr_flag_t      <= 1'b0;
-      bit_ctrl_t     <= 1'b0;
-      addr_t         <= 1'b0;
-      data_rd_t      <= 1'b0;
-      data_rd_8bit_t <= 1'b0;
-      data_wr_8bit_t <= 1'b0;
-      data_wr_t      <= 1'b0;
-      wbit_cnt       <= 1'b0;
-      rbit_cnt       <= 1'b0;
-      cnt_clr        <= 1'b0;
-      o_i2c_rvalid   <= 1'b0;
-      i2c_busy_t     <= 1'b1;
+    if (!i_rst_n) begin
+      cnt_clr      <= 1'b0;
+      o_i2c_rdata  <= 1'b0;
+      st_done      <= 1'b0;
+      i2c_scl      <= 1'b1;
+      sda_out      <= 1'b1;
+      sda_dir      <= 1'b1;
+      i2c_done_t   <= 1'b0;
+      i2c_ack_t    <= 1'b0;
+      wr_flag_t    <= 1'b0;
+      bit_ctrl_t   <= 1'b0;
+      o_i2c_rvalid <= 1'b0;
+      i2c_busy_t   <= 1'b1;
+      addr_t       <= 1'b0;
+      sladdr_t     <= 7'd0;
+      data_rd_t    <= 1'b0;
+      data_wr_t    <= 1'b0;
     end else begin
       st_done      <= 1'b0;
       cnt_clr      <= 1'b0;
@@ -209,40 +206,40 @@ module i2c_master_module #(
           sda_dir    <= 1'b1;
           i2c_done_t <= 1'b0;
           i2c_ack_t  <= 1'b0;
-          wbit_cnt   <= 1'b0;
-          rbit_cnt   <= 1'b0;
           i2c_busy_t <= 1'b0;
-          if (i_i2c_wready && i_i2c_wvalid) begin
-            wr_flag_t      <= i_cmd_rh_wl;
-            bit_ctrl_t     <= i_cmd_bit_ctrl;
-            addr_t         <= i_i2c_addr;
-            data_wr_t      <= i_i2c_wdata;
-            data_wr_8bit_t <= i_i2c_wdata[7:0];
+          if (i_cmd_wready && i_cmd_wvalid) begin
+            wr_flag_t  <= i_cmd_rh_wl;
+            bit_ctrl_t <= i_cmd_bit_ctrl;
+            addr_t     <= i_cmd_regaddr;
+            sladdr_t   <= i_cmd_sladdr;
+            wrbits_t   <= i_i2c_wrbits;
+            rdbits_t   <= i_i2c_rdbits;
+            data_wr_t  <= i_i2c_wdata;
           end
         end
         ST_SLADDR: begin  //写地址(器件地址和字地址)
           case (cnt)
             CLK_DIV_01:    sda_out <= 1'b0;  //开始I2C
             CLK_DIV_03:    i2c_scl <= 1'b0;
-            CLK_DIV_04:    sda_out <= SLAVE_ADDR[6];  //传送器件地址
+            CLK_DIV_04:    sda_out <= sladdr_t[6];  //传送器件地址
             CLK_DIV_05:    i2c_scl <= 1'b1;
             CLK_DIV_07:    i2c_scl <= 1'b0;
-            CLK_DIV_08:    sda_out <= SLAVE_ADDR[5];
+            CLK_DIV_08:    sda_out <= sladdr_t[5];
             CLK_DIV_09:    i2c_scl <= 1'b1;
             CLK_DIV_11:   i2c_scl <= 1'b0;
-            CLK_DIV_12:   sda_out <= SLAVE_ADDR[4];
+            CLK_DIV_12:   sda_out <= sladdr_t[4];
             CLK_DIV_13:   i2c_scl <= 1'b1;
             CLK_DIV_15:   i2c_scl <= 1'b0;
-            CLK_DIV_16:   sda_out <= SLAVE_ADDR[3];
+            CLK_DIV_16:   sda_out <= sladdr_t[3];
             CLK_DIV_17:   i2c_scl <= 1'b1;
             CLK_DIV_19:   i2c_scl <= 1'b0;
-            CLK_DIV_20:   sda_out <= SLAVE_ADDR[2];
+            CLK_DIV_20:   sda_out <= sladdr_t[2];
             CLK_DIV_21:   i2c_scl <= 1'b1;
             CLK_DIV_23:   i2c_scl <= 1'b0;
-            CLK_DIV_24:   sda_out <= SLAVE_ADDR[1];
+            CLK_DIV_24:   sda_out <= sladdr_t[1];
             CLK_DIV_25:   i2c_scl <= 1'b1;
             CLK_DIV_27:   i2c_scl <= 1'b0;
-            CLK_DIV_28:   sda_out <= SLAVE_ADDR[0];
+            CLK_DIV_28:   sda_out <= sladdr_t[0];
             CLK_DIV_29:   i2c_scl <= 1'b1;
             CLK_DIV_31:   i2c_scl <= 1'b0;
             CLK_DIV_32:   sda_out <= 1'b0;  //0:写
@@ -371,41 +368,38 @@ module i2c_master_module #(
         ST_WDATA: begin  //写数据(8 bit)
           case (cnt)
             CLK_DIV_00: begin
-              sda_out <= data_wr_8bit_t[7];  //I2C写8位数据
+              sda_out <= data_wr_t[7];  //I2C写8位数据
               sda_dir <= 1'b1;
             end
             CLK_DIV_01:    i2c_scl <= 1'b1;
             CLK_DIV_03:    i2c_scl <= 1'b0;
-            CLK_DIV_04:    sda_out <= data_wr_8bit_t[6];
+            CLK_DIV_04:    sda_out <= data_wr_t[6];
             CLK_DIV_05:    i2c_scl <= 1'b1;
             CLK_DIV_07:    i2c_scl <= 1'b0;
-            CLK_DIV_08:    sda_out <= data_wr_8bit_t[5];
+            CLK_DIV_08:    sda_out <= data_wr_t[5];
             CLK_DIV_09:    i2c_scl <= 1'b1;
             CLK_DIV_11:   i2c_scl <= 1'b0;
-            CLK_DIV_12:   sda_out <= data_wr_8bit_t[4];
+            CLK_DIV_12:   sda_out <= data_wr_t[4];
             CLK_DIV_13:   i2c_scl <= 1'b1;
             CLK_DIV_15:   i2c_scl <= 1'b0;
-            CLK_DIV_16:   sda_out <= data_wr_8bit_t[3];
+            CLK_DIV_16:   sda_out <= data_wr_t[3];
             CLK_DIV_17:   i2c_scl <= 1'b1;
             CLK_DIV_19:   i2c_scl <= 1'b0;
-            CLK_DIV_20:   sda_out <= data_wr_8bit_t[2];
+            CLK_DIV_20:   sda_out <= data_wr_t[2];
             CLK_DIV_21:   i2c_scl <= 1'b1;
             CLK_DIV_23:   i2c_scl <= 1'b0;
-            CLK_DIV_24:   sda_out <= data_wr_8bit_t[1];
+            CLK_DIV_24:   sda_out <= data_wr_t[1];
             CLK_DIV_25:   i2c_scl <= 1'b1;
             CLK_DIV_27:   i2c_scl <= 1'b0;
-            CLK_DIV_28:   sda_out <= data_wr_8bit_t[0];
+            CLK_DIV_28:   sda_out <= data_wr_t[0];
             CLK_DIV_29:   i2c_scl <= 1'b1;
             CLK_DIV_31:   i2c_scl <= 1'b0;
             CLK_DIV_32: begin
-              wbit_cnt  <= wbit_cnt + 1'b1;
-              data_wr_t <= data_wr_t >> 8;
               sda_dir   <= 1'b0;
               sda_out   <= 1'b1;
             end
             CLK_DIV_33:   i2c_scl <= 1'b1;
             CLK_DIV_34: begin  //从机应答
-              data_wr_8bit_t <= data_wr_t[7:0];
               if (sda_in == 1'b1)  //高电平表示未应答
                 i2c_ack_t <= 1'b1;  //拉高应答标志位
             end
@@ -414,8 +408,7 @@ module i2c_master_module #(
             end
             CLK_DIV_36 - 1: begin
               cnt_clr <= 1'b1;
-              if (wbit_cnt >= WR_BITS) st_done <= 1'b1;
-              else st_done <= 1'b0;
+              st_done <= 1'b1;
               i2c_scl <= 1'b0;
             end
             default: ;
@@ -430,25 +423,25 @@ module i2c_master_module #(
             CLK_DIV_01:    i2c_scl <= 1'b1;
             CLK_DIV_02:    sda_out <= 1'b0;  //重新开始
             CLK_DIV_03:    i2c_scl <= 1'b0;
-            CLK_DIV_04:    sda_out <= SLAVE_ADDR[6];  //传送器件地址
+            CLK_DIV_04:    sda_out <= sladdr_t[6];  //传送器件地址
             CLK_DIV_05:    i2c_scl <= 1'b1;
             CLK_DIV_07:    i2c_scl <= 1'b0;
-            CLK_DIV_08:    sda_out <= SLAVE_ADDR[5];
+            CLK_DIV_08:    sda_out <= sladdr_t[5];
             CLK_DIV_09:    i2c_scl <= 1'b1;
             CLK_DIV_11:   i2c_scl <= 1'b0;
-            CLK_DIV_12:   sda_out <= SLAVE_ADDR[4];
+            CLK_DIV_12:   sda_out <= sladdr_t[4];
             CLK_DIV_13:   i2c_scl <= 1'b1;
             CLK_DIV_15:   i2c_scl <= 1'b0;
-            CLK_DIV_16:   sda_out <= SLAVE_ADDR[3];
+            CLK_DIV_16:   sda_out <= sladdr_t[3];
             CLK_DIV_17:   i2c_scl <= 1'b1;
             CLK_DIV_19:   i2c_scl <= 1'b0;
-            CLK_DIV_20:   sda_out <= SLAVE_ADDR[2];
+            CLK_DIV_20:   sda_out <= sladdr_t[2];
             CLK_DIV_21:   i2c_scl <= 1'b1;
             CLK_DIV_23:   i2c_scl <= 1'b0;
-            CLK_DIV_24:   sda_out <= SLAVE_ADDR[1];
+            CLK_DIV_24:   sda_out <= sladdr_t[1];
             CLK_DIV_25:   i2c_scl <= 1'b1;
             CLK_DIV_27:   i2c_scl <= 1'b0;
-            CLK_DIV_28:   sda_out <= SLAVE_ADDR[0];
+            CLK_DIV_28:   sda_out <= sladdr_t[0];
             CLK_DIV_29:   i2c_scl <= 1'b1;
             CLK_DIV_31:   i2c_scl <= 1'b0;
             CLK_DIV_32:   sda_out <= 1'b1;  //1:读
@@ -478,63 +471,56 @@ module i2c_master_module #(
           case (cnt)
             CLK_DIV_00: sda_dir <= 1'b0;
             CLK_DIV_01: begin
-              data_rd_8bit_t[7] <= sda_in;
-              i2c_scl           <= 1'b1;
+              data_rd_t[7] <= sda_in;
+              i2c_scl      <= 1'b1;
             end
             CLK_DIV_03: i2c_scl <= 1'b0;
             CLK_DIV_05: begin
-              data_rd_8bit_t[6] <= sda_in;
-              i2c_scl           <= 1'b1;
+              data_rd_t[6] <= sda_in;
+              i2c_scl      <= 1'b1;
             end
             CLK_DIV_07: i2c_scl <= 1'b0;
             CLK_DIV_09: begin
-              data_rd_8bit_t[5] <= sda_in;
-              i2c_scl           <= 1'b1;
+              data_rd_t[5] <= sda_in;
+              i2c_scl      <= 1'b1;
             end
             CLK_DIV_11: i2c_scl <= 1'b0;
             CLK_DIV_13: begin
-              data_rd_8bit_t[4] <= sda_in;
-              i2c_scl           <= 1'b1;
+              data_rd_t[4] <= sda_in;
+              i2c_scl      <= 1'b1;
             end
             CLK_DIV_15: i2c_scl <= 1'b0;
             CLK_DIV_17: begin
-              data_rd_8bit_t[3] <= sda_in;
-              i2c_scl           <= 1'b1;
+              data_rd_t[3] <= sda_in;
+              i2c_scl      <= 1'b1;
             end
             CLK_DIV_19: i2c_scl <= 1'b0;
             CLK_DIV_21: begin
-              data_rd_8bit_t[2] <= sda_in;
-              i2c_scl           <= 1'b1;
+              data_rd_t[2] <= sda_in;
+              i2c_scl      <= 1'b1;
             end
             CLK_DIV_23: i2c_scl <= 1'b0;
             CLK_DIV_25: begin
-              data_rd_8bit_t[1] <= sda_in;
-              i2c_scl           <= 1'b1;
+              data_rd_t[1] <= sda_in;
+              i2c_scl      <= 1'b1;
             end
             CLK_DIV_27: i2c_scl <= 1'b0;
             CLK_DIV_29: begin
-              data_rd_8bit_t[0] <= sda_in;
-              i2c_scl           <= 1'b1;
+              data_rd_t[0] <= sda_in;
+              i2c_scl      <= 1'b1;
             end
             CLK_DIV_31: i2c_scl <= 1'b0;
             CLK_DIV_32: begin
-              if (rbit_cnt >= RD_BITS) begin
-                sda_dir <= 1'b1;
-                sda_out <= 1'b1;
-              end
+              sda_dir <= 1'b1;
+              sda_out <= 1'b1;
             end
             CLK_DIV_33: i2c_scl <= 1'b1;
-            CLK_DIV_34: begin
-              data_rd_t <= data_rd_t << 8;
-            end
             CLK_DIV_35: begin
-              data_rd_t[7:0] <= data_rd_8bit_t[7:0];
-              i2c_scl        <= 1'b0;
+              i2c_scl <= 1'b0;
             end
             CLK_DIV_36 - 1: begin
               cnt_clr <= 1'b1;
-              if (rbit_cnt >= RD_BITS) st_done <= 1'b1;
-              else st_done <= 1'b0;
+              st_done <= 1'b1;
               i2c_scl <= 1'b0;
             end
             default:    ;
