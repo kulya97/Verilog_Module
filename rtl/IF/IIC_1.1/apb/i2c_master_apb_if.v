@@ -25,8 +25,8 @@ module i2c_master_apb_if #(
     parameter integer CLK_FREQ = 26'd50_000_000,  //模块输入的时钟频率
     parameter integer I2C_FREQ = 18'd250_000      //IIC_SCL的时钟频率
 ) (
-    input         i_apb_pclk,
-    input         i_apb_prst_n,
+    input         apb_clk,
+    input         apb_rstn,
     //--
     input         i_apb_psel,
     input         i_apb_penable,
@@ -34,6 +34,7 @@ module i2c_master_apb_if #(
     input  [31:0] i_apb_paddr,
     input  [31:0] i_apb_pwdata,
     //--
+    input  [ 3:0] i_apb_pstrb,
     // input  [         2:0] i_apb_prot,     //APB4 sign unused
     // input  [         3:0] i_apb_pstrb,    //APB4 sign unused
     //--
@@ -44,7 +45,14 @@ module i2c_master_apb_if #(
     output        i2c_scl,
     inout         i2c_sda
 );
+
   //---------------------------------------------------------------
+  reg         apb_psel;
+  reg         apb_penable;
+  reg  [ 3:0] apb_pstrb;
+  reg         apb_pwrite;
+  reg  [31:0] apb_paddr;
+  reg  [31:0] apb_pwdata;
   //--
   reg         r_cmd_wvalid;
   wire        w_cmd_wready;
@@ -66,29 +74,48 @@ module i2c_master_apb_if #(
   //---------------------------------------------------------------
   assign o_apb_slverr    = 0;
   assign o_apb_pready    = w_i2c_done;
-  assign w_apb_write_vld = i_apb_pwrite && i_apb_psel && i_apb_penable;
-  assign w_apb_read_vld  = (!i_apb_pwrite) && i_apb_psel && i_apb_penable;
+  assign w_apb_write_vld = apb_pwrite && apb_psel && apb_penable;
+  assign w_apb_read_vld  = (!apb_pwrite) && apb_psel && apb_penable;
   //---------------------------------------------------------------
 
-  // parameter REG1_ADDR = 32'h43C0_0000;
-  // parameter REG2_ADDR = 32'h43C0_0004;
-  // parameter REG3_ADDR = 32'h43C0_0008;
-  // parameter REG4_ADDR = 32'h43C0_000c;
+  always @(negedge apb_rstn or posedge apb_clk) begin
+    if (~apb_rstn) begin
+      apb_psel    <= 0;
+      apb_penable <= 0;
+      apb_pstrb   <= 0;
+      apb_pwrite  <= 0;
+      apb_paddr   <= 0;
+      apb_pwdata  <= 0;
+    end else begin
+      apb_psel    <= i_apb_psel;
+      apb_penable <= i_apb_penable;
+      apb_pstrb   <= i_apb_pstrb;
+      apb_pwrite  <= i_apb_pwrite;
+      apb_paddr   <= i_apb_paddr;
+      apb_pwdata  <= i_apb_pwdata;
+    end
+  end
+  //---------------------------------------------------------------
 
-  // reg  [31:0] r_reg1;
-  // reg  [31:0] r_reg2;
-  // reg  [31:0] r_reg3;
-  // reg  [31:0] r_reg4;  //only read
-  // reg  [31:0] r_invld_reg;
+  parameter REG1_ADDR = 32'h43C0_0000;
+  parameter REG2_ADDR = 32'h43C0_0004;
+  parameter REG3_ADDR = 32'h43C0_0008;
+  parameter REG4_ADDR = 32'h43C0_000c;
 
-  always @(posedge i_apb_pclk, negedge i_apb_prst_n) begin
-    if (!i_apb_prst_n) begin
+  reg [31:0] r_reg1;
+  reg [31:0] r_reg2;
+  reg [31:0] r_reg3;
+  reg [31:0] r_reg4;  //only read
+  reg [31:0] r_invld_reg;
+
+  always @(posedge apb_clk, negedge apb_rstn) begin
+    if (!apb_rstn) begin
       r_reg1       <= 32'd0;
       r_reg2       <= 32'd0;
       r_reg3       <= 32'd0;
       r_cmd_wvalid <= 1'b0;
     end else if (w_apb_write_vld) begin
-      case (PADDR[ADDR_WITDH-1:0])
+      case (apb_paddr[31:0])
         REG1_ADDR: begin
           r_reg1       <= i_apb_pwdata;
           r_cmd_wvalid <= 1'b1;
@@ -120,8 +147,8 @@ module i2c_master_apb_if #(
       .CLK_FREQ(CLK_FREQ),
       .I2C_FREQ(I2C_FREQ)
   ) i2c_master_module_inst (
-      .i_clk         (i_apb_pclk),
-      .i_rst_n       (i_apb_prst_n),
+      .i_clk         (apb_clk),
+      .i_rst_n       (apb_rstn),
       //--
       .i_cmd_bit_ctrl(w_cmd_bit_ctrl),
       .i_cmd_rh_wl   (w_cmd_rh_wl),
