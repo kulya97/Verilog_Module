@@ -42,8 +42,8 @@ module spi_master_core #(
     input      [  CHANNEL-1:0] wr_channel,
     input                      wr_valid,    //请求
     output                     wr_ready,    //响应
-    output reg                 rd_ack,
     input      [REG_WIDTH-1:0] data_in,     //data in
+    output reg                 rd_ack,
     output     [REG_WIDTH-1:0] data_out     //data out
 );
 
